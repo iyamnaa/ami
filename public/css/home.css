@@ -1,0 +1,93 @@
+/* Section */
+.index-news-box,
+.index-top-campaign-box,
+.index-new-campaign-box,
+.index-zakat,
+.index-about-us{
+  margin-top: 20px;
+  box-shadow: 1px 1px 5px 1px #ccc;
+}
+
+.index-about-us{
+  margin-bottom: calc(8vh + 10px);
+}
+
+.index-new-campaign-box .campaign-box b,
+.swiper-slide b{
+  font-size: .9rem;
+}
+
+.index-new-campaign-box .campaign-box .campaign-progress,
+.swiper-slide .campaign-progress{
+  font-size: .7rem;
+}
+
+.index-zakat .header{
+  margin-top: 0;
+}
+/* Slider */
+
+.ads-slider{
+  width: 100%;
+  height: calc(90vh - 80px);
+}
+
+.news-slider{
+  height: 40vh;
+}
+
+.news-slider .swiper-slide{
+  width: 50%;
+}
+
+.campaign-slider{
+  height: 70vh;
+}
+
+.campaign-slider .swiper-slide{
+  width: 25% !important;
+  margin: 0 3% !important;
+}
+
+.news-slider,
+.campaign-slider{
+  margin-top: 16px;
+  background-color: white;
+}
+
+.news-slider .news-swiper{
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .index-new-campaign-box .content-box.row{
+    margin: 0 !important;
+  }
+  .index-new-campaign-box .row .col-12{
+    padding: 0 !important;
+  }
+  .ads-slider{
+    height: 30vh;
+    z-index: 0;
+  }
+
+  .news-slider{
+    height: 20vh;
+  }
+
+  .news-slider .swiper-slide{
+    width: 90%;
+  }
+
+  .campaign-slider{
+    height: 25vh;
+  }
+
+  .campaign-slider .swiper-slide{
+    width: 100% !important;
+    margin: 0 30px 0 0 !important;
+  }
+
+  .campaign-slider .swiper-slide{
+    width: 50%;
+  }

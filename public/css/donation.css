@@ -1,0 +1,268 @@
+
+/* Fundraising */
+
+    /* Filter */
+
+.filter-name{
+  letter-spacing: 1px;
+  color: #999;
+}
+
+.filter-category-name,
+.filter-time-name,
+.filter-sort-name{
+  display: block;
+  margin: 2vh;
+}
+
+.filter-category-name:hover,
+.filter-time-name:hover,
+.filter-sort-name:hover{
+  color: green;
+}
+
+.filter-separator{
+  border: 0.3px solid #e5e5e5;
+}
+
+.filter-category{
+  margin-top: 20px
+}
+    /* Campaign */
+.campaign-box{
+  min-width: 100%;
+  border: 1px solid #dfd;
+  transition: .3s all;
+  margin: 0 !important;
+  margin-bottom: 4vh !important;
+  box-shadow: 1px 1px 2px 2px #e2f2e2;
+  border-radius: 8px;
+}
+
+.campaign-box .campaign-title{
+  float: left !important;
+}
+
+.campaign-box .campaign-title,
+.campaign-box .campaign-category{
+  text-align: left !important;
+}
+
+.campaign-image-box{
+  padding: 0 !important;
+}
+
+.campaign-image{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0 0;
+  max-height: 170px;
+  min-height: 170px;
+}
+
+.campaign-category{
+  color: #999;
+  font-size: .9rem;
+}
+
+.campaign-info{
+  padding: 3vh !important;
+}
+
+.campaign-progress{
+  color: #333;
+}
+
+.campaign-progress .content-desc{
+  color: #999;
+}
+
+.campaign-desc,
+.campaign-progress{
+  margin-top: 1.5vh;
+  font-size: .9rem;
+}
+
+.campaign-desc{
+  color: #777;
+  text-align: justify;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.search-on-mobile{
+  display: none;
+}
+
+/* Bootstrap Overriding */
+.progress,
+.progress-bar{
+  height: 10px;
+  border-radius: 3px;
+}
+
+.progress-bar{
+  background-color: green;
+}
+
+/* Section */
+.fundraising{
+  margin: 4vh 1.5vw;
+}
+
+.campaign-detail{
+  margin-top: 140px;
+}
+
+.campaign-info-detail{
+  padding: 20px 0;
+}
+
+.campaign-info-detail img{
+  max-width: 100%;
+}
+
+.campaign-info-detail p{
+  margin: 12px 0;
+}
+
+.campaign-info-footer{
+  border-top: 5px solid #e9ecef;
+  padding: 30px 0;
+}
+
+.report-campaign .container{
+  width: 60vw;
+}
+
+.verified-user{
+  margin-left: 4px;
+}
+
+/* Campaign Info */
+.social-media-list,
+.donation-list,
+.donation-list-info,
+.campaign-info-desc,
+.campaign-info-detail{
+  margin-top: 16px;
+}
+
+.campaign-info-setting{
+  margin-top: 48px;
+}
+
+.donation-list-info{
+  font-size: .9rem;
+}
+
+.donation-list-info-name{
+  color: #222;
+}
+
+.donation-list-info-amount{
+  color: #777;
+}
+
+
+.donation-list-user{
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+}
+
+.filter-name .fa-caret-right{
+  margin-right: 4px;
+  color: #999;
+}
+
+.mobile-filter-button{
+  /*display: none;*/
+  position: fixed;
+  bottom: calc(8vh + 20px);
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  margin: 20px 30px;
+  z-index: 8;
+}
+
+.filter-btn{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  margin: 20px;
+  box-shadow: 1px 1px 5px 2px #ddd;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .campaign-filter,
+  .filter,
+  .filter-separator,
+  .search-on-desktop{
+    display: none !important;
+  }
+  .modal .filter-content{
+    margin-top: 16px;
+  }
+
+  .search-on-mobile{
+    display: initial;
+  }
+
+  .discover-campaign-box{
+    padding: 3vh 2vh;
+  }
+
+  .campaign-title{
+    font-size: .95rem;
+  }
+
+  .campaign-progress{
+    font-size: .8rem;
+  }
+
+  .progress{
+    margin-top: 20px;
+  }
+
+  .report-campaign .container{
+    width: 100vw;
+  }
+
+  .report-campaign textarea{
+    width: 100%;
+  }
+
+  .progress,
+  .progress-bar{
+    height: 5px;
+    border-radius: 1px;
+  }
+
+  .progress-bar{
+    background-color: green;
+  }
+
+  .campaign-box{
+    margin-bottom: 2vh !important;
+  }
+
+  .campaign-image{
+    border-radius: 8px 0 0 8px;
+  }
+
+  .campaign-desc{
+    display: none;
+  }
+
+  .campaign-info{
+    padding: 1.5vh 3vh !important;
+  }
+
+  .invitation{
+    font-size: .9rem;
+    text-align: justify;
+  }
+
+}
