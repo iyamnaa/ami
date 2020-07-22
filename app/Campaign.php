@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
+
+  protected $fillable = ['title','short_desc','image_cover','body','target','deadline','campaign_category_id','user_id'];
+
+  protected $dates = ['deadline'];
+
   public function campaign_category()
     {
         return $this->belongsTo(CampaignCategory::class,'category_id');

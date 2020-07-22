@@ -33,8 +33,10 @@ class CreateZakatsTable extends Migration
             $table->string('akad');
             $table->integer('amount');
             $table->integer('qty');
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
+
+            $table->index('user_id');
+            $table->foreignId('user_id')->constrained();
         });
     }
 

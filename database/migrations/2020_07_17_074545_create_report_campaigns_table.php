@@ -15,11 +15,15 @@ class CreateReportCampaignsTable extends Migration
     {
         Schema::create('campaign_reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('campaign_id')->constrained();
-            $table->foreign('category_id')->references('id')->on('report_categories');
             $table->text('body');
             $table->timestamps();
+
+            $table->index('user_id');
+            $table->index('campaign_id');
+            $table->index('report_category_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('campaign_id')->constrained();
+            $table->foreignId('report_category_id')->constrained();
         });
     }
 

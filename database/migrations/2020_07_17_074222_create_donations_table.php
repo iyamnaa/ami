@@ -32,9 +32,12 @@ class CreateDonationsTable extends Migration
             $table->enum('status',['proses','gagal','berhasil','cancel']);
             $table->string('akad');
             $table->integer('amount');
-            $table->foreignId('campaign_id')->constrained();
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
+
+            $table->index('user_id');
+            $table->index('campaign_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('campaign_id')->constrained();
         });
     }
 

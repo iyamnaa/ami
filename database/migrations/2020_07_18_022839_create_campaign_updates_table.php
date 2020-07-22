@@ -15,10 +15,12 @@ class CreateCampaignUpdatesTable extends Migration
     {
         Schema::create('campaign_updates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('campaign_update_id')->constrained();
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+            
+            $table->index('campaign_update_id');
+            $table->foreignId('campaign_update_id')->constrained();
         });
     }
 

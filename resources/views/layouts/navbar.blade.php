@@ -1,13 +1,19 @@
 <nav>
-  <div class="navbar" align="center">
-    <div>
-      <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
+  <div class="navbar" align="center" style="background-color: rgb(30,165,58);color: white;">
+    <div class="row">
+      <div class="col-2">
+        <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
+      </div>
+      <div class="col-9 ami-text" align="left">
+        <h5>Amal Madani Indonesia</h5>
+        <p>Filantrophy and Humanity Indonesia</p>
+      </div>
     </div>
       <ul class="menu-list d-inline">
         <li><a href="{{ route('index') }}">Beranda</a></li>
-        <li><a href="{{ route('donation.index') }}">Donasi</a></li>
-        <li><a href="{{ route('alms.index') }}">Zakat</a></li>
-        <li><a href="{{ route('news.index') }}">Berita</a></li>
+        <li><a href="{{ route('campaigns.front') }}">Donasi</a></li>
+        <li><a href="{{ route('zakats.front') }}">Zakat</a></li>
+        <li><a href="{{ route('news.front') }}">Berita</a></li>
         <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
         <li>
           <div class="account-menu bg-success text-light">
@@ -38,7 +44,7 @@
   </div>
 
   <div class="col-3">
-    <a href="{{ route('alms.index') }}">
+    <a href="{{ route('zakats.front') }}">
       <div class="mobile-menu mid-content">
         <div align="center">
           <i class="menu-icon fa fa-heartbeat"></i>
@@ -49,7 +55,7 @@
   </div>
 
   <div class="col-3">
-    <a href="{{ route('news.index') }}">
+    <a href="{{ route('news.front') }}">
       <div class="mobile-menu mid-content">
         <div align="center">
           <i class="menu-icon fa fa-file-text"></i>
@@ -61,7 +67,7 @@
 
   <div class="col-3">
     @if (false)
-      <a href="{{ route('user.index') }}">
+      <a href="{{ route('users.front') }}">
         <div class="mobile-menu mid-content">
           <div align="center">
             <i class="menu-icon fa fa-user"></i>

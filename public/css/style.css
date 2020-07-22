@@ -172,7 +172,6 @@ input[type=number] {
   width: 100vw;
   background-color: #fff;
   z-index: 10;
-
 }
 
 .navbar{
@@ -188,6 +187,14 @@ input[type=number] {
   height: 8vh;
   padding: 10px 20px 0;
   box-shadow: -0.5px -0.5px 5px 1px rgba(180,180,180,0.8);
+}
+
+.navbar .ami-text{
+  margin-left: 6px;
+}
+
+.ami-text h5{
+  margin-bottom: .35rem;
 }
 
 .account-menu{
@@ -366,7 +373,7 @@ input[type=number] {
 }
 
 .see-more-btn:hover{
-  border: 1px solid green;
+  border: 1px solid rgb(30,145,68);
   box-shadow: 1px 1px 4px 2px #eee;
   transition: .2s all;
 }
@@ -574,7 +581,7 @@ input[type=number] {
   }
 
   .navbar{
-    padding: 2vh 32px;
+    padding: 2vh 24px;
   }
 
   .menu-list{

@@ -21,12 +21,13 @@ class CreateCampaignsTable extends Migration
             $table->text('body');
             $table->integer('target');
             $table->datetime('deadline');
+            $table->timestamp('confirmed_at')->nullable();
             $table->timestamps();
 
-            $table->index('category_id');
+            $table->index('campaign_category_id');
             $table->index('user_id');
-            $table->foreign('category_id')->references('id')->on('campaign_categories');
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('campaign_category_id')->constrained();
         });
     }
 

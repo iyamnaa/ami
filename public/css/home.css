@@ -8,6 +8,10 @@
   box-shadow: 1px 1px 5px 1px #ccc;
 }
 
+.index-news-box{
+  margin-top: 0;
+}
+
 .index-about-us{
   margin-bottom: calc(8vh + 10px);
 }

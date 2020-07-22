@@ -1899,10 +1899,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1910,183 +1910,6 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var StepOne = Vue.extend({
-  props: ['nextStep'],
-  template: '<div><h1>Step One</h1><button @click="nextStep(\'step-two\')">Next</button></div>'
-});
-var StepTwo = Vue.extend({
-  props: ['nextStep'],
-  template: '<div><h1>Step Two</h1><button @click="nextStep(\'step-three\')">Next</button></div>'
-});
-var StepThree = Vue.extend({
-  template: '<div><h1>Step Three</h1><button>Finish</button></div>'
-});
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
-  data: function data() {
-    return {
-      steps: ['step-one', 'step-two', 'step-three'],
-      currentStep: 'step-one'
-    };
-  },
-  components: {
-    'step-one': StepOne,
-    'step-two': StepTwo,
-    'step-three': StepThree
-  },
-  methods: {
-    nextStep: function nextStep(step) {
-      this.currentStep = step;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Zakat.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -37686,10 +37509,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -37701,308 +37524,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", [
-      _c("section", { staticClass: "payment zakat-payment" }, [
-        _c(
-          "div",
-          { staticClass: "content-box container", attrs: { id: "zakat-form" } },
-          [
-            _c(
-              "ul",
-              _vm._l(_vm.steps, function(step) {
-                return _c("li", [
-                  _c(
-                    "span",
-                    {
-                      on: {
-                        click: function($event) {
-                          _vm.currentStep = step
-                        }
-                      }
-                    },
-                    [_vm._v("@" + _vm._s(step))]
-                  )
-                ])
-              }),
-              0
-            )
-          ]
-        )
-      ])
-    ])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "calculator-list" }, [
-      _c("div", { staticClass: "content-box" }, [
-        _c("h3", { staticClass: "content-title", attrs: { align: "center" } }, [
-          _vm._v("Bayar Zakat")
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content fitrah-logo" },
-                      [_c("i", { staticClass: "fa fa-heart" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Fitrah")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "Each serving its own semantic purpose, with a few extras thrown in for more control."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content emas-logo" },
-                      [_c("i", { staticClass: "fa fa-database" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Emas")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "In need of a button, but not the hefty background colors they bring"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content profesi-logo" },
-                      [_c("i", { staticClass: "fa fa-user-md" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Profesi")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "The btn classes are designed to be used with the button element"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content tabungan-logo" },
-                      [_c("i", { staticClass: "fa fa-heartbeat" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Tabungan")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "or is included through alternative means, such as additional text hidden"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "zakat-logo mid-content perdagangan-logo"
-                      },
-                      [_c("i", { staticClass: "fa fa-university" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Perdagangan")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "such as screen readers. Ensure that information denoted by the color is either obvious"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content simpanan-logo" },
-                      [_c("i", { staticClass: "fa fa-money" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Simpanan")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "Using color to add meaning only provides a visual indication, which will not be conveyed "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content hadiah-logo" },
-                      [_c("i", { staticClass: "fa fa-gift" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Hadiah")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v(
-                        "Use Bootstrap’s custom button styles for actions in forms, dialogs, and more"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("div", { staticClass: "zakat-box" }, [
-              _c("div", { staticClass: "mid-content" }, [
-                _c(
-                  "div",
-                  { staticClass: "zakat-type", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "zakat-logo mid-content pertanian-logo" },
-                      [_c("i", { staticClass: "fa fa-life-ring" })]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-name" }, [
-                      _vm._v("Zakat Pertanian")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "zakat-desc" }, [
-                      _vm._v("Each serving its own semantic purpose")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn btn-success btn-calc" }, [
-                      _vm._v("Hitung Zakat")
-                    ])
-                  ]
-                )
-              ])
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Example Component")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _vm._v(
+                "\n                    I'm an example component.\n                "
+              )
             ])
           ])
         ])
@@ -38010,58 +37550,6 @@ var staticRenderFns = [
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308& ***!
-  \********************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("section", { staticClass: "payment zakat-payment" }, [
-      _c(
-        "div",
-        { staticClass: "content-box container", attrs: { id: "zakat-form" } },
-        [
-          _c(
-            "ul",
-            _vm._l(_vm.steps, function(step) {
-              return _c("li", [
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.currentStep = step
-                      }
-                    }
-                  },
-                  [_vm._v("@" + _vm._s(step))]
-                )
-              ])
-            }),
-            0
-          )
-        ]
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50255,8 +49743,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('zakat-calc', __webpack_require__(/*! ./components/Zakat-calc.vue */ "./resources/js/components/Zakat-calc.vue")["default"]);
-Vue.component('zakat', __webpack_require__(/*! ./components/Zakat.vue */ "./resources/js/components/Zakat.vue")["default"]);
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50314,17 +49801,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Zakat-calc.vue":
-/*!************************************************!*\
-  !*** ./resources/js/components/Zakat-calc.vue ***!
-  \************************************************/
+/***/ "./resources/js/components/ExampleComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Zakat-calc.vue?vue&type=template&id=3131bf94& */ "./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94&");
-/* harmony import */ var _Zakat_calc_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Zakat-calc.vue?vue&type=script&lang=js& */ "./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -50334,9 +49821,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Zakat_calc_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -50346,107 +49833,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Zakat-calc.vue"
+component.options.__file = "resources/js/components/ExampleComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_calc_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Zakat-calc.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat-calc.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_calc_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94&":
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94& ***!
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Zakat-calc.vue?vue&type=template&id=3131bf94& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat-calc.vue?vue&type=template&id=3131bf94&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_calc_vue_vue_type_template_id_3131bf94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Zakat.vue":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Zakat.vue ***!
-  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Zakat.vue?vue&type=template&id=c0de4308& */ "./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308&");
-/* harmony import */ var _Zakat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Zakat.vue?vue&type=script&lang=js& */ "./resources/js/components/Zakat.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Zakat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Zakat.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Zakat.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/Zakat.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Zakat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308& ***!
-  \**************************************************************************/
+/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
+  \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Zakat.vue?vue&type=template&id=c0de4308& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Zakat.vue?vue&type=template&id=c0de4308&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Zakat_vue_vue_type_template_id_c0de4308___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -50470,8 +49888,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! d:\duh\0. Project\work\Amal Madani\Back End\amal_madani\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! d:\duh\0. Project\work\Amal Madani\Back End\amal_madani\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! d:\duh\0. Project\Work\Amal Madani\Back End\amal_madani\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! d:\duh\0. Project\Work\Amal Madani\Back End\amal_madani\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

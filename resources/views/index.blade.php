@@ -327,7 +327,7 @@
 
     <div class="col-12 col-md-3 offset-md-9">
       <br>
-      <a href="{{ route('donation.index') }}">
+      <a href="{{ route('campaigns.front') }}">
         <div class="btn main-btn single-btn btn-success text-light full-width">
           Tampilkan Lebih Banyak
         </div>
@@ -350,7 +350,7 @@
 
     <div class="col-12 col-md-3 offset-md-9 bg-light">
       <br>
-      <a href="{{ route('alms.index') }}">
+      <a href="{{ route('zakats.front') }}">
         <div class="btn main-btn single-btn btn-orange text-light full-width">
           Bayar Zakat
         </div>

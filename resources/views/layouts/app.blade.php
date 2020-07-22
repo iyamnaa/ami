@@ -31,7 +31,6 @@
           `@include('layouts.modal.registration.login')`,
           `@include('layouts.modal.registration.signup')`
         ]
-
         function call_registration_form(registration_type){
             $('#modal-include').html(registration_form[registration_type])
         }
