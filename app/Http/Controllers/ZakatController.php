@@ -30,7 +30,20 @@ class ZakatController extends AppBaseController
      */
     public function front(){
 
-        return view('zakats.front');
+        return view('zakats.index');
+    }
+
+    public function payment(Request $request){
+        $data = array();
+
+        $data['qty'] = $request->input('qty-zakat');
+        $data['amount'] = $request->input('kadar-zakat') * $data['qty'];
+        $data['akad'] = $request->input('akad');
+        $data['name'] = 'Natieq Sah Muhammad';
+        $data['phone'] = '081221572240';
+        $data['address'] = 'Jl. Babakan Ciparay';
+
+        return view('zakats.payment', ['data' => $data]);
     }
 
     public function index(Request $request)

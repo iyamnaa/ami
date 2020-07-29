@@ -12,85 +12,58 @@
   <div class="form-group">
     <div class="row">
       <div class="col-12 col-md-4">
-        <label>Penghasilan (Bulan) : </label>
+        <label>Jumlah Hasil Panen (Kg) : </label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" style="font-size: .94rem">Kg</div>
+          </div>
+        <input type="number" class="form-control" onkeyup="agricultural_calculation()" name="jumlah-panen" value="1000" placeholder="0">
+        </div>
+
+        <label>Harga Panen (Per Kg) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="number" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" onkeyup="agricultural_calculation()" value="14000" name="harga-panen" placeholder="0">
         </div>
 
-        <label>Penghasilan Tambahan (Bulan) : </label>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="agricultural_calculation()">
+            <label class="custom-control-label" for="defaultUnchecked">Dengan Irigasi</label>
+        </div>
+
+        <label>Nishab (Harga Beras x 524) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" name="nishab-zakat" placeholder="0" disabled="true">
         </div>
 
-        <label>Pengeluaran Pokok (Bulan) : </label>
+        <label>Zakat (Kg) : </label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" style="font-size: .94rem">Kg</div>
+          </div>
+        <input type="text" class="form-control" name="kadar-zakat-kg" placeholder="0" disabled="true">
+        </div>
+
+        <label>Zakat (Rp) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" name="kadar-zakat" placeholder="0" value="0">
         </div>
 
-        <label>Harga Beras (Kg) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
-          </div>
-        <input type="text" class="form-control" name="" placeholder="0">
-        </div>
-
-        <label>Nasab (Harga Beras x 552 Kg) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
-          </div>
-        <input type="text" class="form-control" name="" placeholder="0" disabled="true">
-        </div>
-
-        <label>Jumlah Bulan : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-          </div>
-        <input type="text" class="form-control" name="" placeholder="0">
-        </div>
+        <br>
+        <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </p>
       </div>
       <div class="col-12 col-md-6 offset-md-2">
-        <br>
-        <div class="payment-cek">
-          <table class="table">
-            <tr align="center">
-              <th colspan="2">Total Zakat</th>
-            </tr>
-            <tr>
-              <th>Keterangan</th>
-              <th>Nominal</th>
-            </tr>
-            <tr>
-              <td>Zakat Penghasilan</td>
-              <td>Rp.200.000</td>
-            </tr>
-            <tr>
-              <td>Tanggungan</td>
-              <td>Rp.0</td>
-            </tr>
-            <tr class="bg-success text-light">
-              <td align="center">Total</td>
-              <td>Rp.200.000</td>
-            </tr>
-          </table>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Bismillah.
-          </label>
-        </div><br>
+        @include('zakats.forms.payment-table')
+
+        <input type="hidden" name="zakat-type" value="zakat-pertanian" id="zakatType">
         <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
       </div>
     </div> 

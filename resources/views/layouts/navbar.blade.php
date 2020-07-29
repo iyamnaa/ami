@@ -1,15 +1,15 @@
 <nav>
-  <div class="navbar" align="center" style="background-color: rgb(30,165,58);color: white;">
+  <div class="navbar" align="center">
     <div class="row">
       <div class="col-2">
         <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
       </div>
-      <div class="col-9 ami-text" align="left">
+      <div class="col-9 ami-text" align="left" style="margin-left: 16px"> 
         <h5>Amal Madani Indonesia</h5>
         <p>Filantrophy and Humanity Indonesia</p>
       </div>
     </div>
-      <ul class="menu-list d-inline">
+      <ul class="menu-list d-inline" style="height: 80%">
         <li><a href="{{ route('index') }}">Beranda</a></li>
         <li><a href="{{ route('campaigns.front') }}">Donasi</a></li>
         <li><a href="{{ route('zakats.front') }}">Zakat</a></li>

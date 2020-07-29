@@ -74,7 +74,7 @@
 
     </div>
 
-    <div class="col-12 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-9">
 
       <div class="content-box invitation">
         <div class="content-box bg-success text-white">

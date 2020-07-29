@@ -169,7 +169,7 @@
             </div>
           </div>
           <div style="margin-top: 30px" id="zakat-form">
-            @include('alms.forms.zakat-fitrah')
+            @include('zakats.forms.zakat-fitrah')
           </div>
         </div>
       </section>
@@ -183,26 +183,27 @@
 
 @section('javascript')
 <script src="{{ asset('js/mdb.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('js/style.js') }}"></script>
 <script src="{{ asset('js/alms.js') }}"></script>
 <script type="text/javascript">
   var alms_form = [
-    `@include('alms.forms.zakat-fitrah')`,
-    `@include('alms.forms.zakat-emas')`,
-    `@include('alms.forms.zakat-profesi')`,
-    `@include('alms.forms.zakat-tabungan')`,
-    `@include('alms.forms.zakat-perdagangan')`,
-    `@include('alms.forms.zakat-simpanan')`,
-    `@include('alms.forms.zakat-hadiah')`,
-    `@include('alms.forms.zakat-pertanian')`
+    `@include('zakats.forms.zakat-fitrah')`,
+    `@include('zakats.forms.zakat-emas')`,
+    `@include('zakats.forms.zakat-profesi')`,
+    `@include('zakats.forms.zakat-tabungan')`,
+    `@include('zakats.forms.zakat-perdagangan')`,
+    `@include('zakats.forms.zakat-simpanan')`,
+    `@include('zakats.forms.zakat-hadiah')`,
+    `@include('zakats.forms.zakat-pertanian')`
   ]
   var form_position = ($('.zakat-form-box').eq(0).position().top - 40);
 
-  function change_zakat(alms_number) {
-    $('#zakat-form').html(alms_form[alms_number])
+  function change_zakat(zakat_number) {
+    $('#zakat-form').html(alms_form[zakat_number])
     $('html, body').animate({
         scrollTop: form_position
     }, 500);
+    refreshform(zakat_number);
   }
 </script>
 @endsection

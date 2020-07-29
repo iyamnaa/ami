@@ -1,6 +1,7 @@
 <div align="center" style="width: 100%;margin: 20px 0">
   <h4 class="content-title">Zakat Profesi</h4>
 </div>
+<br>
 <form>
   <div class="form-group">
     <div class="row">
@@ -10,15 +11,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="number" class="form-control" name="" placeholder="0">
-        </div>
-
-        <label>Penghasilan Tambahan (Bulan) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
-          </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="number" class="form-control" onkeyup="profession_calculation()" name="jumlah-penghasilan" value="0" placeholder="0">
         </div>
 
         <label>Pengeluaran Pokok (Bulan) : </label>
@@ -26,7 +19,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" onkeyup="profession_calculation()" name="jumlah-pengeluaran" value="0" placeholder="0">
         </div>
 
         <label>Harga Beras (Kg) : </label>
@@ -34,15 +27,15 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" onkeyup="profession_calculation()" name="harga-beras" value="14000" placeholder="0" autocomplete="off">
         </div>
 
-        <label>Nasab (Harga Beras x 552 Kg) : </label>
+        <label>Nishab (Harga Beras x 552 Kg) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0" disabled="true">
+        <input type="text" class="form-control" name="nishab-zakat" value="14000" placeholder="0" disabled="true">
         </div>
 
         <label>Jumlah Bulan : </label>
@@ -50,41 +43,18 @@
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+        <input type="text" class="form-control" onkeyup="zakat_show(this)" name="" value="1" placeholder="0">
         </div>
-      </div>
-      <div class="col-12 col-md-6 offset-md-2">
+
         <br>
-        <div class="payment-cek">
-          <table class="table">
-            <tr align="center">
-              <th colspan="2">Total Zakat</th>
-            </tr>
-            <tr>
-              <th>Keterangan</th>
-              <th>Nominal</th>
-            </tr>
-            <tr>
-              <td>Zakat Profesi</td>
-              <td>Rp. 0.00</td>
-            </tr>
-            <tr>
-              <td>Jumlah Bulan</td>
-              <td>0</td>
-            </tr>
-            <tr class="bg-success text-light">
-              <td align="center">Total</td>
-              <td>Rp. 0.00</td>
-            </tr>
-          </table>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Bismillah.
-          </label>
-        </div><br>
-        <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
+        <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </span></p>
+      </div>
+
+      <div class="col-12 col-md-6 offset-md-2">
+        @include('zakats.forms.payment-table')
+
+        <input type="hidden" name="zakat-type" value="zakat-profesi" id="zakatType">
+        <input type="submit" id="BayarZakat" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width" disabled="disabled">
       </div>
     </div> 
   </div>

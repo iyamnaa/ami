@@ -1,6 +1,16 @@
 body{
   background-color: #f5f5ff;
 }
+.detail-payment-box:nth-child(1){
+  margin-top: 100px;
+}
+
+.detail-payment-box{
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color:#fff;
+  box-shadow: 1px 1px 5px 1px #ccc;
+}
 /* Zakat */
 .calculator-list{
   margin-top: 20px;
@@ -8,6 +18,7 @@ body{
 }
 
 .zakat-box{
+  background-color: white;
   box-shadow: 1px 1px 5px 2px #ccc;
   border-radius: 10px;
   padding: 4vh;

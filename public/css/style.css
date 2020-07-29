@@ -360,6 +360,21 @@ input[type=number] {
   box-shadow: 1px 1px 5px 2px rgba(30,195,68,0.7);
 }
 
+input[type='submit'][disabled='true'],
+input[type='submit'][disabled='disabled'],
+input[type='reset'][disabled='true'],
+button[disabled='true']{
+  background-color: silver !important;
+}
+
+input[type='submit'][disabled='true']:hover,
+input[type='submit'][disabled='disabled']:hover,
+input[type='reset'][disabled='true']:hover,
+button[disabled='true']:hover{
+  box-shadow: none;
+
+}
+
 .btn-orange{
   background-color: orange !important;
 }

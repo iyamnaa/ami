@@ -30,7 +30,7 @@ class CampaignController extends AppBaseController
      */
     public function front(){
 
-        return view('campaigns.front');
+        return view('donations.index');
     }
 
     public function index(Request $request)

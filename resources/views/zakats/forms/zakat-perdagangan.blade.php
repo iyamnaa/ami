@@ -61,36 +61,9 @@
         </div>
       </div>
       <div class="col-12 col-md-6 offset-md-2">
-        <br>
-        <div class="payment-cek">
-          <table class="table">
-            <tr align="center">
-              <th colspan="2">Total Zakat</th>
-            </tr>
-            <tr>
-              <th>Keterangan</th>
-              <th>Nominal</th>
-            </tr>
-            <tr>
-              <td>Zakat Penghasilan</td>
-              <td>Rp.200.000</td>
-            </tr>
-            <tr>
-              <td>Tanggungan</td>
-              <td>Rp.0</td>
-            </tr>
-            <tr class="bg-success text-light">
-              <td align="center">Total</td>
-              <td>Rp.200.000</td>
-            </tr>
-          </table>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Bismillah.
-          </label>
-        </div><br>
+        @include('zakats.forms.payment-table')
+
+        <input type="hidden" name="zakat-type" value="zakat-perdagangan">
         <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
       </div>
     </div> 

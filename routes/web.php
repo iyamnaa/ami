@@ -26,6 +26,7 @@ Route::group(['prefix' => 'donasi'], function(){
 
 Route::group(['prefix' => 'zakat'], function(){
   Route::get('/', 'ZakatController@front')->name('zakats.front');
+  Route::get('/detail', 'ZakatController@payment')->name('zakats.payment');
 });
 
 Route::group(['prefix' => 'profil'], function(){
