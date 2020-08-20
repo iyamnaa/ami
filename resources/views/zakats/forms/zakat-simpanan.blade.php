@@ -1,14 +1,8 @@
 <div align="center" style="width: 100%;margin: 20px 0">
   <h4 class="content-title">Zakat Penghasilan</h4>
 </div>
-<div class="content-box no-padd">
-  <ul class="menu-list mobile-menu-list text-primary">
-    <li style="border-bottom: 1px solid royalblue;">Kalkulator &nbsp;&nbsp;&nbsp;</li>
-    <li>Hitung mandiri</li>
-  </ul>
-</div>
-<br><br>
-<form>
+<br>
+{{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
   <div class="form-group">
     <div class="row">
       <div class="col-12 col-md-4">
@@ -59,13 +53,16 @@
           </div>
         <input type="text" class="form-control" name="" placeholder="0">
         </div>
+        
+        <br>
+        <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </span></p>
       </div>
       <div class="col-12 col-md-6 offset-md-2">
         @include('zakats.forms.payment-table')
 
-        <input type="hidden" name="zakat-type" value="zakat-simpanan">
+        <input type="hidden" name="akad" value="zakat-simpanan">
         <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
       </div>
     </div> 
   </div>
-</form>
+{{ Form::close() }}

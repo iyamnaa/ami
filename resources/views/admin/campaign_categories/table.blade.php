@@ -2,6 +2,7 @@
     <table class="table table-striped" id="campaignCategories-table">
         <thead>
             <tr>
+                <th width="8%">No</th>
                 <th>Name</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -9,6 +10,7 @@
         <tbody>
         @foreach($campaignCategories as $campaignCategory)
             <tr>
+                <td>{{ $campaignCategory->id }}</td>
                 <td>{{ $campaignCategory->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['campaignCategories.destroy', $campaignCategory->id], 'method' => 'delete']) !!}

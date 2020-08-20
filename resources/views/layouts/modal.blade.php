@@ -4,7 +4,7 @@
   <div class="modal-dialog" role="document" style="max-width: 400px">
     <div class="modal-content">
       <section id="modal-include">
-        @include('layouts.modal.filter.filter')
+        @include('layouts.modal.registration.login')
       </section>
     </div>
   </div>

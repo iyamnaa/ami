@@ -2,7 +2,7 @@
   <h4 class="content-title">Zakat Profesi</h4>
 </div>
 <br>
-<form>
+{{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
   <div class="form-group">
     <div class="row">
       <div class="col-12 col-md-4">
@@ -11,7 +11,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="number" class="form-control" onkeyup="profession_calculation()" name="jumlah-penghasilan" value="0" placeholder="0">
+        <input type="number" class="form-control" onkeyup="profession_calculation()" name="jumlah-penghasilan" placeholder="0" required>
         </div>
 
         <label>Pengeluaran Pokok (Bulan) : </label>
@@ -19,7 +19,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" onkeyup="profession_calculation()" name="jumlah-pengeluaran" value="0" placeholder="0">
+        <input type="text" class="form-control" onkeyup="profession_calculation()" name="jumlah-pengeluaran" placeholder="0">
         </div>
 
         <label>Harga Beras (Kg) : </label>
@@ -43,7 +43,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
-        <input type="text" class="form-control" onkeyup="zakat_show(this)" name="" value="1" placeholder="0">
+        <input type="text" class="form-control" onkeyup="zakat_show(this)" name="qty-zakat" value="1" placeholder="0">
         </div>
 
         <br>
@@ -53,9 +53,9 @@
       <div class="col-12 col-md-6 offset-md-2">
         @include('zakats.forms.payment-table')
 
-        <input type="hidden" name="zakat-type" value="zakat-profesi" id="zakatType">
-        <input type="submit" id="BayarZakat" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width" disabled="disabled">
+        <input type="hidden" name="akad" value="zakat-profesi" id="zakatType">
+        <input type="submit" id="bayarZakat" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
       </div>
     </div> 
   </div>
-</form>
+{{ Form::close() }}

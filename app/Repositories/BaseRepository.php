@@ -50,6 +50,7 @@ abstract class BaseRepository
      *
      * @return Model
      */
+
     public function makeModel()
     {
         $model = $this->app->make($this->model());
@@ -83,7 +84,7 @@ abstract class BaseRepository
      * @param int|null $limit
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function allQuery($search = [], $skip = null, $limit = null)
+    public function allQuery($search = [], $searchlike = [], $skip = null, $limit = null)
     {
         $query = $this->model->newQuery();
 
@@ -95,8 +96,16 @@ abstract class BaseRepository
             }
         }
 
+        if (count($searchlike)) {
+            foreach($searchlike as $key => $value) {
+                if (in_array($key, $this->getFieldsSearchable())) {
+                    $query->where($key,'like', '%'.$value.'%');
+                }
+            }
+        }
+
         if (!is_null($skip)) {
-            $query->skip($skip);
+           $query->skip($skip);
         }
 
         if (!is_null($limit)) {
@@ -116,9 +125,9 @@ abstract class BaseRepository
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function all($search = [], $skip = null, $limit = null, $columns = ['*'])
+    public function all($search = [], $searchlike = [], $skip = null, $limit = null, $columns = ['*'])
     {
-        $query = $this->allQuery($search, $skip, $limit);
+        $query = $this->allQuery($search, $searchlike, $skip, $limit);
 
         return $query->get($columns);
     }
