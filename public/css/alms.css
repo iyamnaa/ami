@@ -2,7 +2,7 @@ body{
   background-color: #f5f5ff;
 }
 .detail-payment-box:nth-child(1){
-  margin-top: 100px;
+  margin: 100px 0 50px;
 }
 
 .detail-payment-box{

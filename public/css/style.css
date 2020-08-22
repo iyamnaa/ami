@@ -581,7 +581,8 @@ button[disabled='true']:hover{
   .mobile-full-width{
     width: 100vw;
   }
-  input.mobile-full-width{
+  input.mobile-full-width,
+  button.mobile-full-width{
     width: 100%;
   }
   .container.mobile-full-width{

@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{config('app.name')}}</title>
+    <title> Admin | {{config('app.name')}} </title>
+    <meta name="_token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -38,12 +39,12 @@
     </button>
 
     <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
+       <!--  <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="icon-bell"></i>
                 <span class="badge badge-pill badge-danger">5</span>
             </a>
-        </li>
+        </li> -->
         <li class="nav-item dropdown">
             <a class="nav-link" style="margin-right: 10px" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">

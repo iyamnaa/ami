@@ -11,7 +11,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text" style="font-size: .94rem">Rp</div>
             </div>
-          <input type="number" class="form-control" onkeyup="fitrah_calculation()" value="14000" name="harga-beras" autocomplete="off">
+          <input type="text" class="form-control currency" onkeyup="fitrah_calculation()" value="14000" name="harga-beras" autocomplete="off">
           </div>
 
           <label>Zakat (Harga Beras x 2.5 Kg) : </label>
@@ -19,7 +19,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text" style="font-size: .94rem">Rp</div>
             </div>
-          <input type="number" class="form-control" name="kadar-zakat" value="0" readonly>
+          <input type="text" class="form-control currency" name="kadar-zakat" value="0" readonly>
           </div>
 
           <label>Jumlah Anggota Keluarga : </label>

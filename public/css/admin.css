@@ -1,18 +1,41 @@
+a,
+a:hover,
+a:active,
+a:focus{
+  text-decoration: none;
+}
+
+.sidebar{
+  background-color: rgb(0, 27, 58);
+}
+
 .sidebar-menu{
 
 }
 
 .sidebar-menu ul{
   margin: 20px 0 0 -35px;
+  padding-left: 35px;
   list-style: none;
 }
 
 .sidebar-menu li{
   border-bottom: 1.5px solid transparent;
   font-size: .95rem;
-  padding-bottom: 4px;
-  margin: 10px;
-  margin-bottom: 20px;
+  padding: 10px 14px 14px;
+  margin-bottom: 10px;
+}
+
+.sidebar-menu li.sub-menu{
+  display: none;
+  margin: 0;
+  padding-left: 24px;
+  background-color: rgb(0, 17, 48);
+
+}
+
+.sidebar-menu li i{
+  margin-right: 1rem;
 }
 
 .sidebar-menu a,
@@ -24,6 +47,11 @@
 }
 
 .sidebar-menu li:hover{
-  border-bottom: 1.5px solid white;
+  background-color: rgb(0, 17, 48);
   transition: .4s all;
+}
+
+.user-role{
+  padding: 20px;
+  border-radius: 8px;
 }

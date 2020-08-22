@@ -81,7 +81,8 @@
           <div class="row">
             <div class="col-md-8">
               <h4 class="content-title">Mari Berdonasi</h4>
-              <p> All Indiegogo projects must provide banking information, a government-issued ID, location  </p>
+              <p> Donasi yang diberikan akan diberikan sesuai dengan Campaign yang dipilih melalui pihak Amal Madani Indonesia
+                  dan setiap donasi akan dikelola dengan sebaik-baiknya  </p>
             </div>
             <div class="col-md-4 mid-content">
               <div class="btn main-btn bg-light text-success">
@@ -115,14 +116,14 @@
                   <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
                 </div>
                 <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
+                  <b class="campaign-title text-success">Pangan Untuk Anak Yatim Bandung</b><br>
                   <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
                   <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
+                    Berikan kebutuhan pangan untuk anak yatim di Bandung
                   </p>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
+                      <span class="sr-only">60% Complete</span>
                     </div>
                   </div>
                   <div>
@@ -140,10 +141,10 @@
                   <img class="campaign-image" src="{{ asset('/images/mosque1.jpg') }}">
                 </div>
                 <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
+                  <b class="campaign-title text-success">Renovasi Masjid Al-Hidayah</b><br>
                   <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
                   <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
+                    Donasi perbaikan masjid Al-Hidayah, Cimahi
                   </p>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
@@ -164,10 +165,10 @@
                   <img class="campaign-image" src="{{ asset('/images/islam.jpg') }}">
                 </div>
                 <div class="campaign-info  col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
+                  <b class="campaign-title text-success">Bantuan Dana Haji</b><br>
                   <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
                   <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
+                    Bantu panitia haji dalam pendanaan layanan Haji
                   </p>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">

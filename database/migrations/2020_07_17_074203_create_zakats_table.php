@@ -20,16 +20,17 @@ class CreateZakatsTable extends Migration
 
             //data donatur
             $table->string('name');
+            $table->string('email');
             $table->string('telephone');
             $table->text('address');
             $table->boolean('as_anonymous');
 
             //data amil
-            $table->string('NIA');
-            $table->string('amil_name');
+            $table->string('NIA')->nullable();
+            $table->string('amil_name')->nullable();
 
             //data transaksi
-            $table->enum('status',['proses','gagal','berhasil','cancel']);
+            $table->enum('status',['proses','gagal','berhasil','cancel'])->default('proses');
             $table->string('akad');
             $table->integer('amount');
             $table->integer('qty');

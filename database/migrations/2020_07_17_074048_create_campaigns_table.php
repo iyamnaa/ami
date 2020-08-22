@@ -17,7 +17,7 @@ class CreateCampaignsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('short_desc');
-            $table->binary('image_cover');
+            $table->string('image_cover')->nullable();
             $table->text('body');
             $table->integer('target');
             $table->datetime('deadline');

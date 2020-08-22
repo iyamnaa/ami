@@ -20,6 +20,7 @@ class CreateDonationsTable extends Migration
 
             //data donatur
             $table->string('name');
+            $table->string('email');
             $table->string('telephone');
             $table->text('address');
             $table->boolean('as_anonymous');
@@ -29,7 +30,7 @@ class CreateDonationsTable extends Migration
             $table->string('amil_name');
 
             //data transaksi
-            $table->enum('status',['proses','gagal','berhasil','cancel']);
+            $table->enum('status',['proses','gagal','berhasil','cancel'])->default('proses');
             $table->string('akad');
             $table->integer('amount');
             $table->timestamps();

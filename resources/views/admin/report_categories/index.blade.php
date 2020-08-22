@@ -4,6 +4,16 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Report Categories</li>
     </ol>
+    <div class="row" style="margin-bottom: 20px">
+      <div class="col-3 offset-1" style="margin-left: 30px">
+        <a href="{{ route('campaignReports.index') }}" style="width: 100%" >
+          <div class="bg-success text-light user-role">
+            <i class="fa fa-arrow-left"></i> &nbsp;
+            Kembali
+          </div>
+        </a>
+      </div>
+    </div>
     <div class="container-fluid">
         <div class="animated fadeIn">
              @include('flash::message')

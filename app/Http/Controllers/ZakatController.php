@@ -9,11 +9,22 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Payment;
 
 class ZakatController extends AppBaseController
 {
     /** @var  ZakatRepository */
     private $zakatRepository;
+    private $zakatId = [
+      'zakat-fitrah' => 'Z01',
+      'zakat-emas' => 'Z02',
+      'zakat-profesi' => 'Z03',
+      'zakat-tabungan' => 'Z04',
+      'zakat-perdagangan' => 'Z05',
+      'zakat-simpanan' => 'Z06',
+      'zakat-hadiah' => 'Z07',
+      'zakat-pertanian' => 'Z08',
+    ];
     private $data = '';
 
     public function __construct(ZakatRepository $zakatRepo)
@@ -33,14 +44,51 @@ class ZakatController extends AppBaseController
         return view('zakats.index');
     }
 
+    public function getSnapToken(Request $request)
+    {
+        
+        $transaction_details = [
+          'order_id' => Payment::generateOrderID('Zakat'),
+          'gross_amount' => $request->input('kadarZakat') * $request->input('qty')
+        ];
+
+        $customer_details = [
+          'first_name' => $request->input('name'),
+          'last_name' => " ",
+          'email' => $request->input('email'),
+          'phone' => $request->input('telephone')
+        ];
+
+        $item_details = array([
+          'id' => $this->zakatId[$request->input('akad')],
+          'price' => $request->input('kadarZakat'),
+          'quantity' => $request->input('qty'),
+          'name' => str_replace('-', ' ', ($request->input('akad'))),
+          'category' => "Zakat",
+          'merchant_name' => "Amal Madani"
+        ]);
+
+        $paymentData = array(
+          'transaction_details' => $transaction_details,
+          'customer_details' => $customer_details,
+          'item_details' => $item_details,
+          'alamat_muzaki' => $request->input('address')  
+        );
+
+        $snapToken = Payment::generateSnapToken($paymentData);
+
+        return response()->json(array('snapToken'=> $snapToken), 200);
+    }
+
     public function payment(Request $request){
         $data = array();
 
         $data['qty'] = $request->input('qty-zakat');
-        $data['amount'] = $request->input('kadar-zakat') * $data['qty'];
+        $data['kadar-zakat'] = str_replace('.', '', $request->input('kadar-zakat'));
         $data['akad'] = $request->input('akad');
         $data['name'] = 'Natieq Sah Muhammad';
         $data['phone'] = '081221572240';
+        $data['email'] = 'nathieqs16@gmail.com';
         $data['address'] = 'Jl. Babakan Ciparay';
 
         return view('zakats.payment', ['data' => $data]);

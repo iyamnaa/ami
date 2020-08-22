@@ -3,14 +3,26 @@ var amount_of_zakat = 0, total_zakat = 0
 var price_of_goods = new Object()
 var nishab = new Object()
 
+
+$('.currency').on('keyup keypress blur change input', function() {
+  if(event.which >= 37 && event.which <= 40) return
+
+  $(this).val(function(index, value) {
+    return value
+    .replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  })
+})
+
 $(window).on('load', function () {
   refreshform(0)
   set_default_nishab()
- });
+  mobileInputNumber('currency')
+ })
 
 function set_value(){
   price_of_goods['harga-beras'] = 14000
-  price_of_goods['harga-emas'] = 560835
+  price_of_goods['harga-emas'] = 1035000
   price_of_goods['harga-perak'] = 460835
 
   for (const [name, value] of Object.entries(price_of_goods)) {
@@ -57,7 +69,7 @@ function refreshform(zakat_number){
 
 function zakat_show(){
   if(check_condition(total_assets)){
-    $("input[name='kadar-zakat']").val(amount_of_zakat)
+    $("input[name='kadar-zakat']").val(toCurrency(amount_of_zakat))
     table_calc($("input[name='qty-zakat']"))
   }else{
       $("input[name='kadar-zakat-kg']").val(0)
@@ -74,14 +86,14 @@ function table_calc(field_qty){
       table_calc(field_qty)
     }
     else if(!$(field_qty).val()){
-      $('.tb-list-1').html('Rp. ' + currencyFormat(amount_of_zakat))
+      $('.tb-list-1').html('Rp. ' + toCurrency(amount_of_zakat))
       $('.tb-list-2').html('1')
-      $('.tb-total').html('Rp. ' + currencyFormat(amount_of_zakat))
+      $('.tb-total').html('Rp. ' + toCurrency(amount_of_zakat))
     }else{
       total_zakat = ($(field_qty).val()) * amount_of_zakat
-      $('.tb-list-1').html('Rp. ' + currencyFormat(amount_of_zakat))
+      $('.tb-list-1').html('Rp. ' + toCurrency(amount_of_zakat))
       $('.tb-list-2').html($(field_qty).val())
-      $('.tb-total').html('Rp. ' + currencyFormat(total_zakat))
+      $('.tb-total').html('Rp. ' + toCurrency(total_zakat))
 
       $('#zakatAmount').val(total_zakat)
     }
@@ -94,29 +106,29 @@ function check_condition(amount){
     $('#zakatCondition').addClass('text-success')
     $('#zakatCondition').removeClass('text-danger')
     $('#zakatCondition').text('Ya')
-    $('#bayarZakat').attr('disabled','false')
+    $('#bayarZakat').removeAttr('disabled')
 
     return true
   }else{
     $('#zakatCondition').addClass('text-danger')
     $('#zakatCondition').removeClass('text-success')
     $('#zakatCondition').text('Tidak')
-    $('#bayarZakat').attr('disabled','true')
+    $('#bayarZakat').attr('disabled','disabled')
 
     return false
   }
 }
   
 function fitrah_calculation(){
-  total_assets = $("input[name='harga-beras']").val()
+  total_assets = toNumber($("input[name='harga-beras']").val())
   amount_of_zakat = (total_assets * 2.5).toFixed(0)
   zakat_show()
 }
 
 function gold_calculation(){
   var amount_of_gold = 1, gold_price = 1
-  amount_of_gold = positive_variable($("input[name='jumlah-emas']").val())
-  gold_price = positive_variable($("input[name='harga-emas']").val())
+  amount_of_gold = positiveVariable($("input[name='jumlah-emas']").val())
+  gold_price = positiveVariable($("input[name='harga-emas']").val())
 
   nishab['zakat-emas'] = 85 * gold_price
   total_assets = amount_of_gold * gold_price
@@ -125,11 +137,10 @@ function gold_calculation(){
 }
 
 function profession_calculation(){
-  var income = 1, outcome = 0, rice_price = 1
-  income = positive_variable($("input[name='jumlah-penghasilan']").val())
-  outcome = positive_variable($("input[name='jumlah-pengeluaran']").val())
-
-  rice_price = positive_variable($("input[name='harga-beras']").val())
+  var income = 0, outcome = 0, rice_price = 1
+  income = positiveVariable($("input[name='jumlah-penghasilan']").val())
+  outcome = $("input[name='jumlah-pengeluaran']").val() >= 0 ? $("input[name='jumlah-pengeluaran']").val() : 0
+  rice_price = positiveVariable($("input[name='harga-beras']").val())
 
 
   nishab['zakat-profesi'] = 524 * rice_price
@@ -142,8 +153,8 @@ function agricultural_calculation(){
   var amount_of_harvest = 1, gold_price = 1
   var amount_of_zakat_kg = 1
 
-  amount_of_harvest = positive_variable($("input[name='jumlah-panen']").val())
-  harvest_price = positive_variable($("input[name='harga-panen']").val())
+  amount_of_harvest = positiveVariable($("input[name='jumlah-panen']").val())
+  harvest_price = positiveVariable($("input[name='harga-panen']").val())
 
   total_assets = amount_of_harvest * harvest_price
   if ($("input[name='irigasi']").prop('checked')) {

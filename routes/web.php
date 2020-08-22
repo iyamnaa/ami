@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('home');
 })->name('index');
 
+
+Route::get('/get-token', function () {
+    return csrf_token();
+})->name('csrftoken');
+
 Route::get('/tentang-kami', 'ZakatController@front')->name('aboutus');
 
 
@@ -27,6 +32,7 @@ Route::group(['prefix' => 'donasi'], function(){
 Route::group(['prefix' => 'zakat'], function(){
   Route::get('/', 'ZakatController@front')->name('zakats.front');
   Route::get('/detail', 'ZakatController@payment')->name('zakats.payment');
+  Route::post('/transaction-token', 'ZakatController@getSnapToken')->name('zakats.transactionToken');
 });
 
 Route::group(['prefix' => 'profil'], function(){
@@ -38,6 +44,7 @@ Route::group(['prefix' => 'berita'], function(){
 });
 
 Route::get('/', 'HomeController@index')->name('index');
+Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
 
 Auth::routes();
 

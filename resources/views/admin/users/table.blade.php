@@ -1,4 +1,12 @@
 <div class="table-responsive-sm">
+    <table style="margin-bottom: 20px">
+        <tr>
+            <td>Cari User : &nbsp;&nbsp; </td>
+            <td>
+                <input type="text" name="search" id="searchData" placeholder="Cari" class="form-control" autocomplete="off" onkeypress="searchData(event, 'users')">
+            </td>
+        </tr>
+    </table>
     <table class="table table-striped" id="users-table">
         <thead>
             <tr>
