@@ -30,9 +30,14 @@ class NotificationController extends Controller
       $order_id = $notif->order_id;
       $fraud = $notif->fraud_status;
 
+<<<<<<< HEAD
       $akad = $this->getAkad($order_id);
       $dataRepository = $this->findRepository($akad);
 
+=======
+      $akad = $this->getAkad('Zakat/121231')
+      $dataRepository = $this->findRepository($akad);
+>>>>>>> 148465eca14fd2f992df727fbab0ee4f764f49b5
       // // $vaNumber = null;
       // // $vendorName = null;
       // // if (!empty($notif->va_numbers[0])) {
@@ -41,6 +46,7 @@ class NotificationController extends Controller
       // // }
 
       // // $paymentStatus = null;
+<<<<<<< HEAD
       switch ($transaction) {
         case 'capture':
             
@@ -77,6 +83,44 @@ class NotificationController extends Controller
           # code...
           break;
       }
+=======
+      // switch ($transaction) {
+      //   case 'capture':
+
+      //      // if ($type = 'credit_card') {
+      //      //   if ($fraud == 'challenge') {
+      //      //     # code...
+      //      //   } else{
+
+      //      //   }
+      //      // }
+      //     break;
+
+      //   case 'settlement':
+          
+      //     break;
+        
+      //   case 'pending':
+      //     # code...
+      //     break;
+
+      //   case 'deny':
+      //     # code...
+      //     break;
+
+      //   case 'expire':
+      //     # code...
+      //     break;
+
+      //   case 'cancel':
+      //     # code...
+      //     break;
+
+      //   default:
+      //     # code...
+      //     break;
+      // }
+>>>>>>> 148465eca14fd2f992df727fbab0ee4f764f49b5
     }
 
     public function getAkad($orderId = 'Default/')

@@ -44,7 +44,11 @@ Route::group(['prefix' => 'berita'], function(){
 });
 
 Route::get('/', 'HomeController@index')->name('index');
+<<<<<<< HEAD
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
+=======
+Route::get('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
+>>>>>>> 148465eca14fd2f992df727fbab0ee4f764f49b5
 
 Auth::routes();
 
