@@ -46,18 +46,21 @@ class ZakatController extends AppBaseController
 
     public function getSnapToken(Request $request)
     {
-        
+    try{
         $transaction_details = [
           'order_id' => Payment::generateOrderID('Zakat'),
           'gross_amount' => $request->input('kadarZakat') * $request->input('qty')
         ];
 
-        $customer_details = [
+        $data_muzaki = $customer_details = [
           'first_name' => $request->input('name'),
-          'last_name' => " ",
+          'last_name' => "",
           'email' => $request->input('email'),
           'phone' => $request->input('telephone')
         ];
+
+        $data_muzaki['address'] = $request->input('address');
+        $data_muzaki['as_anonymous'] = $request->input('as_anonymous');
 
         $item_details = array([
           'id' => $this->zakatId[$request->input('akad')],
@@ -68,16 +71,28 @@ class ZakatController extends AppBaseController
           'merchant_name' => "Amal Madani"
         ]);
 
+        $data_amil = [
+           'nia' => $request->input('amil_nia') ? $request->input('amil_nia') : null,
+           'amil_name' => $request->input('amil_name') !== null ? $request->input('amil_name') : null
+        ];
+
         $paymentData = array(
           'transaction_details' => $transaction_details,
           'customer_details' => $customer_details,
           'item_details' => $item_details,
-          'alamat_muzaki' => $request->input('address')  
+          //costum fields
+          'data_muzaki' => $data_muzaki,
+        //   'data_amil' => $data_amil,
+          'qty' => $request->input('qty')
         );
 
         $snapToken = Payment::generateSnapToken($paymentData);
 
         return response()->json(array('snapToken'=> $snapToken), 200);
+        
+        }catch(\Throwable $th){
+            return response()->json(array('snapToken'=> $th->getMessage()), 200);
+        }
     }
 
     public function payment(Request $request){

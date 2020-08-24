@@ -4,8 +4,6 @@ namespace App\Helpers;
 
 class Payment{
 
-  public const FINISH_CALLBACK = route('index');
-
   public static function initMidtrans(){
     \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
     \Midtrans\Config::$isProduction = env('MIDTRANS_PRODUCTION');
@@ -40,7 +38,7 @@ class Payment{
     }
 
     $callbacks = [
-      'finish' => Payment::CALLBACK
+      'finish' => route('index')
     ];
 
     $paymentData['enabled_payments'] = $enabled_payments;

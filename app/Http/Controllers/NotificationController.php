@@ -20,8 +20,8 @@ class NotificationController extends Controller
       //   return response(['message' => 'Invalid Signature'], 403);
       // }
 
-      // Payment::initMidtrans();
-      // $status_code = null;
+      Payment::initMidtrans();
+      $status_code = null;
 
       $notif = new \Midtrans\notification();
 
@@ -30,29 +30,39 @@ class NotificationController extends Controller
       $order_id = $notif->order_id;
       $fraud = $notif->fraud_status;
 
-<<<<<<< HEAD
       $akad = $this->getAkad($order_id);
       $dataRepository = $this->findRepository($akad);
 
-=======
-      $akad = $this->getAkad('Zakat/121231')
-      $dataRepository = $this->findRepository($akad);
->>>>>>> 148465eca14fd2f992df727fbab0ee4f764f49b5
-      // // $vaNumber = null;
-      // // $vendorName = null;
-      // // if (!empty($notif->va_numbers[0])) {
-      // //   $vaNumber = $notif->va_numbers[0]->va_number;
-      // //   $vendorName = $notif->va_numbers[0]->bank;
-      // // }
+      $vaNumber = null;
+      $vendorName = null;
+      if (!empty($notif->va_numbers[0])) {
+        $vaNumber = $notif->va_numbers[0]->va_number;
+        $vendorName = $notif->va_numbers[0]->bank;
+      }
 
-      // // $paymentStatus = null;
-<<<<<<< HEAD
+      // $paymentStatus = null;
+
       switch ($transaction) {
-        case 'capture':
-            
+        case 'capture':    
            // if ($type = 'credit_card') {
            //   if ($fraud == 'challenge') {
-           //     # code...
+                  $data->transaction_id = $order_id;
+                  $data->qty = 3 //$notif->qty;
+                  $data->amount = 35000 //$notif->amount / $notif->qty;
+
+                  $data->name = 'Natieq '//$notif->data_muzaki['first_name'];
+                  $data->email = 'Nathieq Sah '//$notif->data_muzaki['email'];
+                  $data->telephone = '0892132400' //$notif->data_muzaki['phone'];
+                  $data->address = 'Jl. Babakan Ciparay' //$notif->data_muzaki['address'];
+                  $data->as_anonymous = false //$notif->data_muzaki['as_anonymous'];
+
+                  $data->NIA = null //$notif->data_amil['amil_nia'];
+                  $data->amil_name = null //$notif->data_amil['amil_name'];
+
+                  $data->status = 'proses';
+                  $data->akad = 'Zakat' //$akad;
+
+                  $dataRepository->create($data);
            //   } else{
 
            //   }
@@ -60,67 +70,37 @@ class NotificationController extends Controller
           break;
 
         case 'settlement':
-          
+          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
+          if(isset($id)){
+            $id->update(['status' => 'berhasil'], $dataID);
+          }
           break;
         
         case 'pending':
           # code...
           break;
 
-        case 'deny':
-          # code...
-          break;
-
-        case 'expire':
-          # code...
+        case 'deny', 'expire':
+          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
+          if(isset($id)){
+            $id->update(['status' => 'gagal'], $dataID);
+          }
           break;
 
         case 'cancel':
-          # code...
+          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
+          if(isset($id)){
+            $id->update(['status' => 'cancel'], $dataID);
+          }
           break;
 
         default:
-          # code...
+          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
+          if(isset($id)){
+            $id->update(['status' => 'gagal'], $dataID);
+          }
           break;
       }
-=======
-      // switch ($transaction) {
-      //   case 'capture':
-
-      //      // if ($type = 'credit_card') {
-      //      //   if ($fraud == 'challenge') {
-      //      //     # code...
-      //      //   } else{
-
-      //      //   }
-      //      // }
-      //     break;
-
-      //   case 'settlement':
-          
-      //     break;
-        
-      //   case 'pending':
-      //     # code...
-      //     break;
-
-      //   case 'deny':
-      //     # code...
-      //     break;
-
-      //   case 'expire':
-      //     # code...
-      //     break;
-
-      //   case 'cancel':
-      //     # code...
-      //     break;
-
-      //   default:
-      //     # code...
-      //     break;
-      // }
->>>>>>> 148465eca14fd2f992df727fbab0ee4f764f49b5
     }
 
     public function getAkad($orderId = 'Default/')
