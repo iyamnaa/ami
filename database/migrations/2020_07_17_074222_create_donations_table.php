@@ -30,7 +30,7 @@ class CreateDonationsTable extends Migration
             $table->string('amil_name');
 
             //data transaksi
-            $table->enum('status',['proses','gagal','berhasil','cancel'])->default('proses');
+            $table->enum('status',['terkirim','proses','gagal','berhasil','cancel'])->default('terkirim');
             $table->string('akad');
             $table->integer('amount');
             $table->timestamps();
@@ -49,6 +49,11 @@ class CreateDonationsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('donations', function (Blueprint $table)
+        // {
+        //     $table->dropIndex(['campaign_id']);
+        //     $table->dropIndex(['user_id']);
+        // });
         Schema::dropIfExists('donations');
     }
 }

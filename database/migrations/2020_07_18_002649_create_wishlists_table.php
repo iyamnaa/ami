@@ -31,6 +31,11 @@ class CreateWishlistsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('wishlists', function (Blueprint $table)
+        // {
+        //     $table->dropIndex(['user_id']);
+        //     $table->dropIndex(['campaign_id']);
+        // });
         Schema::dropIfExists('wishlists');
     }
 }

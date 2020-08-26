@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Donation extends Model
 {
 
-  protected $fillable = ['name','telephone','address','as_anonymous',
-                         'NIA','amil_name',
-                         'status','akad','amount',
-                         'user_id','campaign_id'];
+  protected $fillable = ['name', 'email', 'telephone', 'address', 'as_anonymous',
+                         'NIA', 'amil_name',
+                         'status', 'akad','amount',
+                         'user_id', 'campaign_id'];
 
   public function campaign()
     {

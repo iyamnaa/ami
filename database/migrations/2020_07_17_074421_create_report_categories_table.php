@@ -27,6 +27,7 @@ class CreateReportCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('report_categories');
     }
 }

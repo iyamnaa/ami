@@ -20,6 +20,7 @@ class ZakatRepository extends BaseRepository
         'number',
         'transaction_id',
         'name',
+        'email',
         'telephone',
         'address',
         'as_anonymous',

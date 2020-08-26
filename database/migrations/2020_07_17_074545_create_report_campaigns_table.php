@@ -34,6 +34,12 @@ class CreateReportCampaignsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('report_campaigns', function (Blueprint $table)
+        // {
+        //     $table->dropIndex(['user_id']);
+        //     $table->dropIndex(['campaign_id']);
+        //     $table->dropIndex(['report_category_id']);
+        // });
         Schema::dropIfExists('report_campaigns');
     }
 }

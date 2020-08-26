@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property integer $number
  * @property string $transaction_id
  * @property string $name
+ * @property string $email
  * @property string $telephone
  * @property string $address
  * @property boolean $as_anonymous
@@ -40,6 +41,7 @@ class Donation extends Model
         'number',
         'transaction_id',
         'name',
+        'email',
         'telephone',
         'address',
         'as_anonymous',
@@ -62,6 +64,7 @@ class Donation extends Model
         'number' => 'integer',
         'transaction_id' => 'string',
         'name' => 'string',
+        'email' => 'string',
         'telephone' => 'string',
         'address' => 'string',
         'as_anonymous' => 'boolean',
@@ -83,6 +86,7 @@ class Donation extends Model
         'number' => 'required',
         'transaction_id' => 'required',
         'name' => 'required',
+        'email' => 'required',
         'telephone' => 'required',
         'address' => 'required',
         'as_anonymous' => 'required',

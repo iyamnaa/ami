@@ -19,8 +19,8 @@ class CreateCampaignUpdatesTable extends Migration
             $table->text('body');
             $table->timestamps();
             
-            $table->index('campaign_update_id');
-            $table->foreignId('campaign_update_id')->constrained();
+            $table->index('campaign_id');
+            $table->foreignId('campaign_id')->constrained();
         });
     }
 
@@ -31,6 +31,10 @@ class CreateCampaignUpdatesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('campaign_updates', function (Blueprint $table)
+        // {
+        //     $table->dropIndex(['campaign_update_id']);
+        // });
         Schema::dropIfExists('campaign_updates');
     }
 }

@@ -4,102 +4,87 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\DonationRepository as DonationRepository;
-use App\Repositories\ZakatRepository as ZakatRepository;
+use App\Models\Donation as Donasi;
+use App\Models\Zakat as Zakat;
 use Payment;
 
 class NotificationController extends Controller
 {
     public function notification(Request $request)
     {
-      // $payload = $request->getContent();
-      // $notification = json_decode($payload);
-      // $validSignatureKey = hash('sha512', $notification->order_id.$notification->status_code.$notification->gross_amount.env('MIDTRANS_SERVER_KEY'));
-
-      // if($notification->signature_key != $validSignatureKey){
-      //   return response(['message' => 'Invalid Signature'], 403);
-      // }
-
       Payment::initMidtrans();
-      $status_code = null;
 
-      $notif = new \Midtrans\notification();
+      $notif = new \Midtrans\Notification();
+      $validSignatureKey = hash('sha512', $notif->order_id.$notif->status_code.$notif->gross_amount.env('MIDTRANS_SERVER_KEY'));
 
-      $transaction = $notif->transaction_status;
-      $type = $notif->payment_type;
-      $order_id = $notif->order_id;
-      $fraud = $notif->fraud_status;
-
-      $akad = $this->getAkad($order_id);
-      $dataRepository = $this->findRepository($akad);
-
-      $vaNumber = null;
-      $vendorName = null;
-      if (!empty($notif->va_numbers[0])) {
-        $vaNumber = $notif->va_numbers[0]->va_number;
-        $vendorName = $notif->va_numbers[0]->bank;
+      if($notif->signature_key != $validSignatureKey){
+        return response(['message' => 'Invalid Signature'], 403);
       }
 
-      // $paymentStatus = null;
+      if($notif->status_code != 404){
+        try{
+          $transaction = $notif->transaction_status;
+          // $transaction = 'settlement';
+          $type = $notif->payment_type;
+          $order_id = $notif->order_id;
+          // $order_id = 'Zakat/061421/326082020/638';
+          $fraud = $notif->fraud_status;
 
-      switch ($transaction) {
-        case 'capture':    
-           // if ($type = 'credit_card') {
-           //   if ($fraud == 'challenge') {
-                  $data->transaction_id = $order_id;
-                  $data->qty = 3 //$notif->qty;
-                  $data->amount = 35000 //$notif->amount / $notif->qty;
+          $akad = $this->getAkad($order_id);
+          $model = $this->findRepository($akad);
 
-                  $data->name = 'Natieq '//$notif->data_muzaki['first_name'];
-                  $data->email = 'Nathieq Sah '//$notif->data_muzaki['email'];
-                  $data->telephone = '0892132400' //$notif->data_muzaki['phone'];
-                  $data->address = 'Jl. Babakan Ciparay' //$notif->data_muzaki['address'];
-                  $data->as_anonymous = false //$notif->data_muzaki['as_anonymous'];
+          // $vaNumber = null;
+          // $vendorName = null;
+          // if (!empty($notif->va_numbers[0])) {
+          //   $vaNumber = $notif->va_numbers[0]->va_number;
+          //   $vendorName = $notif->va_numbers[0]->bank;
+          // }
 
-                  $data->NIA = null //$notif->data_amil['amil_nia'];
-                  $data->amil_name = null //$notif->data_amil['amil_name'];
+          switch ($transaction) {
+            case 'capture':    
+              // if ($type = 'credit_card') {
+              //   if ($fraud == 'challenge') {
+                      $paymentStatus = 'proses';
+              //   } else{
 
-                  $data->status = 'proses';
-                  $data->akad = 'Zakat' //$akad;
+              //   }
+              // }
+              break;
 
-                  $dataRepository->create($data);
-           //   } else{
+            case 'settlement':
+              $paymentStatus = 'berhasil';
+              break;
+            
+            case 'pending':
+              # code...
+              break;
 
-           //   }
-           // }
-          break;
+            case 'deny':
+            case 'expire':
+              $paymentStatus = 'gagal';
+              break;
 
-        case 'settlement':
-          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
-          if(isset($id)){
-            $id->update(['status' => 'berhasil'], $dataID);
+            case 'cancel':
+              $paymentStatus = 'cancel';
+              break;
+
+            default:
+              $paymentStatus = 'proses';
+              break;
           }
-          break;
-        
-        case 'pending':
-          # code...
-          break;
 
-        case 'deny', 'expire':
-          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
-          if(isset($id)){
-            $id->update(['status' => 'gagal'], $dataID);
+          $dataTable = $model::where('transaction_id', $order_id);
+          if(isset($dataTable) && isset($paymentStatus)){
+            $dataTable->update(['status' => $paymentStatus]);
+          }else{
+            return response(['message' => 'Data Transaksi Tidak Ditemukan'], 404);
           }
-          break;
+        }catch(\Throwable $e){
+          return response(['message' => $e->getMessage()], 404);
+        }
 
-        case 'cancel':
-          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
-          if(isset($id)){
-            $id->update(['status' => 'cancel'], $dataID);
-          }
-          break;
-
-        default:
-          $id = $dataRepository->all($search = ['transaction_id' = $order_id], $columns = ['id']);
-          if(isset($id)){
-            $id->update(['status' => 'gagal'], $dataID);
-          }
-          break;
+      }else{
+        return response(['message' => 'Tidak Ditemukan'], 404);
       }
     }
 
@@ -112,15 +97,15 @@ class NotificationController extends Controller
     {
       switch ($akad) {
         case 'Zakat':
-          return app('App\Repositories\ZakatRepository');
+          return app('App\Models\Zakat');
           break;
 
         case 'Donation':
-          return app('App\Repositories\DonationRepository');
+          return app('App\Models\Donation');
           break;
         
         default:
-          return app('App/Repositories/DonationRepository');
+          return app('App\Models\Donation');
           break;
       }
     }

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'zakat'], function(){
   Route::get('/', 'ZakatController@front')->name('zakats.front');
   Route::get('/detail', 'ZakatController@payment')->name('zakats.payment');
   Route::post('/transaction-token', 'ZakatController@getSnapToken')->name('zakats.transactionToken');
+  Route::post('/save-transaction', 'ZakatController@saveTransaction')->name('zakats.saveTransaction');
 });
 
 Route::group(['prefix' => 'profil'], function(){
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'berita'], function(){
 Route::get('/', 'HomeController@index')->name('index');
 
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
+Route::post('/cek','NotificationController@cek');
 Auth::routes();
 
 // Auth::routes(['verify' => true]);

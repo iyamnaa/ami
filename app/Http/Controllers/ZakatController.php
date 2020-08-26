@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateZakatRequest;
 use App\Repositories\ZakatRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Flash;
 use Response;
 use Payment;
@@ -52,15 +53,12 @@ class ZakatController extends AppBaseController
           'gross_amount' => $request->input('kadarZakat') * $request->input('qty')
         ];
 
-        $data_muzaki = $customer_details = [
+        $customer_details = [
           'first_name' => $request->input('name'),
           'last_name' => "",
           'email' => $request->input('email'),
           'phone' => $request->input('telephone')
         ];
-
-        $data_muzaki['address'] = $request->input('address');
-        $data_muzaki['as_anonymous'] = $request->input('as_anonymous');
 
         $item_details = array([
           'id' => $this->zakatId[$request->input('akad')],
@@ -71,27 +69,52 @@ class ZakatController extends AppBaseController
           'merchant_name' => "Amal Madani"
         ]);
 
-        $data_amil = [
-           'nia' => $request->input('amil_nia') ? $request->input('amil_nia') : null,
-           'amil_name' => $request->input('amil_name') !== null ? $request->input('amil_name') : null
-        ];
-
         $paymentData = array(
           'transaction_details' => $transaction_details,
           'customer_details' => $customer_details,
           'item_details' => $item_details,
-          //costum fields
-          'data_muzaki' => $data_muzaki,
-        //   'data_amil' => $data_amil,
-          'qty' => $request->input('qty')
         );
+
+        $data_zakat = [
+          'transaction_id' => Crypt::encryptString($transaction_details['order_id']),
+          'number' => 1,
+
+          'name' => $customer_details['first_name'],
+          'email' => $customer_details['email'],
+          'telephone' => $customer_details['phone'],
+          'address' => $request->input('address'),
+          'as_anonymous' => 0, //$request->input('as_anonymous'),
+
+          'nia' => $request->input('amil_nia') ? $request->input('amil_nia') : null,
+          'amil_name' => $request->input('amil_name') !== null ? $request->input('amil_name') : null,
+
+          'proses' => 'terkirim',
+          'akad' => $item_details[0]['name'],
+          'qty' => $item_details[0]['quantity'],
+          'amount' => $item_details[0]['price'],
+
+          'user_id' => 1
+        ];
 
         $snapToken = Payment::generateSnapToken($paymentData);
 
-        return response()->json(array('snapToken'=> $snapToken), 200);
+        return response()->json(array('snapToken'=> $snapToken, 'zakat' => $data_zakat), 200);
         
-        }catch(\Throwable $th){
-            return response()->json(array('snapToken'=> $th->getMessage()), 200);
+        }catch(\Throwable $e){
+            return response()->json(array('snapToken'=> null, 'th' => $e->getMessage()), 200);
+        }
+    }
+
+    public function saveTransaction(Request $request)
+    {
+        try{
+            $data_zakat = $request->zakat;
+            $data_zakat['transaction_id'] = Crypt::decryptString($data_zakat['transaction_id']);
+            $zakat = $this->zakatRepository->create($data_zakat);
+
+            return response()->json(array('message' => 'Transaksi Zakat Berhasil'), 200);
+        }catch(\Throwable $e){
+            return response()->json(array('message' => 'Error '.$e->getMessage().': Transaksi Zakat Gagal'), 200);
         }
     }
 

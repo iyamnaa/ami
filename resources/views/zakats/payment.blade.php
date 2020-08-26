@@ -47,8 +47,8 @@
                 </div>
 
                 <label style="text-transform: capitalize;">Alamat : </label>
-                <textarea class="form-control mb-2" id="exampleFormControlTextarea1" name="address" id="address" rows="3">{{ $data['address'] }}</textarea>
-
+                <input type="text" class="form-control" name="name" id="address" value="{{ $data['address'] }}">
+                
                 <label style="text-transform: capitalize;">{{ strtr( $data['akad'] ,'-',' ') }} : </label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
@@ -83,12 +83,17 @@
 <script src="{{ asset('js/style.js') }}"></script>
 
 <script type="text/javascript">
-  document.getElementById('pay-button').onclick = function(){
-      $.ajax({
-       type:'POST',
-       url:'/zakat/transaction-token',
-       data:{
-        _token: "{{ csrf_token() }}",
+  document.getElementById('pay-button').onclick = function(){       
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $.ajax({
+      type:'POST',
+      url:'/zakat/transaction-token',
+      data:{
         name : $('#name').val(),
         email : $('#email').val(),
         telephone : $('#telephone').val(),
@@ -96,11 +101,36 @@
         qty : "{{ $data['qty'] }}",
         kadarZakat : "{{ $data['kadar-zakat'] }}",
         akad : "{{ $data['akad'] }}"
-       },
-       success:function(data) {
-        snap.pay(data.snapToken)
-       }
-    });
-  };
+      },
+      success:function(data, xhr) {
+        if(data.snapToken != null){
+          snap.pay(data.snapToken , {
+            onSuccess: function(result){      
+              $.ajax({
+                type:'POST',
+                url:'/zakat/save-transaction',
+                data:{
+                  zakat : data.zakat,
+                },
+                success:function(data){
+                  alert(data.message)
+                }
+              })
+            },
+            onPending: function(result){
+            },
+            onError: function(result){
+            }
+
+          })
+        }else{
+        alert(data.th)
+        }
+      },
+      error:function(data){
+        alert(data.snapToken)
+      } 
+    })
+  }
 </script>
 @endsection

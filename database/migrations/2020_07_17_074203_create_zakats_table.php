@@ -30,7 +30,7 @@ class CreateZakatsTable extends Migration
             $table->string('amil_name')->nullable();
 
             //data transaksi
-            $table->enum('status',['proses','gagal','berhasil','cancel'])->default('proses');
+            $table->enum('status',['terkirim','proses','gagal','berhasil','cancel'])->default('terkirim');
             $table->string('akad');
             $table->integer('amount');
             $table->integer('qty');
@@ -48,6 +48,10 @@ class CreateZakatsTable extends Migration
      */
     public function down()
     {
+        // Schema::table('zakats', function (Blueprint $table)
+        // {
+        //     $table->dropIndex(['user_id']);
+        // });
         Schema::dropIfExists('zakats');
     }
 }

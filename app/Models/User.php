@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $name
  * @property string $email
  * @property string $gender
- * @property string $phone
+ * @property string $telephone
  * @property string $address
  * @property string $bio
  * @property string|\Carbon\Carbon $email_verified_at
@@ -40,7 +40,7 @@ class User extends Model
         'name',
         'email',
         'gender',
-        'phone',
+        'telephone',
         'address',
         'bio',
         'email_verified_at',
@@ -59,7 +59,7 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'gender' => 'string',
-        'phone' => 'string',
+        'telephone' => 'string',
         'address' => 'string',
         'bio' => 'string',
         'email_verified_at' => 'datetime',
@@ -77,7 +77,7 @@ class User extends Model
         'name' => 'required',
         'email' => 'required',
         'gender' => 'required',
-        'phone' => 'required',
+        'telephone' => 'required',
         'address' => 'required',
         'bio' => 'required',
         'password' => 'required',
