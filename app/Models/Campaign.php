@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  *
  * @property \App\Models\CampaignCategory $campaignCategory
  * @property \App\Models\User $user
+ * @property \App\Models\Donation $donation
  * @property \Illuminate\Database\Eloquent\Collection $campaignReports
  * @property \Illuminate\Database\Eloquent\Collection $donations
  * @property \Illuminate\Database\Eloquent\Collection $wishlists
@@ -80,6 +81,32 @@ class Campaign extends Model
         'user_id' => 'required',
         'campaign_category_id' => 'required'
     ];
+
+
+    public function getCampaignDonation($campaign_id)
+    {
+        return Donation::where('campaign_id', $campaign_id)->get()->sum('amount');
+    }
+
+    public function getCampaignProgress($campaign_id, $target)
+    {
+        return $this->getCampaignDonation($campaign_id) * 100 / $target <= 100 ? $this->getCampaignDonation($campaign_id) * 100 / $target : 100;
+    }
+
+    public function getCampaignDeadline($deadline)
+    {
+        $deadline = new \DateTime($deadline);
+        $currentTime = new \DateTime(date('o-m-d H:i:s'));
+
+        $diff = date_diff($deadline, $currentTime);
+        $years = $diff->format('%y') != 0 ? $diff->format('%y Tahun ') : '';
+        $months = $diff->format('%m') != 0 ? $diff->format('%m Bulan ') : '';
+        $days = $diff->format('dy') != 0 ? $diff->format('%d Hari') : '';
+        if($years == '' && $months == '' && $days == ''){
+            $days = 'Hari ini';
+        }
+        return $years.$months.$days;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

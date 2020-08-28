@@ -60,7 +60,7 @@
         <span class="menu-list"> Laporan </span>
       </li>
      </a>
-    <a href="{{ route('campaigns.index') }}" class="text-danger"> 
+    <a href="{{ route('user.logout') }}" class="text-danger"> 
       <li>
         <i class="fa fa-power-off"></i> 
         <span class="menu-list"> Logout </span>

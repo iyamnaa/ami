@@ -1,0 +1,8 @@
+.back-btn{
+    transition: .4s all;
+}
+
+.back-btn:hover{
+    cursor: pointer;
+    color: #4169e1 !important;
+}

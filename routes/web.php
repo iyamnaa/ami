@@ -13,17 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
-
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/sign-out', 'Auth/LoginController@logout')->name('user.logout')->middleware('auth');
 
 Route::get('/get-token', function () {
     return csrf_token();
 })->name('csrftoken');
 
 Route::get('/tentang-kami', 'ZakatController@front')->name('aboutus');
-
 
 Route::group(['prefix' => 'donasi'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
@@ -44,41 +41,26 @@ Route::group(['prefix' => 'berita'], function(){
   Route::get('/', 'NewController@index')->name('news.front');
 });
 
-Route::get('/', 'HomeController@index')->name('index');
-
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
-Route::post('/cek','NotificationController@cek');
 Auth::routes();
 
 // Auth::routes(['verify' => true]);
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::group(['prefix' => 'admin'], function(){
-  Route::get('/', 'HomeController@home')->name('home'); 
+  Route::get('/', 'HomeController@home')->name('home')->middleware('auth');
   
-  Route::resource('events', 'EventController');
-
-  Route::resource('news', 'NewsController');
-
-  Route::resource('campaigns', 'CampaignController');
-
-  Route::resource('users', 'UserController');
-
-  Route::resource('zakats', 'ZakatController');
-
-  Route::resource('donations', 'DonationController');
-
-  Route::resource('campaignCategories', 'CampaignCategoryController');
-
-  Route::resource('campaignReports', 'CampaignReportController');
-
-  Route::resource('campaignUpdates', 'CampaignUpdateController');
-
-  Route::resource('campaignReports', 'CampaignReportController');
-
-  Route::resource('campaignUpdates', 'CampaignUpdateController');
-
-  Route::resource('reportCategories', 'ReportCategoryController');
-
-  Route::resource('wishlists', 'WishlistController');
+  Route::resource('events', 'EventController')->middleware('auth');
+  Route::resource('news', 'NewsController')->middleware('auth');
+  Route::resource('campaigns', 'CampaignController')->middleware('auth');
+  Route::resource('users', 'UserController')->middleware('auth');
+  Route::resource('zakats', 'ZakatController')->middleware('auth');
+  Route::resource('donations', 'DonationController')->middleware('auth');
+  Route::resource('campaignCategories', 'CampaignCategoryController')->middleware('auth');
+  Route::resource('campaignReports', 'CampaignReportController')->middleware('auth');
+  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('auth');
+  Route::resource('campaignReports', 'CampaignReportController')->middleware('auth');
+  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('auth');
+  Route::resource('reportCategories', 'ReportCategoryController')->middleware('auth');
+  Route::resource('wishlists', 'WishlistController')->middleware('auth');
 });

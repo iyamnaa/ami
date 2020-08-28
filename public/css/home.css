@@ -1,14 +1,11 @@
 /* Section */
-.index-news-box,
-.index-top-campaign-box,
-.index-new-campaign-box,
-.index-zakat,
-.index-about-us{
+.section-content{
   margin-top: 20px;
   box-shadow: 1px 1px 5px 1px #ccc;
 }
 
-.index-news-box{
+.index-news-box,
+.index-zakat .header{
   margin-top: 0;
 }
 
@@ -26,9 +23,6 @@
   font-size: .7rem;
 }
 
-.index-zakat .header{
-  margin-top: 0;
-}
 /* Slider */
 
 .ads-slider{

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
-  protected $fillable = ['name','email','password','gender','phone','address','bio'];
+  protected $fillable = ['name','email','password','gender','telephone','address','bio'];
 
     /**
      * The attributes that should be hidden for arrays.

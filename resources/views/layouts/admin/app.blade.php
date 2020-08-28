@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title> Admin | {{config('app.name')}} </title>
+    <title>{{ config('app.name', 'Amal Madani Indonesia') }}</title>
+    <link rel="icon" href="{{ asset('images/madani-logo.png') }}">
+    <meta name="theme-color" content="forestgreen" />
     <meta name="_token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
