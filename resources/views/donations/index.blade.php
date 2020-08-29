@@ -18,7 +18,7 @@
 <br><br><br>
 
 <div class="mobile-filter-button">
-  <div type="button" class="filter-btn btn-success text-light mid-content" data-toggle="modal" data-target="#exampleModalLong">
+  <div type="button" class="filter-btn btn-success text-light mid-content" data-toggle="modal" data-target="#exampleModalLong" onclick="call_filter_form()">
     <i class="fa fa-search"></i>
   </div>
 </div>
@@ -33,16 +33,9 @@
 
           <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Kategori </div>
           <div class="filter-content"> 
-            <span class="filter-category-name"> Bencana Alam </span>
-            <span class="filter-category-name"> Karya Seni </span>
-            <span class="filter-category-name"> Keagamaan </span>
-            <span class="filter-category-name"> Kemanusiaan </span>
-            <span class="filter-category-name"> Kesehatan </span>
-            <span class="filter-category-name"> Lingkungan </span>
-            <span class="filter-category-name"> Panti </span>
-            <span class="filter-category-name"> Pendidikan </span>
-            <span class="filter-category-name"> Produk & Inovasi </span>
-            <span class="filter-category-name"> Lainnya </span>
+            @foreach($categories as $category)
+              <span class="filter-category-name" onclick="filter_click(null, '{{ $category->id }}', null, null)"> {{$category->name }} </span>
+            @endforeach
           </div>
         </div>
 
@@ -51,10 +44,11 @@
         <div class="filter filter-by-sorting">
           <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Urutan </div>
           <div class="filter-content"> 
-            <span class="filter-sort-name"> Trending </span>
-            <span class="filter-sort-name"> Terbaru </span>
-            <span class="filter-sort-name"> Donasi (Terbesar) </span>
-            <span class="filter-sort-name"> Donasi (Terkecil) </span>
+            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Trending')"> Trending </span>
+            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Terbaru')"> Terbaru </span>
+            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Sisa Waktu')"> Sisa Waktu </span>
+            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Jumlah Donasi DESC')"> Donasi (Terbesar) </span>
+            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Jumlah Donasi ASC')"> Donasi (Terkecil) </span>
           </div>
         </div>
 
@@ -63,10 +57,10 @@
         <div class="filter filter-by-time">
           <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Waktu </div>
           <div class="filter-content"> 
-            <span class="filter-time-name"> Sedang Berjalan </span>
-            <span class="filter-time-name"> Segera Berakhir </span>
-            <span class="filter-time-name"> Telah Berakhir </span>
-            <span class="filter-time-name"> Tanpa Jangka Waktu </span>
+            <span class="filter-time-name" onclick="filter_click(null, null, 'Semua', null)"> Tanpa Jangka Waktu </span>
+            <span class="filter-time-name" onclick="filter_click(null, null, 'Sedang Berjalan', null)"> Sedang Berjalan </span>
+            <span class="filter-time-name" onclick="filter_click(null, null, 'Segera Berakhir Berjalan', null)"> Segera Berakhir </span>
+            <span class="filter-time-name" onclick="filter_click(null, null, 'Telah Berakhir', null)"> Telah Berakhir </span>
           </div>
         </div>
 
@@ -109,109 +103,10 @@
       <div class="content-box discover-campaign-box">
         <div class="discover-campaign">
           <div class="row">
-
-            <div class="col-md-4 mid-content">
-              <div class="campaign-box row">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Pangan Untuk Anak Yatim Bandung</b><br>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    Berikan kebutuhan pangan untuk anak yatim di Bandung
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">60% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </div>
-
-            <div class="col-md-4 mid-content">
-              <div class="campaign-box row">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/mosque1.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Renovasi Masjid Al-Hidayah</b><br>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    Donasi perbaikan masjid Al-Hidayah, Cimahi
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </div>
-            <div class="col-md-4 mid-content">
-              <div class="campaign-box row">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/islam.jpg') }}">
-                </div>
-                <div class="campaign-info  col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Bantuan Dana Haji</b><br>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    Bantu panitia haji dalam pendanaan layanan Haji
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </div>
-            <div class="col-md-4 mid-content">
-              <div class="campaign-box row">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/panti-asuhan.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </div>
-
+            @include('donations.campaign-list')
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -221,4 +116,21 @@
 <script src="{{ asset('js/mdb.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/donation.js') }}"></script>
+<script type="text/javascript">
+
+  function call_filter_form(){
+    $('#modal-include').html(`@include('layouts.modal.filter.filter')`)
+  }
+
+  function filter_click(name = null, category = null, time = null, sort = null){
+    urlParams = new URL(window.location.href).searchParams
+
+    name     = name != null ? name : urlParams.get('search-filter')
+    category = category != null ? category : urlParams.get('category')
+    time     = time != null ? time : urlParams.get('campaign-type')
+    sort     = sort != null ? sort : urlParams.get('sort-by')
+
+    window.location = "/donasi?search-filter=" + name + "&category=" + category + "&campaign-type=" + time + "&sort-by=" + sort
+  }
+</script>
 @endsection

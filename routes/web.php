@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('index');
+Route::post('/', 'HomeController@searchByCategory')->name('index.category');
 Route::get('/sign-out', 'Auth/LoginController@logout')->name('user.logout')->middleware('auth');
 
 Route::get('/get-token', function () {

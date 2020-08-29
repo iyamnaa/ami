@@ -6,6 +6,10 @@ use App\Http\Requests\CreateCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Repositories\CampaignRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\CampaignCategory;
+use App\Models\Campaign;
+use App\Models\User;
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -28,9 +32,25 @@ class CampaignController extends AppBaseController
      *
      * @return Response
      */
-    public function front(){
+    public function front(Request $request)
+    {
+        $filter = array(
+            'name' => $request->input('search-filter'),
+            'category' => $request->input('category')
+        );
 
-        return view('donations.index');
+        $campaigns = Campaign::all();
+        $campaigns = $filter['name'] != null ? $campaigns->where('name', $filter['name']) : $campaigns;
+        $campaigns = $filter['category'] != null ? $campaigns->where('campaign_category_id', $filter['category']) : $campaigns;
+        $campaigns = Campaign::deadlineCheck($campaigns, $request->input('type'));
+        $campaigns = Campaign::campaignSort($campaigns, $request->input('sort-by'));
+
+        $categories = CampaignCategory::all();
+        return view('donations.index', [
+                                            'campaigns' => $campaigns,
+                                            'categories' => $categories 
+                                        ]);
+
     }
 
     public function index(Request $request)

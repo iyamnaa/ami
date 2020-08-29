@@ -108,6 +108,48 @@ class Campaign extends Model
         return $years.$months.$days;
     }
 
+    public static function deadlineCheck($campaigns, $filter)
+    {
+        $currentTime = new \DateTime(date('o-m-d H:i:s'));
+        switch ($filter) {
+            case 'Sedang Berjalan':
+                return $campaigns->where('deadline', '>', $currentTime);
+                break;
+
+            case 'Telah Berakhir':
+                return $campaigns->where('deadline', '<=', $currentTime);
+                break;
+            
+            default:
+                return $campaigns;
+                break;
+        }
+    }
+
+    public static function campaignSort($campaigns, $filter)
+    {
+        switch ($filter) {
+            case 'Terbaru':
+                return $campaigns->sortByDesc('created_at');
+                break;
+
+            case 'Jumlah Donasi ASC':
+                break;
+
+            case 'Jumlah Donasi DESC':
+                return $campaigns->sortByDesc(Donation::raw('sum(amount)'));
+                break;
+
+            case 'Sisa Waktu':
+                return $campaigns->sortByDesc('deadline');
+                break;
+            
+            default:
+                return $campaigns;
+                break;
+        }
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

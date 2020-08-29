@@ -17,36 +17,31 @@
             </div>
       </div>
 
-      <div class="filter-content">
+      <div class="filter-content mb-3">
         <label>Kategori :</label>
-        <select class="form-control">
-          <option> Bencana Alam </option>
-          <option> Karya Seni </option>
-          <option> Keagamaan </option>
-          <option> Kemanusiaan </option>
-          <option> Kesehatan </option>
-          <option> Lingkungan </option>
-          <option> Panti </option>
-          <option> Pendidikan </option>
-          <option> Produk & Inovasi </option>
-          <option> Lainnya </option>
+        <select class="form-control" name="category" id="form-filter-category">
+          @foreach($categories as $category)
+            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+          @endforeach
         </select> 
       </div>
 
-      <div class="filter-content">
+      <div class="filter-content mb-3">
         <label>Jenis Campaign :</label>
-        <select class="form-control">
+        <select class="form-control" name="campaign-type" id="form-campaign-deadline">
+          <option> Semua </option>
           <option> Sedang Berjalan </option>
           <option> Telah Berakhir </option>
         </select> 
       </div>
 
-      <div class="filter-content">
+      <div class="filter-content mb-3">
         <label>Urutkan :</label>
-        <select class="form-control">
+        <select class="form-control" name="sort-by" id="form-sort-by">
           <option> Trending </option>
           <option> Terbaru </option>
-          <option> Jumlah Donasi </option>
+          <option value="Jumlah Donasi DESC"> Jumlah Donasi (Terbesar) </option>
+          <option value="Jumlah Donasi ASC"> Jumlah Donasi (Terkecil) </option>
           <option> Sisa Waktu </option>
         </select> 
       </div>
@@ -56,9 +51,7 @@
     <div class="modal-footer">
       <div class="row" style="width: 100%;">
         <div class="col-10">
-            <div class="btn form main-btn single-btn btn-orange text-light" style="width: 100%;margin: 20px 0">
-              Cari Campaign
-            </div>
+            <input type="submit" class="btn form main-btn single-btn btn-orange text-light" style="width: 100%;margin: 20px 0" onclick="search_campaign()" value="Cari Campaign">
         </div>
       </div>
     </div>
