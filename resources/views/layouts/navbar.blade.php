@@ -1,12 +1,21 @@
 <nav>
   <div class="navbar" align="center">
-    <div class="row">
+    <div class="row full-width">
       <div class="col-2">
         <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
       </div>
-      <div class="col-9 ami-text" align="left" style="margin-left: 16px"> 
-        <h5>Amal Madani Indonesia</h5>
-        <p>Filantrophy and Humanity Indonesia</p>
+      <div class="col-9" align="left">
+        <div class="ml-2">
+          <h5>Amal Madani Indonesia</h5>
+          <span>Filantrophy and Humanity Indonesia</span>
+        </div>
+      </div>
+      <div class="col-1" style="padding:0;padding-top:.33rem;float:right">
+        <a href="{{ route('about') }}">
+          <div class="mid-content" style="border-radius:100%;min-width:40px;min-height:40px;border:1px solid green">
+            <i class="fa fa-info text-success mobile-only"></i>
+          </div>
+        </a>
       </div>
     </div>
       <ul class="menu-list d-inline" style="height: 80%">
@@ -14,7 +23,7 @@
         <li><a href="{{ route('campaigns.front') }}">Donasi</a></li>
         <li><a href="{{ route('zakats.front') }}">Zakat</a></li>
         <li><a href="{{ route('news.front') }}">Berita</a></li>
-        <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
+        <li><a href="{{ route('about') }}">Tentang Kami</a></li>
         <li>
           <div class="account-menu bg-success text-light">
             <div><a href="#"><i class="fa fa-bookmark"></i></a></div>

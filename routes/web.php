@@ -21,7 +21,7 @@ Route::get('/get-token', function () {
     return csrf_token();
 })->name('csrftoken');
 
-Route::get('/tentang-kami', 'ZakatController@front')->name('aboutus');
+Route::get('/tentang-kami', 'HomeController@about')->name('about');
 
 Route::group(['prefix' => 'donasi'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');

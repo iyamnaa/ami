@@ -593,16 +593,16 @@ button[disabled='true']:hover{
   transform: translateY(0px);  }
 }
 
-  .mobile-only{
-    display: none;
-  }
+.mobile-only{
+  display: none !important;
+}
 
 @media (max-width: 768px) {
   .mobile-none{
     display: none;
   }
   .mobile-only{
-    display: initial;
+    display: inline-block !important;
   }
   .mobile-full-width{
     width: 100vw;
