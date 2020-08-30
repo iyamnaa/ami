@@ -21,6 +21,11 @@ class CampaignUpdateController extends AppBaseController
         $this->campaignUpdateRepository = $campaignUpdateRepo;
     }
 
+    public function update(Request $request)
+    {
+        return view('donations.update', ['campaign_id' => $request->id]);
+    }
+
     /**
      * Display a listing of the CampaignUpdate.
      *

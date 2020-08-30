@@ -26,6 +26,7 @@ Route::get('/tentang-kami', 'HomeController@about')->name('about');
 Route::group(['prefix' => 'campaign'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
   Route::get('/{id}', 'CampaignController@campaignDetail')->name('campaigns.detail');
+  Route::get('/update/{id}', 'CampaignUpdateController@update')->name('campaigns.update');
   Route::get('/laporkan/{id}', 'CampaignReportController@report')->name('campaigns.report')->middleware('verified');
   Route::post('/save', 'WishlistController@campaignSave')->name('campaigns.save')->middleware('verified');
 });
