@@ -35,11 +35,11 @@ class UserController extends AppBaseController
      */
     public function front(Request $request)
     {
-        $user = User::find($request->id);
-        $campaigns = Campaign::where('user_id', $request->id)->get();
-        $donations = Donation::where('user_id', $request->id)->get();
-        $reports = CampaignReport::where('user_id', $request->id)->get();
-        $zakats = Zakat::where('user_id', $request->id)->get();
+        $user = User::where('username', $request->username)->get()->first->id;
+        $campaigns = Campaign::where('user_id', $user->id)->get();
+        $donations = Donation::where('user_id', $user->id)->get();
+        $reports = CampaignReport::where('user_id', $user->id)->get();
+        $zakats = Zakat::where('user_id', $user->id)->get();
         return view('profile', [
                                     'user' => $user,
                                     'campaigns' => $campaigns,

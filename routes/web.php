@@ -26,19 +26,19 @@ Route::get('/tentang-kami', 'HomeController@about')->name('about');
 Route::group(['prefix' => 'campaign'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
   Route::get('/{id}', 'CampaignController@campaignDetail')->name('campaigns.detail');
-  Route::get('/laporkan/{id}', 'CampaignReportController@report')->name('campaigns.report');
+  Route::get('/laporkan/{id}', 'CampaignReportController@report')->name('campaigns.report')->middleware('verified');
   Route::post('/save', 'WishlistController@campaignSave')->name('campaigns.save')->middleware('verified');
 });
 
 Route::group(['prefix' => 'zakat'], function(){
   Route::get('/', 'ZakatController@front')->name('zakats.front');
-  Route::get('/detail', 'ZakatController@payment')->name('zakats.payment');
+  Route::get('/detail', 'ZakatController@payment')->name('zakats.payment')->middleware('verified');
   Route::post('/transaction-token', 'ZakatController@getSnapToken')->name('zakats.transactionToken');
   Route::post('/save-transaction', 'ZakatController@saveTransaction')->name('zakats.saveTransaction');
 });
 
 Route::group(['prefix' => 'profil'], function(){
-  Route::get('/{id}', 'UserController@front')->name('users.front');
+  Route::get('/{username}', 'UserController@front')->name('users.front');
 });
 
 Route::group(['prefix' => 'berita'], function(){
@@ -51,7 +51,7 @@ Route::post('/payment/notification/handler','NotificationController@notification
 Auth::routes(['verify' => true]);
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], function(){
   Route::get('/', 'HomeController@home')->name('home')->middleware('verified');
   
   Route::resource('events', 'EventController')->middleware('verified');

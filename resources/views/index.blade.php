@@ -14,7 +14,6 @@
 @section('content')
 @include('layouts.navbar')
 @include('layouts.modal')
-
 <!-- Slider main container -->
   <!-- Swiper -->
 
@@ -92,7 +91,6 @@
     </div>
   </div>
 </section>
-
 
 <section class="section-content">
   <div class="container-fluid pt-4 pr-2 pb-2 pl-2">

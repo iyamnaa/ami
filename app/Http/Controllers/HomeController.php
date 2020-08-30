@@ -8,7 +8,7 @@ use App\Models\CampaignCategory;
 use App\Models\Campaign;
 use App\Models\Donation;
 
-class HomeController extends Controller
+class HomeController extends AppBaseController
 {
     /**
      * Create a new controller instance.
@@ -58,7 +58,8 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('home');
+        parent::adminOnly();
+        return view('admin.home');
     }
 
     public function signOut()
