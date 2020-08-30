@@ -58,8 +58,8 @@
                                         </div>
                                         <select class="form-control custom-select" name="gender">
                                             <option> --Pilih Jenis Kelamin </option>
-                                            <option> Laki Laki </option>
-                                            <option> Perempuan </option>    
+                                            <option value="Laki-laki"> Laki Laki </option>
+                                            <option value="Perempuan"> Perempuan </option>    
                                         </select>
                                         @if ($errors->has('gender'))
                                             <span class="invalid-feedback">
@@ -100,6 +100,7 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <button class="btn btn-success btn-main single-btn full-width p-2 mb-2" id="registrationStepBtn"> Daftar </button>
                                 </div>
                                 <div class="user-credentials" style="display:none">
                                     <div class="text-primary mb-3 back-btn">   
@@ -113,6 +114,18 @@
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control {{ $errors->has('username')?'is-invalid':'' }}" name="username" value="{{ old('username') }}" placeholder="Username">
+                                        @if ($errors->has('username'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('username') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -144,8 +157,8 @@
                                         </span>
                                         @endif
                                     </div>
+                                    <button class="btn btn-success btn-main single-btn full-width p-2 mb-2"> Daftar </button>
                                 </div>
-                            <button class="btn btn-success btn-main single-btn full-width p-2 mb-2" id="registrationStepBtn"> Daftar </button>
                             </form>
                             <a href="{{ url('/login') }}">
                                 <div class="btn btn-light text-dark btn-main single-btn full-width p-2 mb-4"> Sudah Memiliki Akun </div>
@@ -175,6 +188,7 @@
 <script src="{{ asset('js/style.js') }}"></script>
 <script type="text/javascript">
     $('#registrationStepBtn').click(function(){
+        event.preventDefault();
         $(this).text('Selesai')
         $(this).attr('type', 'submit')
         $('.user-profile').hide()

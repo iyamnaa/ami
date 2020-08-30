@@ -605,14 +605,7 @@ button[disabled='true']:hover{
     display: inline-block !important;
   }
   .mobile-full-width{
-    width: 100vw;
-  }
-  input.mobile-full-width,
-  button.mobile-full-width{
     width: 100%;
-  }
-  .container.mobile-full-width{
-    width: 100% !important;
   }
   .mobile-margin-top{
     margin-top: 20px;

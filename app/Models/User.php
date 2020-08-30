@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
@@ -25,8 +28,9 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $role
  * @property string $remember_token
  */
-class User extends Model
+class User extends Authenticatable implements MustVerifyEmail
 {
+    use Notifiable;
 
     public $table = 'users';
     
@@ -38,6 +42,7 @@ class User extends Model
 
     public $fillable = [
         'name',
+        'username',
         'email',
         'gender',
         'telephone',
@@ -57,6 +62,7 @@ class User extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'username' => 'string',
         'email' => 'string',
         'gender' => 'string',
         'telephone' => 'string',
@@ -75,6 +81,7 @@ class User extends Model
      */
     public static $rules = [
         'name' => 'required',
+        'username' => 'required',
         'email' => 'required',
         'gender' => 'required',
         'telephone' => 'required',
@@ -83,6 +90,11 @@ class User extends Model
         'password' => 'required',
         'role' => 'required'
     ];
+
+    public function getProfileName($name = "")
+    {
+        return strtolower(str_replace(' ', '', $name));
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

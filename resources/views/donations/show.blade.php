@@ -12,28 +12,30 @@
 <section class="campaign-detail">
   <div class="container">
     <div style="transform: translateY(-30px);" class="text-primary">
-      <a href="index.html" class="text-primary hovering-link">Home </a> >
-      <a href="donation.html" class="text-primary hovering-link">Campaign </a> >
-      <a href="campaign.html" class="text-primary hovering-link">Pembaharuan Panti Asuhan </a>
+      <a href="{{ route('index') }}" class="text-primary hovering-link">Home </a> >
+      <a href="{{ route('campaigns.front') }}" class="text-primary hovering-link">Campaign </a> >
+      <a href="{{ url('/campaign/$campaign->id') }}" class="text-primary hovering-link"> {{ $campaign->title }} </a>
     </div>
-    <div class="row content-box bg-light mobile-full-width">
+    <div class="row bg-light mobile-full-width">
+      <input type="hidden" value="{{ $campaign->id }}" id="cid">
+      <input type="hidden" value="1" id="uid">
       <div class="col-12 col-md-8">
         <div class="campaign-info-box">
           <div class="content-box">
             <div class="campaign-info-image">
-              <img class="campaign-image" src="assets/images/fundraising-image.jpg">
+              <img class="campaign-full-image" src="{{ asset($campaign->image_cover) }}">
             </div>
             <div class="campaign-info-desc">
-              <h3 style="margin-bottom: 2px">Perbaikan Panti Asuhan</h3>
-              <a href="#" class="text-primary hovering-link">Natieq Sah Muhammad</a>
+              <h3 style="margin-bottom: 2px"> {{ $campaign->title }}</h3>
+              <a href="#" class="text-primary hovering-link"> {{ $campaign->user->name }} </a>
               <div class="content-box no-padd" style="margin-top: 16px;">
                 <p class="content-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam.
+                    {{ $campaign->short_desc }}
                 </p>
-                <span class="content-desc"> Dibuat Tanggal &nbsp; : </span><span class="text-primary"> 1 September 2020 </span><br>
-                <span class="content-desc"> Sisa Waktu &nbsp; : </span><span class="text-primary"> 1 Bulan 12 Hari </span><br>
+                <span class="content-desc"> Dibuat Tanggal &nbsp; : </span><span class="text-primary"> {{ $campaign->created_at }} </span><br>
+                <span class="content-desc"> Sisa Waktu &nbsp; : </span><span class="text-primary"> {{ $campaign->getCampaignDeadline($campaign->deadline) }} </span><br>
 
-                <div class="btn main-btn single-btn btn-success text-light form" style="margin-top: 16px">
+                <div class="btn main-btn single-btn btn-success text-light form" style="margin-top: 16px" id="add-wishlist">
                   <i class="fa fa-bookmark"></i> &nbsp; Simpan Campaign
                 </div>
               </div>
@@ -41,23 +43,34 @@
             <div class="campaign-info-setting">
               <div class="content-box no-padd">
                 <ul class="menu-list mobile-menu-list text-primary">
-                  <li style="border-bottom: 1px solid royalblue;">Detail</li>
-                  <li>Update(4)</li>
+                  <li class="show-body" style="border-bottom: 1px solid royalblue">Detail</li>
+                  <li class="show-updates" style=""> Update({{ count($updates) }})</li>
                 </ul>
               </div>
             </div>
             <div class="campaign-info-detail">
-              <img src="assets/images/islam.jpg">
-              <p class="content-desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ultricies aliquam. 
-              </p>
-              <p class="content-desc">
-                Nested rows should include a set of columns that add up to 12 or fewer (it is not required that you use all 12 available columns).
-              </p>
+              <div class="campaign-body">
+              {{ $campaign->body }}
+              </div>
+              <div class="campaign-updates" style="display:none">
+                @foreach($updates as $update)
+                  <h5 class="content-title"> {{ $update->title }} </h5>
+                  <p class="content-desc"> 
+                    <span class="basic-body-{{$update->id}}">
+                     {{ substr($update->body, 0, 5) }} <span onclick="read_more('{{ $update->id }}')" class="text-primary more-{{ $update->id }}"> Lebih banyak </span>
+                    </span>
+                    <span class="detail-body-{{$update->id}}" style="display:none">
+                     {{ substr($update->body, 5, strlen($update->body)) }} <span onclick="read_more('{{ $update->id }}')" class="text-primary less-{{ $update->id }}"> Sembunyikan </span>
+                    </span>
+                  </p>
+                  <p class="text-primary"> {{ $update->created_at }} </p>
+                  <hr>
+                @endforeach
+              </div>
             </div>
 
             <div class="campaign-info-footer">
-              <a href="reportcampaign.html"><div class="form btn main-btn single-btn btn-success text-light" style="width: 100%">Laporkan Campaign ini</div></a>
+              <a href="{{ url('/campaign/laporkan/'.$campaign->id) }}"><div class="form btn main-btn single-btn btn-success text-light" style="width: 100%">Laporkan Campaign ini</div></a>
             </div>
           </div>
         </div>
@@ -84,55 +97,27 @@
               <div class="content-box">
                 <div>
                   <h5>Donasi Terkumpul</h5>
-                  <h5 class="text-">Rp60.000</h5>
+                  <h5 class="text-">Rp{{ $donations->sum('amount') }}</h5>
                   <div class="donation-list">
                     <div class="btn main-btn single-btn btn-orange text-light form">Berikan Donasi</div>
                     <div class="donation-list-info">
-                      <div class="donation-list-user">
-                        <div class="row">
-                          <div class="col-3 mid-content">
-                            <i class="fa fa-user user-icon"></i>
-                          </div>
-                          <div class="col-9">
-                            <div class="row donation-list-info-name">
-                              Natieq Sah Muhammad
+                      @foreach($donations as $donation)
+                        <div class="donation-list-user">
+                          <div class="row">
+                            <div class="col-3 mid-content">
+                              <i class="fa fa-user user-icon"></i>
                             </div>
-                            <div class="row donation-list-info-amount">
-                              Rp20.000
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="donation-list-user">
-                        <div class="row">
-                          <div class="col-3 mid-content">
-                            <i class="fa fa-user user-icon"></i>
-                          </div>
-                          <div class="col-9">
-                            <div class="row donation-list-info-name">
-                              Natieq Sah Muhammad
-                            </div>
-                            <div class="row donation-list-info-amount">
-                              Rp20.000
+                            <div class="col-9">
+                              <div class="row donation-list-info-name">
+                                {{ $donation->user->name }}
+                              </div>
+                              <div class="row donation-list-info-amount">
+                                {{ $donation->amount }}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="donation-list-user">
-                        <div class="row">
-                          <div class="col-3 mid-content">
-                            <i class="fa fa-user user-icon"></i>
-                          </div>
-                          <div class="col-9">
-                            <div class="row donation-list-info-name">
-                              Natieq Sah Muhammad
-                            </div>
-                            <div class="row donation-list-info-amount">
-                              Rp20.000
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        @endforeach
                     </div>
                   </div>
                 </div>
@@ -147,5 +132,62 @@
 </section>
 
 <br><br><br>
-
 @endsection
+
+
+@section('javascript')
+<script src="{{ asset('js/mdb.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script> 
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  function read_more(id){
+    element = $('.detail-body-' + id)
+    if(element.css('display') == 'none'){
+      element.css('display','initial')
+      $('.more-' + id).css('display','none')
+      $()
+    }else{
+      element.css('display','none')
+      $('.more-' + id).css('display','initial')
+    }
+  }
+
+  $('.show-body').click(function(){
+    $('.show-updates').css('border-bottom','none')
+    $('.campaign-updates').hide()
+    $(this).css('border-bottom', '1px solid royalblue')
+    $('.campaign-body').show()
+  })
+
+  $('.show-updates').click(function(){
+    $('.show-body').css('border-bottom', 'none')
+    $('.campaign-body').hide()
+    $(this).css('border-bottom', '1px solid royalblue')
+    $('.campaign-updates').show()
+  })
+
+
+  $('#add-wishlist').click(function(){
+    $.ajax({
+      type:'POST',
+      url:'/campaign/save',
+      data: {
+        'campaign_id' : $('#cid').val(),
+        'user_id' : $('#cid').val()
+      },
+      success:function(data, xhr) {
+        alert(data.message)
+      }
+    })
+  })
+</script>
+@endsection
+

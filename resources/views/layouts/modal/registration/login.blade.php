@@ -21,7 +21,9 @@
             </div>
             <br>
             <input type="Submit" name="submit" value="Login" class="btn form main-btn single-btn btn-orange text-light" style="width: 100%">
-            <input type="Submit" name="submit" value="Buat Akun" class="btn form main-btn single-btn btn-light text-primary" style="width: 100%;margin-top: 10px">
+            <a href=" {{ url('/register') }} ">
+              <div class="btn form main-btn single-btn btn-light text-primary" style="width: 100%;margin-top: 10px"> Buat Akun </div>
+            </a>
           </div>
         </div>
         <br>
@@ -33,9 +35,9 @@
             <div class="btn form main-btn single-btn btn-danger text-light" style="width: 100%">
               <i class="fa fa-google"></i> &nbsp; Google
             </div>
-            <div class="btn form main-btn single-btn btn-primary text-light" style="width: 100%;margin: 20px 0">
+            <!-- <div class="btn form main-btn single-btn btn-primary text-light" style="width: 100%;margin: 20px 0">
               <i class="fa fa-facebook"></i> &nbsp; Facebook
-            </div>
+            </div> -->
         </div>
       </div>
     </div>

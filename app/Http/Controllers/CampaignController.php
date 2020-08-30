@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCampaignRequest;
 use App\Repositories\CampaignRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\CampaignCategory;
+use App\Models\CampaignUpdate;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Models\Donation;
@@ -51,6 +52,18 @@ class CampaignController extends AppBaseController
                                             'categories' => $categories 
                                         ]);
 
+    }
+
+    public function campaignDetail(Request $request)
+    {
+        $campaign = Campaign::find($request->id);
+        $updates = CampaignUpdate::where('campaign_id', $campaign->id)->get();
+        $donations = Donation::where('campaign_id', $campaign->id)->get();
+        return view('donations.show', [
+                                        'campaign' => $campaign,
+                                        'updates' => $updates,
+                                        'donations' => $donations
+                                      ]);
     }
 
     public function index(Request $request)

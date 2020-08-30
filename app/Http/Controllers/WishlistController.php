@@ -21,6 +21,18 @@ class WishlistController extends AppBaseController
         $this->wishlistRepository = $wishlistRepo;
     }
 
+    public function campaignSave(CreateWishlistRequest $request)
+    {
+        try{
+            $input = $request->all();
+            $wishlist = $this->wishlistRepository->create($input);
+
+            return response()->json(array('message' => 'success' ), 200);
+        }catch(\Throwable $e){
+            return response()->json(array('message' => $e->getMessage()), 200);
+        }
+    }
+
     /**
      * Display a listing of the Wishlist.
      *

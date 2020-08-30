@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateCampaignReportRequest;
 use App\Repositories\CampaignReportRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\ReportCategory;
+use App\Models\CampaignReport;
 use Flash;
 use Response;
 
@@ -19,6 +21,13 @@ class CampaignReportController extends AppBaseController
     public function __construct(CampaignReportRepository $campaignReportRepo)
     {
         $this->campaignReportRepository = $campaignReportRepo;
+    }
+
+
+    public function report(Request $request)
+    {
+        $categories = ReportCategory::all();
+        return view('donations.report', ['categories' => $categories, 'campaign_id' => $request->id]);
     }
 
     /**

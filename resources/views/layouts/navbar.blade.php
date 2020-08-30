@@ -1,6 +1,6 @@
 <nav>
   <div class="navbar" align="center">
-    <div class="row full-width">
+    <div class="row mobile-full-width">
       <div class="col-2">
         <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
       </div>
@@ -10,10 +10,10 @@
           <span>Filantrophy and Humanity Indonesia</span>
         </div>
       </div>
-      <div class="col-1" style="padding:0;padding-top:.33rem;float:right">
+      <div class="col-1 mobile-only" style="padding:0;padding-top:.33rem;float:right">
         <a href="{{ route('about') }}">
           <div class="mid-content" style="border-radius:100%;min-width:40px;min-height:40px;border:1px solid green">
-            <i class="fa fa-info text-success mobile-only"></i>
+            <i class="fa fa-info text-success"></i>
           </div>
         </a>
       </div>

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::post('/', 'HomeController@searchByCategory')->name('index.category');
-Route::get('/sign-out', 'Auth/LoginController@logout')->name('user.logout')->middleware('auth');
+Route::get('/sign-out', 'verified/LoginController@logout')->name('user.logout')->middleware('verified');
 
 Route::get('/get-token', function () {
     return csrf_token();
@@ -23,8 +23,11 @@ Route::get('/get-token', function () {
 
 Route::get('/tentang-kami', 'HomeController@about')->name('about');
 
-Route::group(['prefix' => 'donasi'], function(){
+Route::group(['prefix' => 'campaign'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
+  Route::get('/{id}', 'CampaignController@campaignDetail')->name('campaigns.detail');
+  Route::get('/laporkan/{id}', 'CampaignReportController@report')->name('campaigns.report');
+  Route::post('/save', 'WishlistController@campaignSave')->name('campaigns.save')->middleware('verified');
 });
 
 Route::group(['prefix' => 'zakat'], function(){
@@ -35,7 +38,7 @@ Route::group(['prefix' => 'zakat'], function(){
 });
 
 Route::group(['prefix' => 'profil'], function(){
-  Route::get('/', 'UserController@front')->name('users.front');
+  Route::get('/{id}', 'UserController@front')->name('users.front');
 });
 
 Route::group(['prefix' => 'berita'], function(){
@@ -43,25 +46,25 @@ Route::group(['prefix' => 'berita'], function(){
 });
 
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
-Auth::routes();
+// Auth::routes();
 
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::group(['prefix' => 'admin'], function(){
-  Route::get('/', 'HomeController@home')->name('home')->middleware('auth');
+  Route::get('/', 'HomeController@home')->name('home')->middleware('verified');
   
-  Route::resource('events', 'EventController')->middleware('auth');
-  Route::resource('news', 'NewsController')->middleware('auth');
-  Route::resource('campaigns', 'CampaignController')->middleware('auth');
-  Route::resource('users', 'UserController')->middleware('auth');
-  Route::resource('zakats', 'ZakatController')->middleware('auth');
-  Route::resource('donations', 'DonationController')->middleware('auth');
-  Route::resource('campaignCategories', 'CampaignCategoryController')->middleware('auth');
-  Route::resource('campaignReports', 'CampaignReportController')->middleware('auth');
-  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('auth');
-  Route::resource('campaignReports', 'CampaignReportController')->middleware('auth');
-  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('auth');
-  Route::resource('reportCategories', 'ReportCategoryController')->middleware('auth');
-  Route::resource('wishlists', 'WishlistController')->middleware('auth');
+  Route::resource('events', 'EventController')->middleware('verified');
+  Route::resource('news', 'NewsController')->middleware('verified');
+  Route::resource('campaigns', 'CampaignController')->middleware('verified');
+  Route::resource('users', 'UserController')->middleware('verified');
+  Route::resource('zakats', 'ZakatController')->middleware('verified');
+  Route::resource('donations', 'DonationController')->middleware('verified');
+  Route::resource('campaignCategories', 'CampaignCategoryController')->middleware('verified');
+  Route::resource('campaignReports', 'CampaignReportController')->middleware('verified');
+  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('verified');
+  Route::resource('campaignReports', 'CampaignReportController')->middleware('verified');
+  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('verified');
+  Route::resource('reportCategories', 'ReportCategoryController')->middleware('verified');
+  Route::resource('wishlists', 'WishlistController')->middleware('verified');
 });

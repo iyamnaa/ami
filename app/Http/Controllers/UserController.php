@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Campaign;
+use App\Models\Donation;
+use App\Models\CampaignReport;
+use App\Models\Zakat;
+use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -28,9 +33,20 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function front(){
-
-        return view('users.front');
+    public function front(Request $request)
+    {
+        $user = User::find($request->id);
+        $campaigns = Campaign::where('user_id', $request->id)->get();
+        $donations = Donation::where('user_id', $request->id)->get();
+        $reports = CampaignReport::where('user_id', $request->id)->get();
+        $zakats = Zakat::where('user_id', $request->id)->get();
+        return view('profile', [
+                                    'user' => $user,
+                                    'campaigns' => $campaigns,
+                                    'donations' => $donations,
+                                    'reports' => $reports,
+                                    'zakats' => $zakats
+                                ]);
     }
 
     public function index(Request $request)

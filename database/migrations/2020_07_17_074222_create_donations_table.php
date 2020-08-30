@@ -26,8 +26,8 @@ class CreateDonationsTable extends Migration
             $table->boolean('as_anonymous');
 
             //data amil
-            $table->string('NIA');
-            $table->string('amil_name');
+            $table->string('NIA')->nullable();
+            $table->string('amil_name')->nullable();
 
             //data transaksi
             $table->enum('status',['terkirim','proses','gagal','berhasil','cancel'])->default('terkirim');

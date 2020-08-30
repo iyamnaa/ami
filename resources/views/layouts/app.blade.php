@@ -26,14 +26,11 @@
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript">
-        var registration_form = [
-          `@include('layouts.modal.registration.login')`,
-          `@include('layouts.modal.registration.signup')`
-        ]
         function call_registration_form(registration_type){
-            $('#modal-include').html(registration_form[registration_type])
+            $('#modal-include').html(`@include('layouts.modal.registration.login')`)
         }
     </script>
     @yield('javascript')

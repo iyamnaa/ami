@@ -65,6 +65,12 @@
   min-height: 170px;
 }
 
+.campaign-full-image{
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 .horizontal-campaign .campaign-image{
   border-radius: 8px 8px 0 0;
 }
