@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use App\Models\CampaignCategory;
+use App\Models\TopCampaign;
 use App\Models\Campaign;
 use App\Models\Donation;
 
@@ -28,7 +29,7 @@ class HomeController extends AppBaseController
     public function index(Request $request)
     {
         $newestCampaigns = Campaign::all()->take(3)->sortByDesc('created_at');
-        $topCampaigns = CampaignCategory::all();
+        $topCampaigns = TopCampaign::all();
         $categories = CampaignCategory::all();
         $categorySearch = $request->category != null ? $request->category : $categories->first->get();
         $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch->id)->take(8)->get();

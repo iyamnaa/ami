@@ -18,7 +18,7 @@
                               <strong>Edit Profil</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch', 'files' => true]) !!}
+                              {!! Form::model($user, ['route' => ['profil.update', $user->id], 'method' => 'post', 'files' => true]) !!}
                                     <!-- Photo Field -->
                                     <div class="form-group col-sm-6">
                                         {!! Form::label('photo', 'Gambar Profil:') !!} <br>
@@ -75,6 +75,7 @@
 
                                     <!-- Submit Field -->
                                     <div class="form-group col-sm-12">
+                                        {!! Form::hidden('role', Auth::user()->role ) !!}
                                         {!! Form::hidden('password', 'password' ) !!}
                                         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
                                         <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>

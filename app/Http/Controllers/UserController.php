@@ -65,8 +65,52 @@ class UserController extends AppBaseController
         }
     }
 
-    public function profilUpdate(Request $request){
-        
+
+    public function profilUpdate($id, UpdateUserRequest $request)
+    {
+        $this->data_check($id);
+        $data = User::find($id);
+        $input = $request->all();
+        $input['role'] = $data->role;
+
+        if($request->hasFile('form_photo')){
+            $photo = $request->file('form_photo');
+            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $photo->move(public_path(). '/images/', $filename);
+            $input['photo'] = 'images/'.$filename;
+
+            if(is_file(public_path().'/'.$data->photo)){
+                unlink(public_path().'/'.$data->photo);
+            }
+        }else if($request->file('form_photo') == null){
+            $input['photo'] = $data->photo;
+        }else{
+            $input['photo'] = 'images/user-default.jpg';
+        }
+
+        if($request->hasFile('form_bg_cover')){
+            $cover = $request->file('form_bg_cover');
+            $filename = date('ymdHis').'-'.$cover->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $cover->move(public_path(). '/images/', $filename);
+            $input['bg_cover'] = 'images/'.$filename;
+
+            if(is_file(public_path().'/'.$data->bg_cover)){
+                unlink(public_path().'/'.$data->bg_cover);
+            }
+        }else if($request->file('form_bg_cover') == null){
+            $input['bg_cover'] = $data->bg_cover;
+        }else{
+            $input['bg_cover'] = 'images/user-cover-default.jpg';
+        }
+
+        $input['password'] = $data->password;
+        $user = $this->userRepository->update($input, $id);
+
+        Flash::success('Data berhasil diubah');
+
+        return redirect(url('profil/'.$input['username']));
     }
 
     public function index(Request $request)
@@ -79,6 +123,7 @@ class UserController extends AppBaseController
             ->with('users', $users)
             ->with('role', $role);
     }
+    
 
 
     /**
@@ -186,7 +231,7 @@ class UserController extends AppBaseController
         }else{
             $input['bg_cover'] = 'images/user-cover-default.jpg';
         }
-
+        $input['password'] = $data->password;
         $user = $this->userRepository->update($input, $id);
 
         Flash::success('Data berhasil diubah');

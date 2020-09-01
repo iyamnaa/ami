@@ -125,7 +125,7 @@ class ZakatController extends AppBaseController
             'kadar-zakat' => str_replace('.', '', $request->input('kadar-zakat')),
             'akad' => $request->input('akad'),
             'name' => Auth::user()->name,
-            'phone' => Auth::user()->phone,
+            'phone' => Auth::user()->telephone,
             'email' => Auth::user()->email,
             'address' => Auth::user()->address,
         );

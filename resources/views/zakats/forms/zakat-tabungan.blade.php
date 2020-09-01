@@ -1,5 +1,5 @@
 <div align="center" style="width: 100%;margin: 20px 0">
-  <h4 class="content-title">Zakat Penghasilan</h4>
+  <h4 class="content-title">Zakat Tabungan</h4>
 </div>
 <br>
 {{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}

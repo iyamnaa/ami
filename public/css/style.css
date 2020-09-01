@@ -324,6 +324,10 @@ input[type=number] {
   margin-bottom: 2vh;
 }
 
+.campaign-box .content-title{
+  font-weight: bold;
+}
+
 .mid-content{
   display: flex;
   align-items: center;

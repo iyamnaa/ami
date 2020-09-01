@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <td rowspan="2"> 
-                    <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
+                    <img class="logo-image" src="{{ asset(Auth::user()->photo) }}" style="border-radius:100%;width:45px;height:45px">
                 </td>
                 <td>
                     <h5 class='text-bold ml-2' style="margin-bottom:0.1rem;margin-top:1rem"> {{ substr(Auth::user()->name, 0, 14) }}</h5>

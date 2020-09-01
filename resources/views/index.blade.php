@@ -100,174 +100,35 @@
       <div class="pb-4 pl-3" style="overflow-x:auto">
         <table class="table-campaign">
           <tr>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
+            @foreach($topCampaigns as $topCampaign) 
+              @php $campaign = $topCampaign->campaign @endphp
+              <a href="{{ url('/campaign/'.$campaign->id) }}">
+                <td class="pr-4">
+                  <div class="campaign-box row bg-light">
+                    <div class="campaign-image-box col-5 col-sm-6 col-md-12">
+                      <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
                     </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
+                    <div class="campaign-info col-7 col-sm-6 col-md-12">
+                      <b class="campaign-title text-success"> {{ $campaign->title}} </b>
+                      <p class="campaign-category">{{ $campaign->user->name}} <i class="fa fa-check-circle text-primary verified-user"></i></p>
+                      <div class="campaign-desc">
+                        {!! $campaign->short_desc !!}
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ $campaign->getCampaignProgress($campaign->id, $campaign->target) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $campaign->getCampaignProgress($campaign->id, $campaign->target).'%' }}">
+                          <span class="sr-only">{{ $campaign->getCampaignProgress($campaign->id, $campaign->target).'%' }} Complete</span>
+                        </div>
+                      </div>
+                      <div>
+                        <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> {{ $campaign->getCampaignDonation($campaign->id) }}</span>
+                        <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>{{ $campaign->getCampaignDeadline($campaign->deadline) }}</span>
+                      </div>
                     </div>
+                    <br>
                   </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
-            <td class="pr-4">
-              <div class="campaign-box row bg-light">
-                <div class="campaign-image-box col-5 col-sm-6 col-md-12">
-                  <img class="campaign-image" src="{{ asset('/images/zakat-fitrah.jpg') }}">
-                </div>
-                <div class="campaign-info col-7 col-sm-6 col-md-12">
-                  <b class="campaign-title text-success">Panti Asuhan Bondo Wangi</b>
-                  <p class="campaign-category">Amal Madani <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                  <p class="campaign-desc">
-                    The World's only low cost portable Seawater Desalination Device. The Ultimate Survival Tool
-                  </p>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      <span class="sr-only">40% Complete</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span class="campaign-progress" style="float: left;"> <span class="content-desc">Terkumpul </span><br> Rp 10.000</span>
-                    <span class="campaign-progress" style="float: right;"> <span class="content-desc">Sisa Waktu </span><br>20 Hari</span>
-                  </div>
-                </div>
-                <br>
-              </div>
-            </td>
+                </td>
+              </a>
+            @endforeach
           </tr>
         </table>
       </div>

@@ -16,7 +16,7 @@
 @include('layouts.modal')
 
 <div class="row">
-    <div class="col-md-3 profile-nav" style="margin-top: 80px;">
+    <!-- <div class="col-md-3 profile-nav" style="margin-top: 80px;">
         <div class="content-box">
           <b class="text-success">Hasil Filter</b>
           <div class="filter filter-category">
@@ -35,11 +35,11 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-md-9" style="overflow:hidden">
+    <div class="col-md-12" style="overflow:hidden">
       <div class="header user-header">
-        <div class="header-box" style="background: url('{{ asset('images/islam.jpg') }}')">
+        <div class="header-box full-image" style="background: url('{{ asset($user->bg_cover) }}')">
         </div>
       </div>
 
@@ -71,6 +71,9 @@
               <p class="text-primary"><i class="fa fa-map-marker"></i> &nbsp; {{ $user->address }} </p>
               <p class="text-primary"><i class="fa fa-phone"></i> &nbsp; {{ $user->telephone }}</p>
 
+              <a href="{{ url('/profil/edit/'.$user->username) }}" class="mt-2 mobile-only">
+                <div class="btn main-btn single-btn btn-success-outline text-success">Edit Profil</div>
+              </a>
 
               <div class="campaign-info-setting">
                 <div class="content-box no-padd">

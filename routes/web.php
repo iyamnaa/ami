@@ -42,10 +42,16 @@ Route::group(['prefix' => 'zakat'], function(){
   Route::post('/save-transaction', 'ZakatController@saveTransaction')->name('zakats.saveTransaction');
 });
 
+Route::group(['prefix' => 'donasi'], function(){
+  Route::get('/detail', 'DonationController@payment')->name('donations.payment')->middleware('verified');
+  Route::post('/transaction-token', 'DonationController@getSnapToken')->name('donations.transactionToken');
+  Route::post('/save-transaction', 'DonationController@saveTransaction')->name('donations.saveTransaction');
+});
+
 Route::group(['prefix' => 'profil'], function(){
   Route::get('/{username}', 'UserController@front')->name('users.front');
   Route::get('/edit/{username}', 'UserController@profilEdit')->name('users.edit')->middleware('verified');
-  Route::post('/edit/{username}', 'UserController@profilUpdate')->name('users.update')->middleware('verified');
+  Route::post('/edit/{username}', 'UserController@profilUpdate')->name('profil.update')->middleware('verified');
 });
 
 Route::group(['prefix' => 'berita'], function(){
@@ -56,6 +62,7 @@ Route::post('/payment/notification/handler','NotificationController@notification
 // Auth::routes();
 
 Auth::routes(['verify' => true]);
+Route::get('/sign-out', '\App\Http\Controllers\Auth\LoginController@logout')->name('user.logout');
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], function(){

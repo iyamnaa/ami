@@ -6,6 +6,12 @@ use App\Http\Requests\CreateDonationRequest;
 use App\Http\Requests\UpdateDonationRequest;
 use App\Repositories\DonationRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\Campaign;
+use App\Models\User;
+use App\Models\Donation;
+use Auth;
+use Payment;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -19,6 +25,95 @@ class DonationController extends AppBaseController
     public function __construct(DonationRepository $donationRepo)
     {
         $this->donationRepository = $donationRepo;
+    }
+
+    public function getSnapToken(Request $request)
+    {
+        try{
+            $campaign = Campaign::find($request->input('campaign_id'));
+            $transaction_details = [
+            'order_id' => Payment::generateOrderID('Donasi'),
+            'gross_amount' => $request->input('amount')
+            ];
+
+            $customer_details = [
+            'first_name' => $request->input('name'),
+            'last_name' => "",
+            'email' => $request->input('email'),
+            'phone' => $request->input('telephone')
+            ];
+
+            $item_details = array([
+            'id' => $campaign->id,
+            'price' => $request->input('amount'),
+            'quantity' => 1,
+            'name' => $campaign->title,
+            'category' => "Donasi",
+            'merchant_name' => "Amal Madani"
+            ]);
+
+            $paymentData = array(
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+            );
+
+            $data_donasi = [
+            'transaction_id' => Crypt::encryptString($transaction_details['order_id']),
+            'number' => 1,
+
+            'name' => $customer_details['first_name'],
+            'email' => $customer_details['email'],
+            'telephone' => $customer_details['phone'],
+            'address' => $request->input('address'),
+            'as_anonymous' => 0, //$request->input('as_anonymous'),
+
+            'nia' => $request->input('amil_nia') ? $request->input('amil_nia') : null,
+            'amil_name' => $request->input('amil_name') !== null ? $request->input('amil_name') : null,
+
+            'proses' => 'terkirim',
+            'akad' => $item_details[0]['name'],
+            'amount' => $item_details[0]['price'],
+            'campaign_name' => $item_details[0]['name'],
+            'campaign_id' => $item_details[0]['id'],
+
+            'user_id' => 1
+            ];
+
+            $snapToken = Payment::generateSnapToken($paymentData);
+
+            return response()->json(array('snapToken'=> $snapToken, 'donasi' => $data_donasi), 200);
+        
+        }catch(\Throwable $e){
+            return response()->json(array('snapToken'=> null, 'th' => $e->getMessage()), 200);
+        }
+    }
+
+    public function saveTransaction(Request $request)
+    {
+        try{
+            $data_donasi = $request->donasi;
+            $data_donasi['transaction_id'] = Crypt::decryptString($data_donasi['transaction_id']);
+            $donasi = $this->donationRepository->create($data_donasi);
+
+            return response()->json(array('message' => 'Transaksi Donasi Berhasil'), 200);
+        }catch(\Throwable $e){
+            return response()->json(array('message' => 'Error '.$e->getMessage().': Transaksi Zakat Gagal'), 200);
+        }
+    }
+
+    public function payment(Request $request){
+        $data = array(
+            'amount' => str_replace('.', '', $request->input('amount')),
+            'name' => Auth::user()->name,
+            'phone' => Auth::user()->telephone,
+            'email' => Auth::user()->email,
+            'address' => Auth::user()->address,
+        );
+
+        $campaign = Campaign::find($request->input('campaign_id'));
+
+        return view('donations.payment', ['data' => $data, 'campaign' => $campaign]);
     }
 
     /**

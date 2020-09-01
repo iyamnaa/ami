@@ -12,9 +12,9 @@
                 <div class="campaign-info col-12">
                     <b class="campaign-title text-success"> {{ $campaign->title }} </b>
                     <p class="campaign-category"> {{ $campaign->user->name }} <i class="fa fa-check-circle text-primary verified-user"></i></p>
-                    <p class="campaign-desc">
+                    <div class="campaign-desc">
                     {!! $campaign->short_desc !!}
-                    </p>
+                    </div>
                     <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ $campaign->getCampaignProgress($campaign->id, $campaign->target) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $campaign->getCampaignProgress($campaign->id, $campaign->target).'%' }}">
                         <span class="sr-only">{{ $campaign->getCampaignProgress($campaign->id, $campaign->target).'%' }} Complete</span>

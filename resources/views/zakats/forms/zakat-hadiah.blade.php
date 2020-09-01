@@ -1,13 +1,7 @@
 <div align="center" style="width: 100%;margin: 20px 0">
-  <h4 class="content-title">Zakat Penghasilan</h4>
+  <h4 class="content-title">Zakat Hadiah</h4>
 </div>
-<div class="content-box no-padd">
-  <ul class="menu-list mobile-menu-list text-primary">
-    <li style="border-bottom: 1px solid royalblue;">Kalkulator &nbsp;&nbsp;&nbsp;</li>
-    <li>Hitung mandiri</li>
-  </ul>
-</div>
-<br><br>
+<br>
 {{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
   <div class="form-group">
     <div class="row">

@@ -4,7 +4,17 @@
             <h5>Donasi Terkumpul</h5>
             <h5 class="text-">Rp{{ $donations->sum('amount') }}</h5>
             <div class="donation-list">
-            <div class="btn main-btn single-btn btn-orange text-light form mt-3">Berikan Donasi</div>
+            {{ Form::open(array('route' => 'donations.payment','method' => 'get')) }}
+                <label>Harga Beras (Kg) : </label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" style="font-size: .94rem">Rp</div>
+                    </div>
+                    <input type="text" class="form-control currency" placeholder="0" name="amount" autocomplete="off">
+                </div>
+                <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
+                <input type="submit" class="btn main-btn single-btn btn-orange text-light form mt-3" value="Berikan Donasi">
+            {{ Form::close() }}                
             <div class="donation-list-info" align="left">
                 @foreach($donations as $donation)
                 <div class="donation-list-user">
