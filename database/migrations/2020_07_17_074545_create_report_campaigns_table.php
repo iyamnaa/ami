@@ -40,6 +40,6 @@ class CreateReportCampaignsTable extends Migration
         //     $table->dropIndex(['campaign_id']);
         //     $table->dropIndex(['report_category_id']);
         // });
-        Schema::dropIfExists('report_campaigns');
+        Schema::dropIfExists('campaign_reports');
     }
 }

@@ -19,7 +19,7 @@
       @if(Auth::check())
         <li><a href="{{ url('profil/'.Auth::user()->username) }}"> Hey, {{ Auth::user()->name }} </a></li>
       @else
-        <li><a href="{{ route('login') }}"> Hey, {{ Auth::user()->name }} </a></li>
+        <li><a href="{{ route('login') }}"> Login </a></li>
       @endif
     </ul>
 </nav>

@@ -18,7 +18,7 @@
                                 <strong>Create Campaign</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'campaigns.store']) !!}
+                                {!! Form::open(['route' => 'campaigns.store'], 'files' => true) !!}
 
                                    @include('admin.campaigns.fields')
 

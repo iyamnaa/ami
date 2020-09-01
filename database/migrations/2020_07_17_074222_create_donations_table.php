@@ -33,6 +33,7 @@ class CreateDonationsTable extends Migration
             $table->enum('status',['terkirim','proses','gagal','berhasil','cancel'])->default('terkirim');
             $table->string('akad');
             $table->integer('amount');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
 
             $table->index('user_id');

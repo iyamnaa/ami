@@ -438,9 +438,10 @@ input[type=number] {
 
 .btn-orange-outline{
   border: 1px solid orange;
+  color: orange;
 }
 
-.btn-success-outline:hover{
+.btn-orange-outline:hover{
   transition: .4s all;
   color: white !important;
   background-color: orange !important;

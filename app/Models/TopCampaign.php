@@ -1,33 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class CampaignUpdate
- * @package App\Models
- * @version July 21, 2020, 4:38 am UTC
- *
- * @property string $title
- * @property string $body
- * @property integer $campaign_update_id
- */
-class CampaignUpdate extends Model
+class TopCampaign extends Model
 {
-
-    public $table = 'campaign_updates';
+    
+    public $table = 'top_campaigns';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
 
-
     public $fillable = [
-        'title',
-        'image_cover',
-        'body',
         'campaign_id'
     ];
 
@@ -38,9 +25,6 @@ class CampaignUpdate extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string',
-        'image_cover' => 'string',
-        'body' => 'string',
         'campaign_id' => 'integer'
     ];
 
@@ -50,8 +34,6 @@ class CampaignUpdate extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required',
-        'body' => 'required',
         'campaign_id' => 'required'
     ];
 
@@ -62,7 +44,4 @@ class CampaignUpdate extends Model
     {
         return $this->belongsTo(\App\Models\Campaign::class, 'campaign_id');
     }
-
-
-    
 }

@@ -18,7 +18,7 @@
                               <strong>Edit Campaign</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($campaign, ['route' => ['campaigns.update', $campaign->id], 'method' => 'patch']) !!}
+                              {!! Form::model($campaign, ['route' => ['campaigns.update', $campaign->id], 'method' => 'patch', 'files' => true]) !!}
 
                               @include('admin.campaigns.fields')
 

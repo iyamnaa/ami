@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 use Flash;
 use Response;
 use Payment;
+use Auth;
 
 class ZakatController extends AppBaseController
 {
@@ -119,15 +120,15 @@ class ZakatController extends AppBaseController
     }
 
     public function payment(Request $request){
-        $data = array();
-
-        $data['qty'] = $request->input('qty-zakat');
-        $data['kadar-zakat'] = str_replace('.', '', $request->input('kadar-zakat'));
-        $data['akad'] = $request->input('akad');
-        $data['name'] = 'Natieq Sah Muhammad';
-        $data['phone'] = '081221572240';
-        $data['email'] = 'nathieqs16@gmail.com';
-        $data['address'] = 'Jl. Babakan Ciparay';
+        $data = array(
+            'qty' => $request->input('qty-zakat'),
+            'kadar-zakat' => str_replace('.', '', $request->input('kadar-zakat')),
+            'akad' => $request->input('akad'),
+            'name' => Auth::user()->name,
+            'phone' => Auth::user()->phone,
+            'email' => Auth::user()->email,
+            'address' => Auth::user()->address,
+        );
 
         return view('zakats.payment', ['data' => $data]);
     }

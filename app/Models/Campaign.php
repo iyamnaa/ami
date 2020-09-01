@@ -74,7 +74,6 @@ class Campaign extends Model
     public static $rules = [
         'title' => 'required',
         'short_desc' => 'required',
-        'image_cover' => 'required',
         'body' => 'required',
         'target' => 'required',
         'deadline' => 'required',
@@ -188,5 +187,13 @@ class Campaign extends Model
     public function wishlists()
     {
         return $this->hasMany(\App\Models\Wishlist::class, 'campaign_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function topCampaigns()
+    {
+        return $this->hasMany(\App\Models\TopCampaign::class, 'campaign_id');
     }
 }

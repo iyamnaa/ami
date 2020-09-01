@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->text('bio');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_deleted')->default('0');
+            $table->boolean('is_deleted')->default(0);
             $table->enum('role',['member','relawan','admin'])->default('member');
             $table->rememberToken();
             $table->timestamps();

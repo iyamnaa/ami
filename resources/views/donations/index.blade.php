@@ -130,7 +130,7 @@
     time     = time != null ? time : urlParams.get('campaign-type')
     sort     = sort != null ? sort : urlParams.get('sort-by')
 
-    window.location = "/donasi?search-filter=" + name + "&category=" + category + "&campaign-type=" + time + "&sort-by=" + sort
+    window.location = "/campaign?search-filter=" + name + "&category=" + category + "&campaign-type=" + time + "&sort-by=" + sort
   }
 </script>
 @endsection

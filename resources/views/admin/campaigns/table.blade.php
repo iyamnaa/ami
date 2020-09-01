@@ -17,9 +17,9 @@
         <tbody>
         @foreach($campaigns as $campaign)
             <tr>
-            <td><img src="{{ asset('images/'.$campaign->image_cover) }}" width="60px" height="60px"></td>
+            <td><img src="{{ asset($campaign->image_cover) }}" width="60px" height="60px"></td>
             <td>{{ $campaign->title }}</td>
-            <td>{{ $campaign->short_desc }}</td>
+            <td>{!! $campaign->short_desc !!}</td>
             <!-- <td>{{ $campaign->body }}</td> -->
             <td>{{ $campaign->target }}</td>
             <td>{{ $campaign->deadline }}</td>

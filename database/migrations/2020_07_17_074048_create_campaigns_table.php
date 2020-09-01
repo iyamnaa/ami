@@ -21,6 +21,7 @@ class CreateCampaignsTable extends Migration
             $table->text('body');
             $table->integer('target');
             $table->datetime('deadline');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamps();
 

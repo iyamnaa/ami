@@ -41,7 +41,7 @@ class CampaignController extends AppBaseController
         );
 
         $campaigns = Campaign::all();
-        $campaigns = $filter['name'] != null ? $campaigns->where('name', $filter['name']) : $campaigns;
+        $campaigns = $filter['name'] != 'null' ? $campaigns->where('name', $filter['name']) : $campaigns;
         $campaigns = $filter['category'] != null ? $campaigns->where('campaign_category_id', $filter['category']) : $campaigns;
         $campaigns = Campaign::deadlineCheck($campaigns, $request->input('type'));
         $campaigns = Campaign::campaignSort($campaigns, $request->input('sort-by'));
@@ -81,7 +81,8 @@ class CampaignController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.campaigns.create');
+        $categories = CampaignCategory::all();
+        return view('admin.campaigns.create', ['campaign' => $this->data, 'categories' => $categories]);
     }
 
     /**
@@ -94,6 +95,17 @@ class CampaignController extends AppBaseController
     public function store(CreateCampaignRequest $request)
     {
         $input = $request->all();
+
+        if($request->file('form_image_cover')){
+            $photo = $request->file('form_image_cover');
+            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $photo->move(public_path(). '/images/', $filename);
+            $input['image_cover'] = 'images/'.$filename;
+
+        }else{
+            $input['image_cover'] = 'images/user-default.jpg';
+        }
 
         $data = $this->campaignRepository->create($input);
 
@@ -112,7 +124,7 @@ class CampaignController extends AppBaseController
     public function show($id)
     {
         if($this->data_check($id)){
-            return view('admin.campaigns.show')->with('campaign', $this->data);
+            return view('admin.campaigns.edit')->with('campaign', $this->data);
         }else{
             return redirect(route('campaigns.index'));
         }
@@ -128,7 +140,8 @@ class CampaignController extends AppBaseController
     public function edit($id)
     {
         if($this->data_check($id)){
-            return view('admin.campaigns.edit')->with('campaign', $this->data);
+            $categories = CampaignCategory::all();
+            return view('admin.campaigns.edit', ['campaign' => $this->data, 'categories' => $categories]);
         }else{
             return redirect(route('campaigns.index'));
         }
@@ -144,9 +157,20 @@ class CampaignController extends AppBaseController
      */
     public function update($id, UpdateCampaignRequest $request)
     {
+        $input = $request->all();
+        if($request->file('form_image_cover')){
+            $photo = $request->file('form_image_cover');
+            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $photo->move(public_path(). '/images/', $filename);
+            $input['image_cover'] = 'images/'.$filename;
+
+        }else{
+            $input['image_cover'] = 'images/user-default.jpg';
+        }
 
         $this->data_check($id);
-        $data = $this->campaignRepository->update($request->all(), $id);
+        $data = $this->campaignRepository->update($input, $id);
         Flash::success('Campaign updated successfully.');
 
         return redirect(route('campaigns.index'));

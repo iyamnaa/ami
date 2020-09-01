@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportCategoriesTable extends Migration
+class CreateTopCampaignsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateReportCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('report_categories', function (Blueprint $table) {
+        Schema::create('top_campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->timestamps();
-        });
 
-        DB::unprepared(DB::raw("insert into report_categories(name) values ('Lainnya') "));
+            $table->index('campaign_id');
+            $table->foreignId('campaign_id')->constrained();
+        });
     }
 
     /**
@@ -29,7 +29,6 @@ class CreateReportCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('report_categories');
+        Schema::dropIfExists('top_campaigns');
     }
 }

@@ -34,6 +34,7 @@ class CreateZakatsTable extends Migration
             $table->string('akad');
             $table->integer('amount');
             $table->integer('qty');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
 
             $table->index('user_id');
