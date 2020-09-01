@@ -22,6 +22,16 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\LogVerifiedUser',
         ],
     ];
+    
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     *
+     * @return bool
+     */
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
 
     /**
      * Register any events for your application.

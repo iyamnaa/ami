@@ -13,12 +13,19 @@
     <meta name="theme-color" content="forestgreen" />
 
     <!-- Styles -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.css') }}">
 
   @yield('stylesheet')
 </head>
 <body>
+    @if(Auth::check())
+    <div class="mobile-only-block">
+        <div class="hidden-background" style="display: none">
+            @include('layouts.user-sidebar')
+        </div>
+    </div>
+    @endif
     <div id="app">
         @include('layouts.modal')
         @yield('content')
@@ -29,8 +36,17 @@
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript">
+        $(window).ready(function(){
+            user_sidebar(false)
+        })
         function call_registration_form(registration_type){
             $('#modal-include').html(`@include('layouts.modal.registration.login')`)
+        }
+        function user_sidebar(hidden){
+            $("#user-sidebar").animate({
+                width: "toggle"
+            })
+            hidden ? $(".hidden-background").fadeIn(1000) :  $(".hidden-background").fadeOut(1000)
         }
     </script>
     @yield('javascript')

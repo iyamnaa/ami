@@ -1,4 +1,4 @@
-<h5 class="content-title text-bold text-success col-12 mt-2 mb-3">Donasi {{ $categorySearch }}</h5>
+<h5 class="content-title text-bold text-success col-12 mt-2 mb-3">Donasi {{ $categorySearch->name }}</h5>
 <div class="horizontal-campaign pb-4 pl-3" style="overflow-x:auto">
 <table class="table-campaign">
     <tr>
@@ -10,7 +10,7 @@
                     <img class="campaign-image" src="{{ asset( $campaign->image_cover ) }}">
                 </div>
                 <div class="campaign-info col-12">
-                    <b class="campaign-title text-success"> {{ $campaign->title }} </b><br>
+                    <b class="campaign-title text-success"> {{ $campaign->title }} </b>
                     <p class="campaign-category"> {{ $campaign->user->name }} <i class="fa fa-check-circle text-primary verified-user"></i></p>
                     <p class="campaign-desc">
                     {{ $campaign->short_desc }}
@@ -29,6 +29,9 @@
         </div>
     </td>
     @endforeach
+    @if( !isset($campaignsByCategory[0]) )
+        <p class="text-danger"> Tidak ada campaign </p>
+    @endif
     </tr>
 </table>
 </div>

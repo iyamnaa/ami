@@ -1,6 +1,17 @@
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
+    <img src="{{ asset($user->photo) }}"></img>
+</div>
+
+<div class="form-group">
+    {!! Form::label('name', 'Name:') !!}
+    <img src="{{ asset($user->bg_cover) }}"></img>
+</div>
+
+<!-- Name Field -->
+<div class="form-group">
+    {!! Form::label('name', 'Name:') !!}
     <p>{{ $user->name }}</p>
 </div>
 

@@ -43,13 +43,8 @@
   border-radius: 8px;
 }
 
-.campaign-box .campaign-title{
-  float: left !important;
-}
-
 .campaign-box .campaign-title,
 .campaign-box .campaign-category{
-  text-align: left !important;
   display: inline-block;
 }
 
@@ -244,7 +239,7 @@
   }
   
   .table-campaign .campaign-box{
-    width: calc(100vw - 30px - 1rem);
+    width: calc(90vw - 30px - 1rem);
   }
 
   .discover-campaign-box{
@@ -257,10 +252,6 @@
 
   .campaign-progress{
     font-size: .8rem;
-  }
-  
-  .table-campaign .campaign-box{
-    width: calc(100vw - 30px - 1rem);
   }
 
   .progress{
@@ -304,6 +295,12 @@
   .invitation{
     font-size: .9rem;
     text-align: justify;
+  }
+
+  .campaign-info-box{
+    margin-top: 20px;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    border-radius: 10px;
   }
 
 }

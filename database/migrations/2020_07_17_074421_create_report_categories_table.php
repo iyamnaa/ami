@@ -18,6 +18,8 @@ class CreateReportCategoriesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::unprepared(DB::raw("insert into report_categories values name='Lainnya'"));
     }
 
     /**

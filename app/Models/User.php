@@ -42,6 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public $fillable = [
         'name',
+        'photo',
+        'bg_cover',
         'username',
         'email',
         'gender',
@@ -62,6 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'photo' => 'string',
+        'bg_cover' => 'string',
         'username' => 'string',
         'email' => 'string',
         'gender' => 'string',

@@ -21,10 +21,11 @@
   <div class="ads-swiper swiper-container">
     <div class="swiper-wrapper text-light">
       <div class="swiper-slide mid-content">
-        <img src="{{ asset('images/contoh1.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
+        <img src="{{ asset('images/contoh2.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
+        <!-- <h3 class="text-bold"> Amal Madani Indonesia </h3> -->
       </div>
       <div class="swiper-slide mid-content">
-        <img src="{{ asset('images/contoh2.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
+        <img src="{{ asset('images/contoh1.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
       </div>
       <div class="swiper-slide mid-content">
         <img src="{{ asset('images/zakat-fitrah.jpg') }}" style="width: 100%;height: 100%;position: absolute;">
@@ -51,12 +52,12 @@
       <div class="news-swiper swiper-container">
         <div class="swiper-wrapper text-light">
           <div class="swiper-slide mid-content">
-            <img src="{{ asset('images/islam.jpg') }}" style="width: 100%;height: 100%;position: absolute;">
-            <p>Amal Madani Indonesia</p>
+            <img src="{{ asset('images/contoh1.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
+            <!-- <p>Amal Madani Indonesia</p> -->
           </div>
           <div class="swiper-slide mid-content">
-            <img src="{{ asset('images/zakat-fitrah.jpg') }}" style="width: 100%;height: 100%;position: absolute;">
-            <p>Amal Madani Indonesia</p>
+            <img src="{{ asset('images/contoh2.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
+            <!-- <p>Amal Madani Indonesia</p> -->
           </div>
           <div class="swiper-slide mid-content">
             <img src="{{ asset('images/fundraising-image.jpg') }}" style="width: 100%;height: 100%;position: absolute;">
@@ -92,7 +93,7 @@
   </div>
 </section>
 
-<section class="section-content">
+<section class="section-content bg-light">
   <div class="container-fluid pt-4 pr-2 pb-2 pl-2">
     <div class="campaign-by-category">
       <h5 class="content-title text-bold text-success col-12 mt-2 mb-3">Trending Campaign</h5>
@@ -318,13 +319,13 @@
   </div>
 </section>
 
-<section class="section-content">
+<section class="section-content bg-light">
   <div class="container-fluid pt-4 pr-2 pb-2 pl-2">
     <div class="category-menu mb-3 table-hide-scrolling">
       <table style="min-height:80px;width:100%">
         <tr>
           @foreach($categories as $category)
-            <td> <div class="content-menu bg-light text-dark" style="background-color:white" onclick="change_category({{ $category->id }})" id="category-{{ $category->id }}"> {{ $category->name }} </div> </td>
+            <td> <div class="content-menu btn-success-outline text-success" style="background-color:white" onclick="change_category({{ $category->id }})" id="category-{{ $category->id }}"> {{ $category->name }} </div> </td>
           @endforeach
         </tr>
       </table>
@@ -377,6 +378,7 @@
 <!-- Initialize Swiper -->
 <script>
   var swiper = new Swiper('.ads-swiper', {
+    // autoHeight: true, //enable auto height\
     loop : true,
     pagination: {
       el: '.ads-pagination',
@@ -396,9 +398,15 @@
     spaceBetween : 30,
     scrollbar: {
       el: '.campaign-scrollbar',
+      type: 'fraction',
       hide: true,
     },
   });
+  $(window).ready(function(){
+      $('.content-menu').removeClass('bg-success text-light')
+      $('#category-1').removeClass('bg-light text-dark')
+      $('#category-1').addClass('bg-success text-light')
+  })
 
   $.ajaxSetup({
     headers: {

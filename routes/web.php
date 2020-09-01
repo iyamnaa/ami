@@ -17,18 +17,22 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::post('/', 'HomeController@searchByCategory')->name('index.category');
 Route::get('/sign-out', 'verified/LoginController@logout')->name('user.logout')->middleware('verified');
 
-Route::get('/get-token', function () {
-    return csrf_token();
-})->name('csrftoken');
+Route::get('/coba', function () {
+    return public_path('/images/'.'logo.jpg');
+})->name('coba');
 
 Route::get('/tentang-kami', 'HomeController@about')->name('about');
 
 Route::group(['prefix' => 'campaign'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
   Route::get('/{id}', 'CampaignController@campaignDetail')->name('campaigns.detail');
-  Route::get('/update/{id}', 'CampaignUpdateController@update')->name('campaigns.update');
-  Route::get('/laporkan/{id}', 'CampaignReportController@report')->name('campaigns.report')->middleware('verified');
+  Route::get('/update/{id}', 'CampaignUpdateController@update')->name('campaigns.update')->middleware('verified');
   Route::post('/save', 'WishlistController@campaignSave')->name('campaigns.save')->middleware('verified');
+
+  Route::group(['prefix' => 'report'], function(){
+    Route::get('/{id}', 'CampaignReportController@report')->name('campaigns.report')->middleware('verified');
+    Route::post('/save', 'CampaignReportController@save')->name('report.save')->middleware('verified');
+  });
 });
 
 Route::group(['prefix' => 'zakat'], function(){
@@ -40,6 +44,8 @@ Route::group(['prefix' => 'zakat'], function(){
 
 Route::group(['prefix' => 'profil'], function(){
   Route::get('/{username}', 'UserController@front')->name('users.front');
+  Route::get('/edit/{username}', 'UserController@profilEdit')->name('users.edit')->middleware('verified');
+  Route::post('/edit/{username}', 'UserController@profilUpdate')->name('users.update')->middleware('verified');
 });
 
 Route::group(['prefix' => 'berita'], function(){
@@ -53,19 +59,19 @@ Auth::routes(['verify' => true]);
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], function(){
-  Route::get('/', 'HomeController@home')->name('home')->middleware('verified');
+  Route::get('/', 'HomeController@home')->name('home');
   
-  Route::resource('events', 'EventController')->middleware('verified');
-  Route::resource('news', 'NewsController')->middleware('verified');
-  Route::resource('campaigns', 'CampaignController')->middleware('verified');
-  Route::resource('users', 'UserController')->middleware('verified');
-  Route::resource('zakats', 'ZakatController')->middleware('verified');
-  Route::resource('donations', 'DonationController')->middleware('verified');
-  Route::resource('campaignCategories', 'CampaignCategoryController')->middleware('verified');
-  Route::resource('campaignReports', 'CampaignReportController')->middleware('verified');
-  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('verified');
-  Route::resource('campaignReports', 'CampaignReportController')->middleware('verified');
-  Route::resource('campaignUpdates', 'CampaignUpdateController')->middleware('verified');
-  Route::resource('reportCategories', 'ReportCategoryController')->middleware('verified');
-  Route::resource('wishlists', 'WishlistController')->middleware('verified');
+  Route::resource('events', 'EventController');
+  Route::resource('news', 'NewsController');
+  Route::resource('campaigns', 'CampaignController');
+  Route::resource('users', 'UserController');
+  Route::resource('zakats', 'ZakatController');
+  Route::resource('donations', 'DonationController');
+  Route::resource('campaignCategories', 'CampaignCategoryController');
+  Route::resource('campaignReports', 'CampaignReportController');
+  Route::resource('campaignUpdates', 'CampaignUpdateController');
+  Route::resource('campaignReports', 'CampaignReportController');
+  Route::resource('campaignUpdates', 'CampaignUpdateController');
+  Route::resource('reportCategories', 'ReportCategoryController');
+  Route::resource('wishlists', 'WishlistController');
 });

@@ -30,6 +30,15 @@ class CampaignReportController extends AppBaseController
         return view('donations.report', ['categories' => $categories, 'campaign_id' => $request->id]);
     }
 
+    public function save(Request $request)
+    {
+        $input = $request->all();
+        $data = $this->campaignReportRepository->create($input);
+
+        Flash::success('Laporan Campaign telah terkirim');
+        return redirect(route('index'));
+    }
+
     /**
      * Display a listing of the CampaignReport.
      *

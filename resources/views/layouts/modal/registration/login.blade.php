@@ -6,14 +6,25 @@
     </button>
   </div>
 
-  <form>
+  <form method="post" action="{{ url('/login') }}">
+  @csrf
     <div class="modal-body">
         <div class="row">
           <div class="form-group col-10 offset-1">
-            <input type="hidden" name="outlet_id" value="1">
-            <input type="text" name="packet_name" placeholder="E-mail" class="form-control bottom-only">
+            <input type="email" class="form-control bottom-only {{ $errors->has('email')?'is-invalid':'' }}" name="email" value="{{ old('email') }}"
+                placeholder="Email">
+            @if ($errors->has('email'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
 
-            <input type="password" name="price" placeholder="Password" class="form-control bottom-only">
+            <input type="password" class="form-control bottom-only {{ $errors->has('password')?'is-invalid':'' }}" placeholder="Password" name="password">
+            @if ($errors->has('password'))
+                <span class="invalid-feedback">
+                <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
 
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="rememberMe">

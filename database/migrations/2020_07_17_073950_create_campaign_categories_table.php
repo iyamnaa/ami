@@ -18,6 +18,8 @@ class CreateCampaignCategoriesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::unprepared(DB::raw("insert into campaign_categories values name='Lainnya'"));
     }
 
     /**

@@ -6,7 +6,7 @@
     </ol>
     <div class="container-fluid">
       <div class="row" style="margin-bottom: 20px">
-        <div class="col-2 offset-1" style="margin-left: 20px">
+        <div class="col-4 col-md-2 offset-1" style="margin-left: 20px">
           <a href="{{ route('users.index', ['role' => 'member']) }}" style="width: 100%" >
             <div class="bg-success text-light user-role">
               <i class="fa fa-users"></i> &nbsp;
@@ -14,7 +14,7 @@
             </div>
           </a>
         </div>
-        <div class="col-2">
+        <div class="col-4 col-md-2">
           <a href="{{ route('users.index', ['role' => 'relawan']) }}" style="width: 100%" >
             <div class="bg-danger text-light user-role">
               <i class="fa fa-users"></i> &nbsp;
@@ -22,7 +22,7 @@
             </div>
           </a>
         </div>
-        <div class="col-2">
+        <div class="col-3 col-md-2">
           <a href="{{ route('users.index', ['role' => 'admin']) }}" style="width: 100%" >
             <div class="bg-primary text-light user-role">
               <i class="fa fa-users"></i> &nbsp;

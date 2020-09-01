@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="user-body">
+      <div class="user-body bg-white">
         <div class="user-profile">
           <div class="row">
             <div class="col-md-2">

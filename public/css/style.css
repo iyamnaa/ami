@@ -68,7 +68,7 @@ a:active{
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,.5);
-  z-index: 8;
+  z-index: 100;
 }
 
 .bg-green{
@@ -165,6 +165,44 @@ input[type=number] {
   border-bottom: 1px solid #ccc;
 }
 
+/* Sidebar */
+#user-sidebar{
+  position: fixed;
+  width: 70vw;
+  height: 100vh;
+  right:0;
+  background-color:white;
+}
+
+.user-menu{
+
+}
+
+.user-menu ul{
+  list-style: none;
+}
+
+.user-menu li{
+  margin: 16px 0;
+}
+
+.user-menu i{
+  font-size:1rem;
+}
+
+.user-menu-list{
+  margin-left: 1rem;
+}
+
+#hide-user-sidebar{
+  border-top:.5px solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 80vw;
+  height: 8vh;
+}
+
 /* Navbar */
 .navbar,
 .bottom-nav{
@@ -178,7 +216,9 @@ input[type=number] {
   top: 0;
   height: 80px;
   padding: 2vh 64px;
-  box-shadow: .4px .4px 2px .8px rgba(220,220,220,0.8);
+  background-color: rgb(32,144,0);
+  color:white;
+  box-shadow: .4px .4px 2px .8px rgb(32,144,0);
 }
 
 .bottom-nav{
@@ -231,7 +271,7 @@ input[type=number] {
 }
 
 .logo-image{
-  width: 50px;
+  width: 48px;
   height: auto;
   margin-right: 1vw;
 }
@@ -323,7 +363,7 @@ input[type=number] {
 }
 
 .margin-navbar{
-  margin-top: 80px !important;
+  margin-top: 79px !important;
 }
 
 .content-menu{
@@ -386,6 +426,26 @@ input[type=number] {
   box-shadow: 1px 1px 5px 2px rgba(30,195,68,0.7);
 }
 
+.btn-success-outline{
+  border: 1px solid rgba(30,195,68,0.7);
+}
+
+.btn-success-outline:hover{
+  transition: .4s all;
+  color: white !important;
+  background-color: #38c172;) !important;
+}
+
+.btn-orange-outline{
+  border: 1px solid orange;
+}
+
+.btn-success-outline:hover{
+  transition: .4s all;
+  color: white !important;
+  background-color: orange !important;
+}
+
 input[type='submit'][disabled='true'],
 input[type='submit'][disabled='disabled'],
 input[type='reset'][disabled='true'],
@@ -439,7 +499,13 @@ button[disabled='true']:hover{
   background: #fff;
 }
 
-.swiper-slide p{
+.swiper-slide p,
+.swiper-slide h1,
+.swiper-slide h2,
+.swiper-slide h3,
+.swiper-slide h4,
+.swiper-slide h5,
+.swiper-slide span{
   z-index: 1;
 }
 
@@ -604,6 +670,9 @@ button[disabled='true']:hover{
   .mobile-only{
     display: inline-block !important;
   }
+  .mobile-only-block{
+    display: block !important;
+  }
   .mobile-full-width{
     width: 100%;
   }
@@ -613,6 +682,9 @@ button[disabled='true']:hover{
 
   .mobile-margin-bot{
     margin-bottom: 20px;
+  }
+  .mobile-align-center{
+    text-align:center;
   }
 
   .navbar{

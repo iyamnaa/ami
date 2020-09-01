@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Auth;
 use Flash;
 use Response;
 
@@ -40,13 +41,32 @@ class UserController extends AppBaseController
         $donations = Donation::where('user_id', $user->id)->get();
         $reports = CampaignReport::where('user_id', $user->id)->get();
         $zakats = Zakat::where('user_id', $user->id)->get();
-        return view('profile', [
+        return view('users.profile', [
                                     'user' => $user,
                                     'campaigns' => $campaigns,
                                     'donations' => $donations,
                                     'reports' => $reports,
                                     'zakats' => $zakats
                                 ]);
+    }
+
+    public function profilEdit(Request $request){
+        $data = User::where('username', $request->username)->get()->first->id;
+        $id = $data->id;
+        if(Auth::id() == $id){
+            if($this->data_check($id)){
+                return view('users.edit')->with('user', $data);
+            }else{
+                return redirect(route('users.index'));
+            }
+        }else{
+            Flash::success('Terjadi Kesalahan.');
+            return redirect(route('index'));
+        }
+    }
+
+    public function profilUpdate(Request $request){
+        
     }
 
     public function index(Request $request)
@@ -59,6 +79,7 @@ class UserController extends AppBaseController
             ->with('users', $users)
             ->with('role', $role);
     }
+
 
     /**
      * Show the form for creating a new User.
@@ -131,10 +152,44 @@ class UserController extends AppBaseController
     public function update($id, UpdateUserRequest $request)
     {
         $this->data_check($id);
+        $data = User::find($id);
+        $input = $request->all();
 
-        $user = $this->userRepository->update($request->all(), $id);
+        if($request->hasFile('form_photo')){
+            $photo = $request->file('form_photo');
+            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $photo->move(public_path(). '/images/', $filename);
+            $input['photo'] = 'images/'.$filename;
 
-        Flash::success('User updated successfully.');
+            if(is_file(public_path().'/'.$data->photo)){
+                unlink(public_path().'/'.$data->photo);
+            }
+        }else if($request->file('form_photo') == null){
+            $input['photo'] = $data->photo;
+        }else{
+            $input['photo'] = 'images/user-default.jpg';
+        }
+
+        if($request->hasFile('form_bg_cover')){
+            $cover = $request->file('form_bg_cover');
+            $filename = date('ymdHis').'-'.$cover->getClientOriginalName();
+            $location = public_path('/images/' . $filename);
+            $cover->move(public_path(). '/images/', $filename);
+            $input['bg_cover'] = 'images/'.$filename;
+
+            if(is_file(public_path().'/'.$data->bg_cover)){
+                unlink(public_path().'/'.$data->bg_cover);
+            }
+        }else if($request->file('form_bg_cover') == null){
+            $input['bg_cover'] = $data->bg_cover;
+        }else{
+            $input['bg_cover'] = 'images/user-cover-default.jpg';
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+        Flash::success('Data berhasil diubah');
 
         return redirect(route('users.index'));
     }

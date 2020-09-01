@@ -9,6 +9,12 @@
 @section('content')
 @extends('layouts.navbar')
 
+<div class="mobile-filter-button mobile-only">
+  <div type="button" class="filter-btn btn-orange text-light mid-content" data-toggle="modal" data-target="#exampleModalLong" onclick="call_donation_list()">
+    <i class="fa fa-database"></i>
+  </div>
+</div>
+
 <section class="campaign-detail">
   <div class="container">
     <div style="transform: translateY(-30px);" class="text-primary">
@@ -16,11 +22,11 @@
       <a href="{{ route('campaigns.front') }}" class="text-primary hovering-link">Campaign </a> >
       <a href="{{ url('/campaign/$campaign->id') }}" class="text-primary hovering-link"> {{ $campaign->title }} </a>
     </div>
-    <div class="row bg-light mobile-full-width">
+    <div class="row mobile-align-center">
       <input type="hidden" value="{{ $campaign->id }}" id="cid">
       <input type="hidden" value="1" id="uid">
       <div class="col-12 col-md-8">
-        <div class="campaign-info-box">
+        <div class="campaign-info-box bg-light">
           <div class="content-box">
             <div class="campaign-info-image">
               <img class="campaign-full-image" src="{{ asset($campaign->image_cover) }}">
@@ -48,7 +54,7 @@
                 </ul>
               </div>
             </div>
-            <div class="campaign-info-detail">
+            <div class="campaign-info-detail" align="left">
               <div class="campaign-body">
               {{ $campaign->body }}
               </div>
@@ -70,15 +76,14 @@
             </div>
 
             <div class="campaign-info-footer">
-              <a href="{{ url('/campaign/laporkan/'.$campaign->id) }}"><div class="form btn main-btn single-btn btn-success text-light" style="width: 100%">Laporkan Campaign ini</div></a>
+              <a href="{{ url('/campaign/laporkan/'.$campaign->id) }}"><div class="form btn main-btn single-btn btn-success-outline text-success" style="width: 100%">Laporkan Campaign ini</div></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="content-box">
+      <div class="col-md-4 mb-3">
+        <div class="campaign-info-box content-box bg-light">
           <div class="additional-info">
-
             <div class="campaign-info-share">
               <div class="content-box">
                 <div>
@@ -92,38 +97,11 @@
                 </div>
               </div>
             </div>
-
-            <div class="campaign-info-donation">
-              <div class="content-box">
-                <div>
-                  <h5>Donasi Terkumpul</h5>
-                  <h5 class="text-">Rp{{ $donations->sum('amount') }}</h5>
-                  <div class="donation-list">
-                    <div class="btn main-btn single-btn btn-orange text-light form">Berikan Donasi</div>
-                    <div class="donation-list-info">
-                      @foreach($donations as $donation)
-                        <div class="donation-list-user">
-                          <div class="row">
-                            <div class="col-3 mid-content">
-                              <i class="fa fa-user user-icon"></i>
-                            </div>
-                            <div class="col-9">
-                              <div class="row donation-list-info-name">
-                                {{ $donation->user->name }}
-                              </div>
-                              <div class="row donation-list-info-amount">
-                                {{ $donation->amount }}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        @endforeach
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+          </div>
+        </div>
+        <div class="campaign-info-box content-box bg-light mt-4 mobile-none">
+          <div class="additional-info">
+            @include('donations.list')
           </div>
         </div>
       </div>
@@ -140,8 +118,10 @@
 <script src="{{ asset('js/custom.js') }}"></script> 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<!-- Initialize Swiper -->
 <script>
+  function call_donation_list(){
+    $('#modal-include').html(`@include('donations.list')`)
+  }
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -30,8 +30,8 @@ class HomeController extends AppBaseController
         $newestCampaigns = Campaign::all()->take(3)->sortByDesc('created_at');
         $topCampaigns = CampaignCategory::all();
         $categories = CampaignCategory::all();
-        $categorySearch = $request->category != null ? $request->category : $categories->first->get()->id;
-        $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch)->take(8)->get();
+        $categorySearch = $request->category != null ? $request->category : $categories->first->get();
+        $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch->id)->take(8)->get();
         return view('index', [
                                 'topCampaigns' => $topCampaigns,
                                 'newestCampaigns' => $newestCampaigns,
@@ -43,7 +43,7 @@ class HomeController extends AppBaseController
 
     public function searchByCategory(Request $request)
     {
-        $categorySearch = CampaignCategory::find($request->category)->name;
+        $categorySearch = CampaignCategory::find($request->category);
         $campaignsByCategory = Campaign::where('campaign_category_id', $request->category)->take(8)->get();
         return view('campaign-by-category', [
                                                 'categorySearch' => $categorySearch,
