@@ -37,13 +37,13 @@ Route::group(['prefix' => 'campaign'], function(){
 
 Route::group(['prefix' => 'zakat'], function(){
   Route::get('/', 'ZakatController@front')->name('zakats.front');
-  Route::get('/detail', 'ZakatController@payment')->name('zakats.payment')->middleware('verified');
+  Route::get('/detail', 'ZakatController@payment')->name('zakats.payment');
   Route::post('/transaction-token', 'ZakatController@getSnapToken')->name('zakats.transactionToken');
   Route::post('/save-transaction', 'ZakatController@saveTransaction')->name('zakats.saveTransaction');
 });
 
 Route::group(['prefix' => 'donasi'], function(){
-  Route::get('/detail', 'DonationController@payment')->name('donations.payment')->middleware('verified');
+  Route::get('/detail', 'DonationController@payment')->name('donations.payment');
   Route::post('/transaction-token', 'DonationController@getSnapToken')->name('donations.transactionToken');
   Route::post('/save-transaction', 'DonationController@saveTransaction')->name('donations.saveTransaction');
 });

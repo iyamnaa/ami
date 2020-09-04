@@ -23,7 +23,7 @@ class CreateDonationsTable extends Migration
             $table->string('email');
             $table->string('telephone');
             $table->text('address');
-            $table->boolean('as_anonymous');
+            $table->boolean('as_anonymous')->default(0);
 
             //data amil
             $table->string('NIA')->nullable();
@@ -36,9 +36,9 @@ class CreateDonationsTable extends Migration
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
 
-            $table->index('user_id');
+            // $table->index('user_id');
             $table->index('campaign_id');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('campaign_id')->constrained();
         });
     }

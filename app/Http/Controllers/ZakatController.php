@@ -84,7 +84,6 @@ class ZakatController extends AppBaseController
           'email' => $customer_details['email'],
           'telephone' => $customer_details['phone'],
           'address' => $request->input('address'),
-          'as_anonymous' => 0, //$request->input('as_anonymous'),
 
           'nia' => $request->input('amil_nia') ? $request->input('amil_nia') : null,
           'amil_name' => $request->input('amil_name') !== null ? $request->input('amil_name') : null,
@@ -93,8 +92,8 @@ class ZakatController extends AppBaseController
           'akad' => $item_details[0]['name'],
           'qty' => $item_details[0]['quantity'],
           'amount' => $item_details[0]['price'],
-
-          'user_id' => 1
+          
+          'user_id' => Auth::check() ? Auth::id() : null
         ];
 
         $snapToken = Payment::generateSnapToken($paymentData);
@@ -124,10 +123,10 @@ class ZakatController extends AppBaseController
             'qty' => $request->input('qty-zakat'),
             'kadar-zakat' => str_replace('.', '', $request->input('kadar-zakat')),
             'akad' => $request->input('akad'),
-            'name' => Auth::user()->name,
-            'phone' => Auth::user()->telephone,
-            'email' => Auth::user()->email,
-            'address' => Auth::user()->address,
+            'name' => Auth::check() ? Auth::user()->name : '',
+            'phone' => Auth::check() ? Auth::user()->telephone : '',
+            'email' => Auth::check() ? Auth::user()->email : '',
+            'address' => Auth::check() ? Auth::user()->address : '',
         );
 
         return view('zakats.payment', ['data' => $data]);

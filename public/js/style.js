@@ -12,6 +12,14 @@ $('form').on('blur', 'input[type=number]', function (e) {
   $(this).off('wheel.disableScroll')
 })
 
+function confirmation_check(checked, btn){
+  if(checked){
+    $(btn).removeAttr('disabled')
+  }else{
+    $(btn).attr('disabled', 'disabled')
+  }
+}
+
 function positiveVariable(value){
   return value > 0 ? value : 1 
 }

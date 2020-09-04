@@ -5,8 +5,8 @@
     </div>
     <div class="col-10" align="left">
       <div>
-        <h5 class='text-bold' style="margin:0.2rem 0 0.1rem">Amal Madani Indonesia</h5>
-        <span>Filantrophy and Humanity Indonesia</span>
+        <h4 class='text-bold' style="margin:0.2rem 0 0.1rem">Amal Madani Indonesia</h4>
+        <p style="font-size: 0.9rem;transform: translateY(-5px)">Filantrophy and Humanity Organization</p>
       </div>
     </div>
   </div>

@@ -77,7 +77,7 @@ class DonationController extends AppBaseController
             'campaign_name' => $item_details[0]['name'],
             'campaign_id' => $item_details[0]['id'],
 
-            'user_id' => 1
+            'user_id' => Auth::check() ? Auth::id() : null
             ];
 
             $snapToken = Payment::generateSnapToken($paymentData);
@@ -98,17 +98,17 @@ class DonationController extends AppBaseController
 
             return response()->json(array('message' => 'Transaksi Donasi Berhasil'), 200);
         }catch(\Throwable $e){
-            return response()->json(array('message' => 'Error '.$e->getMessage().': Transaksi Zakat Gagal'), 200);
+            return response()->json(array('message' => 'Error '.$e->getMessage().': Transaksi Donasi Gagal'), 200);
         }
     }
 
     public function payment(Request $request){
         $data = array(
             'amount' => str_replace('.', '', $request->input('amount')),
-            'name' => Auth::user()->name,
-            'phone' => Auth::user()->telephone,
-            'email' => Auth::user()->email,
-            'address' => Auth::user()->address,
+            'name' => Auth::check() ? Auth::user()->name : '',
+            'phone' => Auth::check() ? Auth::user()->telephone : '',
+            'email' => Auth::check() ? Auth::user()->email : '',
+            'address' => Auth::check() ? Auth::user()->address : ''
         );
 
         $campaign = Campaign::find($request->input('campaign_id'));

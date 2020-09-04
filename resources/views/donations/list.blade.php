@@ -24,7 +24,11 @@
                     </div>
                     <div class="col-9">
                         <div class="row donation-list-info-name">
-                        {{ $donation->user->name }}
+                        @if(!($donation->as_anonymous))
+                            {{ $donation->name }}
+                        @else
+                            Anonymous
+                        @endif
                         </div>
                         <div class="row donation-list-info-amount">
                         {{ $donation->amount }}

@@ -27,7 +27,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text" style="font-size: .94rem"><i class="fa fa-user"></i></div>
                   </div>
-                <input type="text" class="form-control" name="name" id="name" value="{{ $data['name'] }}">
+                <input type="text" class="form-control" name="name" id="name" value="{{ $data['name'] }}" placeholder="Nama Muzakki">
                 </div>
 
                 <label style="text-transform: capitalize;">Email : </label>
@@ -43,13 +43,13 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text" style="font-size: .94rem"><i class="fa fa-phone"></i></div>
                   </div>
-                <input type="number" class="form-control" name="telephone" id="telephone" value="{{ $data['phone'] }}">
+                <input type="number" class="form-control" name="telephone" id="telephone" value="{{ $data['phone'] }}" placeholder="No Telephone">
                 </div>
 
                 <label style="text-transform: capitalize;">Alamat : </label>
-                <input type="text" class="form-control" name="name" id="address" value="{{ $data['address'] }}">
+                <input type="text" class="form-control" name="name" id="address" value="{{ $data['address'] }}" placeholder="Alamat Lengkap Muzakki">
                 
-                <label style="text-transform: capitalize;">{{ strtr( $data['akad'] ,'-',' ') }} : </label>
+                <label style="text-transform: capitalize;" class="mt-3">{{ strtr( $data['akad'] ,'-',' ') }} : </label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text" style="font-size: .94rem">Rp</div>
@@ -59,12 +59,15 @@
                 <br>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="agricultural_calculation()">
-                    <label class="custom-control-label" for="defaultUnchecked">Bismillah</label>
+                    <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="confirmation_check(this.checked, '#pay-button')">
+                    <label class="custom-control-label text-justify content-desc" for="defaultUnchecked">
+                      Bismillahirrahmannirrahim, Saya dengan ikhlas memberikan sebagian harta halal,
+                      untuk didayagunakan dan disalurkan kepada yang berhak sesuai dengan tuntunan syariat Islam
+                    </label>
                 </div>
               </form>
 
-              <button class="btn main-btn btn-success single-btn text-light mobile-full-width" id="pay-button">Bayar Zakat</button>
+              <button class="btn main-btn btn-success single-btn text-light mobile-full-width" id="pay-button" disabled="disabled">Bayar Zakat</button>
             </div>
           </div> 
         </div>

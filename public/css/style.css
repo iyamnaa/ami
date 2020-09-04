@@ -731,5 +731,10 @@ button[disabled='true']:hover{
   .file-image-box{
     min-height: 250px;
   }
+  
+  .campaign-box .campaign-title{
+    font-size: 1.1rem !important;
+    display: inline-block;
+  }
 
 }

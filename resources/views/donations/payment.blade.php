@@ -59,8 +59,11 @@
                 <br>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="agricultural_calculation()">
-                    <label class="custom-control-label" for="defaultUnchecked">Bismillah</label>
+                    <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="confirmation_check(this.checked, '#pay-button')">
+                    <label class="custom-control-label text-justify content-desc" for="defaultUnchecked">
+                      Bismillahirrahmannirrahim, Saya dengan ikhlas memberikan sebagian harta halal,
+                      untuk didayagunakan dan disalurkan kepada yang berhak sesuai dengan tuntunan syariat Islam
+                    </label>
                 </div>
               </form>
 
@@ -107,7 +110,7 @@
             onSuccess: function(result){      
               $.ajax({
                 type:'POST',
-                url:'/donation/save-transaction',
+                url:'/donasi/save-transaction',
                 data:{
                   donasi : data.donasi,
                 },

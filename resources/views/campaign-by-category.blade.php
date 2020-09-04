@@ -10,7 +10,7 @@
                     <img class="campaign-image" src="{{ asset( $campaign->image_cover ) }}">
                 </div>
                 <div class="campaign-info col-12">
-                    <b class="campaign-title text-success"> {{ $campaign->title }} </b>
+                    <b class="campaign-title text-success"> {{ $campaign->title }} </b><br>
                     <p class="campaign-category"> {{ $campaign->user->name }} <i class="fa fa-check-circle text-primary verified-user"></i></p>
                     <div class="campaign-desc">
                     {!! $campaign->short_desc !!}
