@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 @endsection
 
 @section('content')
-@include('layouts.navbar')
 <section class="header header-zakat">
   <div class="header-box">
     <div class="header-text">
@@ -50,8 +48,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content fitrah-logo" onclick="change_zakat(0)"><i class="fa fa-heart"></i></div>
                   <div class="zakat-name">Zakat Fitrah</div>
-                  <div class="zakat-desc">Each serving its own semantic purpose, with a few extras thrown in for more control.</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(0)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -63,8 +59,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content emas-logo" onclick="change_zakat(1)"><i class="fa fa-database"></i></div>
                   <div class="zakat-name">Zakat Emas</div>
-                  <div class="zakat-desc">In need of a button, but not the hefty background colors they bring</div>
-                  <div class="btn btn-success btn-calc"  onclick="change_zakat(1)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -76,8 +70,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content profesi-logo" onclick="change_zakat(2)"><i class="fa fa-user-md"></i></div>
                   <div class="zakat-name">Zakat Profesi</div>
-                  <div class="zakat-desc">The btn classes are designed to be used with the button element</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(2)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -89,8 +81,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content tabungan-logo" onclick="change_zakat(3)"><i class="fa fa-heartbeat"></i></div>
                   <div class="zakat-name">Zakat Tabungan</div>
-                  <div class="zakat-desc">or is included through alternative means, such as additional text hidden</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(3)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -107,8 +97,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content perdagangan-logo" onclick="change_zakat(4)"><i class="fa fa-university"></i></div>
                   <div class="zakat-name">Zakat Perdagangan</div>
-                  <div class="zakat-desc">such as screen readers. Ensure that information denoted by the color is either obvious</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(4)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -120,8 +108,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content simpanan-logo" onclick="change_zakat(5)"><i class="fa fa-money"></i></div>
                   <div class="zakat-name">Zakat Simpanan</div>
-                  <div class="zakat-desc">Using color to add meaning only provides a visual indication, which will not be conveyed </div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(5)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -133,8 +119,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content hadiah-logo" onclick="change_zakat(6)"><i class="fa fa-gift"></i></div>
                   <div class="zakat-name">Zakat Hadiah</div>
-                  <div class="zakat-desc">Use Bootstrap’s custom button styles for actions in forms, dialogs, and more</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(6)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -146,8 +130,6 @@
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content pertanian-logo" onclick="change_zakat(7)"><i class="fa fa-life-ring"></i></div>
                   <div class="zakat-name">Zakat Pertanian</div>
-                  <div class="zakat-desc">Each serving its own semantic purpose</div>
-                  <div class="btn btn-success btn-calc" onclick="change_zakat(7)">Hitung Zakat</div>
                 </div>
               </div>
             </div>
@@ -161,10 +143,10 @@
         <div class="content-box container zakat-form-box">
           <br>
           <div class="row text-primary">
-            <div class="col-6 col-md-3 offset-md-3" align="center">
+            <div class="col-6" align="center">
               <h5><span class="active-menu">Kalkulator</span></h5>
             </div>
-            <div class="col-6 col-md-3" align="center">
+            <div class="col-6" align="center">
               <h5><span>Hitung mandiri</span></h5>
             </div>
           </div>
@@ -173,11 +155,6 @@
           </div>
         </div>
       </section>
-
-<br>
-<br>
-<br>
-<br>
 @endsection
 
 

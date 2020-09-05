@@ -1,4 +1,4 @@
-<h5 class="content-title text-bold text-success col-12 mt-2 mb-3">Donasi {{ $categorySearch->name }}</h5>
+<h5 class="content-title text-weight-bold text-success col-12 mt-2 mb-3">Donasi {{ $categorySearch->name }}</h5>
 <div class="horizontal-campaign pb-4 pl-3" style="overflow-x:auto">
 <table class="table-campaign">
     <tr>

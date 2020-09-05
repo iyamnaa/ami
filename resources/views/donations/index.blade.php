@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 
@@ -13,7 +12,6 @@
 @endsection
 
 @section('content')
-@include('layouts.navbar')
 
 <br><br><br>
 

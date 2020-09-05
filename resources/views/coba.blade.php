@@ -5,14 +5,12 @@
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 @endsection
 
 @section('content')
-<!-- @include('layouts.navbar') -->
 @include('layouts.modal')
 
 <!-- Slider main container -->
@@ -47,7 +45,7 @@
 
 <section class="index-news-box">
   <div class="content-box full-content bg-light">
-  <h5 class="text-bold text-success">Berkat Bantuanmu</h5>
+  <h5 class="text-weight-bold text-success">Berkat Bantuanmu</h5>
     <div class="news-slider">
       <div class="news-swiper swiper-container">
         <div class="swiper-wrapper text-light">
@@ -95,7 +93,7 @@
 
 <section class="index-top-campaign-box">
   <div class="content-box full-content bg-light">
-  <h5 class="text-bold text-success">Top Campaign</h5>
+  <h5 class="text-weight-bold text-success">Top Campaign</h5>
     <div class="campaign-slider">
       <div class="campaign-swiper swiper-container">
         <div class="swiper-wrapper text-light">
@@ -249,7 +247,7 @@
 
 <section class="index-new-campaign-box">
   <div class="content-box bg-light row">
-    <h5 class="content-title text-bold text-success col-12">Campaign Terbaru</h5>
+    <h5 class="content-title text-weight-bold text-success col-12">Campaign Terbaru</h5>
     <div class="col-12 col-md-4 mid-content">
       <div class="campaign-box row">
         <div class="campaign-image-box col-5 col-sm-6 col-md-12">

@@ -5,24 +5,21 @@
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 @endsection
 
 @section('content')
-@include('layouts.navbar')
 @include('layouts.modal')
 <!-- Slider main container -->
   <!-- Swiper -->
 
-<section class="section-content ads-slider margin-navbar">
+<section class="ads-slider">
   <div class="ads-swiper swiper-container">
     <div class="swiper-wrapper text-light">
       <div class="swiper-slide mid-content">
         <img src="{{ asset('images/contoh2.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
-        <!-- <h3 class="text-bold"> Amal Madani Indonesia </h3> -->
       </div>
       <div class="swiper-slide mid-content">
         <img src="{{ asset('images/contoh1.jpeg') }}" style="width: 100%;height: 100%;position: absolute;">
@@ -47,7 +44,7 @@
 
 <section class="section-content index-news-box">
   <div class="content-box full-content bg-light">
-  <h5 class="text-bold text-success">Berkat Bantuanmu</h5>
+  <h5 class="text-weight-bold text-success">Berkat Bantuanmu</h5>
     <div class="news-slider">
       <div class="news-swiper swiper-container">
         <div class="swiper-wrapper text-light">
@@ -96,7 +93,7 @@
 <section class="section-content bg-light">
   <div class="container-fluid pt-4 pr-2 pb-2 pl-2">
     <div class="campaign-by-category">
-      <h5 class="content-title text-bold text-success col-12 mt-2 mb-3">Trending Campaign</h5>
+      <h5 class="content-title text-weight-bold text-success col-12 mt-2 mb-3">Trending Campaign</h5>
       <div class="pb-4 pl-3" style="overflow-x:auto">
         <table class="table-campaign">
           <tr>
@@ -138,7 +135,7 @@
 
 <section class="section-content index-new-campaign-box">
   <div class="content-box bg-light row">
-    <h5 class="content-title text-bold text-success col-12">Campaign Terbaru</h5>
+    <h5 class="content-title text-weight-bold text-success col-12">Campaign Terbaru</h5>
     
     @foreach($newestCampaigns as $campaign)
       <div class="col-12 col-md-4 mid-content">

@@ -3,30 +3,19 @@
 @section('stylesheet')
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/about.css') }}">
 @endsection
 
 @section('content')
-@include('layouts.navbar')
-
-<section class="tentang-amal-madani bg-white text-dar margin-navbar pb-4 pt-4">
+<section class="tentang-amal-madani bg-white text-dark pb-4 pt-4">
   <div class="container-fluid">
     <div class="content-box">
       <div class="row">
-        <div class="col-md-3 mobile-none">
-          <img src="{{ asset('images/zakat-fitrah.jpg') }}" style="width:100%">
-          <img src="{{ asset('images/fundraising-image.jpg') }}" style="width:100%">
-          <img src="{{ asset('images/mosque.jpg') }}" style="width:100%">
-          <img src="{{ asset('images/panti-asuhan.jpg') }}" style="width:100%">
-        </div>
-        <div class="col-12 col-md-8 offset-md-1 mt-4">
-          <div class="full-width d-inline-block mb-4 mobile-only" align="center" style="margin-top:-40px">
+        <div class="col-12 mt-4">
+          <div class="full-width d-inline-block mb-4" align="center" style="margin-top:-40px">
               <img src="{{ asset('images/madani-logo.png') }}" width="150px">
           </div>
-          <h3 class="text-bold"> Amal Madani Indonesia </h3>
+          <h3 class="text-weight-bold"> Amal Madani Indonesia </h3>
           <p class="content-desc text-justify mt-3 mb-4">
             Amal Madani Indonesia adalah lembaga filantropi yang bergerak dibidang sosial dan kemanusiaan. Berdiri pada bulan November 2009, Amal Madani Indonesia memiliki visi dan misi untuk menjadi lembaga management donor terpercaya guna mewujudkan masyarakat Madani yang sehat cerdas dan mandiri. <br><br>
             Amal Madani Indonesia beralamat di Komp. Padasuka Indah Blok B-11 – Kota Cimahi.
@@ -78,7 +67,7 @@
 </section>
 
 <section class="about-company bg-success">
-  <div class="col-md-12 no-padd">
+  <div class="col-12 no-padd">
     <div class="about-company-bg"></div>
     <div class="content-box mid-content">
       <div align="center">
@@ -110,7 +99,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5" style="text-align: justify;">
+        <div class="col-12" style="text-align: justify;">
           Legalitas :
           <p>SK. Menteri Hukum dan HAM RI No. AHU - 1333.AH.01.04 tahun 2013
           Lembaga Amil Zakat SK. Kementerian Agama RI No.599 Tahun 2017 Prov. Jawa Barat<p>
@@ -120,7 +109,7 @@
           Call Center : 022-206 65182<br>
           WA/SMS Center : +62 813 1046 0480</p>
         </div>
-        <div class="col-md-2 offset-md-1 content-box" style="text-align: center;">
+        <div class="col-12 content-box" style="text-align: center;">
           <h4 class="content-title">Social</h4>
           <ul class="none-style-list">
             <li class="hovering-link"> Whatsapp </li>
@@ -129,7 +118,7 @@
             <li class="hovering-link"> YouTube </li>
           </ul>
         </div>
-        <div class="col-md-2 content-box" style="text-align: center;">
+        <div class="col-12 content-box" style="text-align: center;">
           <h4 class="content-title">Link</h4>
           <ul class="none-style-list">
             <li> <a class="hovering-link" href="#"> Donasi </a> </li>
@@ -140,7 +129,7 @@
             <li> <a class="hovering-link" href="#"> Tentang Kami </a> </li>
           </ul>
         </div>
-        <div class="col-md-2 content-box" style="text-align: center;">
+        <div class="col-12 content-box" style="text-align: center;">
           <h4 class="content-title">Bantuan Lain</h4>
           <ul class="none-style-list">
             <li> <a class="hovering-link" href="#"> Q&A </a> </li>

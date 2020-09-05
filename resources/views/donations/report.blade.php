@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <style type="text/css">
   body{
@@ -11,7 +10,6 @@
 @endsection
 
 @section('content')
-@include('layouts.navbar')
 <div class="form-background bg-success"></div>
 
 <section class="single-form mid-content report-campaign">

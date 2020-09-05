@@ -5,7 +5,7 @@
 {{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
   <div class="form-group">
     <div class="row">
-      <div class="col-12 col-md-4">
+      <div class="col-12">
           <label>Harga Beras (Kg) : </label>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -30,11 +30,11 @@
           <input type="number" class="form-control" onkeyup="zakat_show()" name="qty-zakat" value="1">
           </div>
         </div>
-        <div class="col-12 col-md-6 offset-md-2">
+        <div class="col-12">
         @include('zakats.forms.payment-table')
 
           <input type="hidden" name="akad" value="zakat-fitrah" id="zakatType">
-          <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
+          <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light full-width">
       </div>
 
     </div> 

@@ -15,20 +15,25 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/element.css') }}">
 
   @yield('stylesheet')
 </head>
 <body>
-    @if(Auth::check())
-    <div class="mobile-only-block">
-        <div class="hidden-background" style="display: none">
-            @include('layouts.user-sidebar')
+    <div class="full-width mid-content">
+    @include('layouts.navbar')
+        <div id="app">
+            @if(Auth::check())
+            <div class="mobile-only-block">
+                <div class="hidden-background" style="display: none">
+                    @include('layouts.user-sidebar')
+                </div>
+            </div>
+            @endif
+            @include('layouts.modal')
+            @yield('content')
         </div>
-    </div>
-    @endif
-    <div id="app">
-        @include('layouts.modal')
-        @yield('content')
     </div>
 
     <!-- Scripts -->

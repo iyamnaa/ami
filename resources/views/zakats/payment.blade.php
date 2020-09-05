@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 @endsection
 
 @section('content')
-@include('layouts.navbar')
-<div class="container margin-navbar">
+<div class="container">
   <section class="detail-payment-box">
     <div class="content-box container zakat-form-box" style="padding-top: 0">
       <br>
@@ -19,7 +17,7 @@
         <br>
         <div class="form-group">
           <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12">
               <form id="muzakki-data">
                 {{ csrf_field() }}
                 <label style="text-transform: capitalize;">Nama : </label>
@@ -67,7 +65,7 @@
                 </div>
               </form>
 
-              <button class="btn main-btn btn-success single-btn text-light mobile-full-width" id="pay-button" disabled="disabled">Bayar Zakat</button>
+              <button class="btn main-btn btn-success single-btn text-light full-width" id="pay-button" disabled="disabled">Bayar Zakat</button>
             </div>
           </div> 
         </div>
@@ -75,9 +73,6 @@
     </div>
   </section>
 </div>
-
-
-<br>
 @endsection
 
 @section('javascript')

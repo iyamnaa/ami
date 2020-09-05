@@ -5,7 +5,7 @@
 {{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
   <div class="form-group">
     <div class="row">
-      <div class="col-12 col-md-4">
+      <div class="col-12">
         <label>Jumlah Hasil Panen (Kg) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
@@ -54,11 +54,11 @@
         <br>
         <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </p>
       </div>
-      <div class="col-12 col-md-6 offset-md-2">
+      <div class="col-12">
         @include('zakats.forms.payment-table')
 
         <input type="hidden" name="akad" value="zakat-pertanian" id="zakatType">
-        <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light mobile-full-width">
+        <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light full-width">
       </div>
     </div> 
   </div>

@@ -1,27 +1,17 @@
-<nav class="navbar" align="center">
-  <div class="row mobile-full-width">
-    <div class="col-2">
-      <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
-    </div>
-    <div class="col-10" align="left">
-      <div>
-        <h4 class='text-bold' style="margin:0.2rem 0 0.1rem">Amal Madani Indonesia</h4>
-        <p style="font-size: 0.9rem;transform: translateY(-5px)">Filantrophy and Humanity Organization</p>
+<nav class="full-width mid-content">
+  <div class="navbar" align="center">
+    <div class="row mobile-full-width">
+      <div class="col-2">
+        <img class="logo-image" src="{{ asset('images/madani-logo.png') }}">
+      </div>
+      <div class="col-10" align="left">
+        <div>
+          <h4 class='text-bold' style="margin:0.2rem 0 0.1rem">Amal Madani Indonesia</h4>
+          <p style="font-size: 0.9rem;transform: translateY(-5px)">Filantrophy and Humanity Organization</p>
+        </div>
       </div>
     </div>
-  </div>
-    <ul class="menu-list mid-content" style="height: 80%">
-      <li><a href="{{ route('index') }}">Beranda</a></li>
-      <li><a href="{{ route('campaigns.front') }}">Donasi</a></li>
-      <li><a href="{{ route('zakats.front') }}">Zakat</a></li>
-      <li><a href="{{ route('news.front') }}">Berita</a></li>
-      <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-      @if(Auth::check())
-        <li><a href="{{ url('profil/'.Auth::user()->username) }}"> Hey, {{ Auth::user()->name }} </a></li>
-      @else
-        <li><a href="{{ route('login') }}"> Login </a></li>
-      @endif
-    </ul>
+    </div>
 </nav>
 
 

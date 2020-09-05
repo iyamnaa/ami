@@ -5,14 +5,12 @@
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/user.css') }}">
 @endsection
 
 @section('content')
-@include('layouts.navbar')
 @include('layouts.modal')
 
 <div class="row">

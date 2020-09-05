@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/jssocials.css') }}" />
@@ -9,7 +8,6 @@
 @endsection
 
 @section('content')
-@extends('layouts.navbar')
 
 <div class="mobile-filter-button mobile-only">
   <div type="button" class="filter-btn btn-orange text-light mid-content" data-toggle="modal" data-target="#exampleModalLong" onclick="call_donation_list()">
