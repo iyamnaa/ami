@@ -88,13 +88,14 @@ class Donation extends Model
         'number' => 'required',
         'transaction_id' => 'required',
         'name' => 'required',
-        'email' => 'required',
-        'telephone' => 'required',
-        'address' => 'required',
+        // 'email' => 'required',
+        // 'telephone' => 'required',
+        // 'address' => 'required',
         'as_anonymous' => 'required',
         'status' => 'required',
         'akad' => 'required',
         'amount' => 'required',
+        'administration_fee' => 'required',
         'campaign_id' => 'required'
     ];
 

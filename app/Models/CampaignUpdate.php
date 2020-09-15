@@ -25,6 +25,7 @@ class CampaignUpdate extends Model
 
 
     public $fillable = [
+        'number_of_recipients',
         'title',
         'image_cover',
         'body',
@@ -38,6 +39,7 @@ class CampaignUpdate extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'number_of_recipients' => 'integer',
         'title' => 'string',
         'image_cover' => 'string',
         'body' => 'string',
@@ -50,6 +52,7 @@ class CampaignUpdate extends Model
      * @var array
      */
     public static $rules = [
+        'number_of_recipients' => 'required',
         'title' => 'required',
         'body' => 'required',
         'campaign_id' => 'required'

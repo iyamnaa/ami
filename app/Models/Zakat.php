@@ -87,14 +87,12 @@ class Zakat extends Model
         'number' => 'required',
         'transaction_id' => 'required',
         'name' => 'required',
-        'email' => 'required',
-        'telephone' => 'required',
-        'address' => 'required',
         'as_anonymous' => 'required',
         'status' => 'required',
         'akad' => 'required',
         'amount' => 'required',
-        'qty' => 'required'
+        'qty' => 'required',
+        'administration_fee' => 'required',
     ];
 
     /**

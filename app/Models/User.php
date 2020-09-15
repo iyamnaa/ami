@@ -53,6 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'password',
         'role',
+        'contribution',
         'remember_token'
     ];
 
@@ -75,6 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'string',
         'role' => 'string',
+        'contribution' => 'integer',
         'remember_token' => 'string'
     ];
 
@@ -87,12 +89,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name' => 'required',
         'username' => 'required',
         'email' => 'required',
-        'gender' => 'required',
-        'telephone' => 'required',
-        'address' => 'required',
-        'bio' => 'required',
-        'password' => 'required',
-        'role' => 'required'
+        'password' => 'required'
     ];
 
     public function getProfileName($name = "")

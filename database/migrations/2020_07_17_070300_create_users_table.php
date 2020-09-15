@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_deleted')->default(0);
             $table->enum('role',['member','relawan','admin'])->default('member');
+            $table->integer('contribution')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

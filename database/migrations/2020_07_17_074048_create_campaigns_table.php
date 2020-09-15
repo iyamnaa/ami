@@ -22,7 +22,7 @@ class CreateCampaignsTable extends Migration
             $table->integer('target');
             $table->datetime('deadline');
             $table->boolean('is_deleted')->default(0);
-            $table->timestamp('confirmed_at')->nullable();
+            $table->enum('status', ['diminta', 'konfirmasi', 'selesai', 'dibayar'])->default('diminta');
             $table->timestamps();
 
             $table->index('campaign_category_id');

@@ -43,7 +43,7 @@ class Campaign extends Model
         'body',
         'target',
         'deadline',
-        'confirmed_at',
+        'status',
         'user_id',
         'campaign_category_id'
     ];
@@ -61,7 +61,7 @@ class Campaign extends Model
         'body' => 'string',
         'target' => 'integer',
         'deadline' => 'datetime',
-        'confirmed_at' => 'datetime',
+        'status' => 'string',
         'user_id' => 'integer',
         'campaign_category_id' => 'integer'
     ];

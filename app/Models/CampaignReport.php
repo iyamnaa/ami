@@ -29,6 +29,7 @@ class CampaignReport extends Model
 
 
     public $fillable = [
+        'number_of_recipients',
         'body',
         'user_id',
         'campaign_id',
@@ -42,6 +43,7 @@ class CampaignReport extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'number_of_recipients' => 'integer',
         'body' => 'string',
         'user_id' => 'integer',
         'campaign_id' => 'integer',
@@ -55,6 +57,7 @@ class CampaignReport extends Model
      */
     public static $rules = [
         'body' => 'required',
+        'number_of_recipients' => 'required',
         'user_id' => 'required',
         'campaign_id' => 'required',
         'report_category_id' => 'required'
