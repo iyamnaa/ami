@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('index');
+Route::get('/home', 'HomeController@index')->name('index');
 Route::post('/', 'HomeController@searchByCategory')->name('index.category');
 Route::get('/sign-out', 'verified/LoginController@logout')->name('user.logout')->middleware('verified');
 
 Route::get('/coba', function () {
     return public_path('/images/'.'logo.jpg');
 })->name('coba');
+
+Route::get('/coba', 'HomeController@coba')->name('index1');
+Route::get('/coba2', 'HomeController@coba2')->name('index2');
 
 Route::get('/tentang-kami', 'HomeController@about')->name('about');
 
@@ -58,6 +62,11 @@ Route::group(['prefix' => 'berita'], function(){
   Route::get('/', 'NewController@index')->name('news.front');
 });
 
+Route::group(['prefix' => 'kwitansi'], function(){
+  Route::get('/{username}', 'ReceiptController@userReceipt')->name('receipt.list')->middleware('verified');
+  Route::get('/{type}/{id}', 'ReceiptController@show')->name('receipt.show')->middleware('verified');
+});
+
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
 // Auth::routes();
 
@@ -82,3 +91,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], func
   Route::resource('reportCategories', 'ReportCategoryController');
   Route::resource('wishlists', 'WishlistController');
 });
+
+Route::get('image-crop', 'ImageController@imageCrop');
+Route::post('image-crop', 'ImageController@imageCropPost');

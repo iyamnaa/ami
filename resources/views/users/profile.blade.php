@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('stylesheet')
-
-<!-- Link Swiper's CSS -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/user.css') }}">
@@ -14,55 +10,21 @@
 @include('layouts.modal')
 
 <div class="row">
-    <!-- <div class="col-md-3 profile-nav" style="margin-top: 80px;">
-        <div class="content-box">
-          <b class="text-success">Hasil Filter</b>
-          <div class="filter filter-category">
-            <div class="filter-name"> Kategori </div>
-            <div class="filter-content"> 
-              <span class="filter-category-name"> Bencana Alam </span>
-              <span class="filter-category-name"> Karya Seni </span>
-              <span class="filter-category-name"> Keagamaan </span>
-              <span class="filter-category-name"> Kemanusiaan </span>
-              <span class="filter-category-name"> Kesehatan </span>
-              <span class="filter-category-name"> Lingkungan </span>
-              <span class="filter-category-name"> Panti </span>
-              <span class="filter-category-name"> Pendidikan </span>
-              <span class="filter-category-name"> Produk & Inovasi </span>
-              <span class="filter-category-name"> Lainnya </span>
-            </div>
-          </div>
-        </div>
-    </div> -->
-
-    <div class="col-md-12" style="overflow:hidden">
+    <div class="col-md-12 no-padd" style="overflow:hidden">
       <div class="header user-header">
         <div class="header-box full-image" style="background: url('{{ asset($user->bg_cover) }}')">
         </div>
       </div>
 
-      <div class="user-body bg-white">
+      <div class="user-body bg-white" align="center">
         <div class="user-profile">
-          <div class="row">
-            <div class="col-md-2">
-              <div class="user-profile-photo">
-                <img src="{{ asset($user->photo) }}">
-              </div>
-            </div>
-            <div class="col-md-6" style="margin-left: 40px">
-              <div class="text-light user-profile-name">
-                <h3 class="content-title"> {{ $user->name }} </h3>
-              </div>
-            </div>
-            <div class="offset-1 col-md-2 mobile-none">
-              <div class="user-profile-edit">
-                <div class="btn form main-btn single-btn btn-success text-light">
-                  Edit Profile
-                </div>
-              </div>
-            </div>
+          <div class="user-profile-photo">
+            <img src="{{ asset($user->photo) }}">
           </div>
-          <div class="content-box">
+          <div class="content-box" style="margin-bottom: -75px">
+            <div class="full-width user-profile-name">
+              <h3 class="content-title"> {{ $user->name }} </h3>
+            </div>
             <div class="profile-user-bio">
               <p class="content-desc" style="width: 60%"> {{ $user->bio }}</p>
 
@@ -73,19 +35,26 @@
                 <div class="btn main-btn single-btn btn-success-outline text-success">Edit Profil</div>
               </a>
 
+              <div class="user-profile-edit">
+                <a href=" {{ url('/profil/edit/'.$user->username ) }} ">
+                  <div class="btn form main-btn single-btn btn-success text-light">
+                    Edit Profile
+                  </div>
+                </a>
+              </div>
+
               <div class="campaign-info-setting">
                 <div class="content-box no-padd">
                   <ul class="menu-list mobile-menu-list text-primary">
-                    <li style="border-bottom: 1px solid royalblue;">Campaign(2)</li>
-                    <li>Donation(4)</li>
+                    <li style="border-bottom: 1px solid royalblue;">Campaign( {{ count($campaigns) }} )</li>
+                    <li>Donation( {{ count($donations) }} )</li>
                   </ul>
                 </div>
               </div>
 
 
                 <div class="content-box">
-                    <br>
-                    <div class="row">
+                    <div class="row mt-4">
                         @include('donations.campaign-list')
                     </div>
 

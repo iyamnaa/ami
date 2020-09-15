@@ -33,7 +33,7 @@
             <td>{{ $zakat->amount }}</td>
             <td>{{ $zakat->qty }}</td>
             <td>{{ $zakat->status }}</td>
-            <td>{{ $zakat->user->name }}</td>
+            <td>{{ $zakat->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['zakats.destroy', $zakat->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

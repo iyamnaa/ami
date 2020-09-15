@@ -30,7 +30,7 @@ class HomeController extends AppBaseController
     {
         $newestCampaigns = Campaign::all()->take(3)->sortByDesc('created_at');
         $topCampaigns = TopCampaign::all();
-        $categories = CampaignCategory::all();
+        $categories = CampaignCategory::all()->where('id', '!=', 1);
         $categorySearch = $request->category != null ? $request->category : $categories->first->get();
         $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch->id)->take(8)->get();
         return view('index', [
@@ -66,5 +66,39 @@ class HomeController extends AppBaseController
     public function signOut()
     {
         Auth::logout();
+    }
+    public function coba()
+    {
+        $batas = 100;
+        $minimum = 2;
+        $pengulangan = 0;
+        $limit = $minimum;
+        $numbers = [];
+
+        for ($i=2; $i <= $batas; $i++) { 
+            array_push($numbers, $i);
+        }
+
+        while ($limit * $limit <= $batas) {
+            $limit += 1;
+        }
+
+        for ($i=2; $i < $limit; $i++) { 
+            foreach($numbers as $number){
+                if($number % $i == 0 && $number != $i){
+                    if($number != null){
+                        $numbers[$number - 2] = null;
+                        $pengulangan++;
+                    }
+                }
+            }
+        }
+
+        return view('coba', ['numbers' => $numbers, 'pengulangan' => $pengulangan]);
+    }
+
+    public function coba2()
+    {
+        return view('coba');
     }
 }

@@ -12,9 +12,7 @@
 
 @section('content')
 @include('layouts.modal')
-<!-- Slider main container -->
-  <!-- Swiper -->
-
+  <!-- Ukuran ratio = 16:9 -->
 <section class="ads-slider">
   <div class="ads-swiper swiper-container">
     <div class="swiper-wrapper text-light">
@@ -37,7 +35,6 @@
         <p>Amal Madani Indonesia</p>
       </div>
     </div>
-    <!-- Add Pagination -->
     <div class="swiper-pagination ads-pagination"></div>
   </div>
 </section>
@@ -69,9 +66,10 @@
             <p>Amal Madani Indonesia</p>
           </div>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination news-pagination"></div>
       </div>
+    </div>
+    <div class="mt-4 mb-2 full-width mid-content">
+      <div class="swiper-pagination news-pagination"></div>
     </div>
     <div class="counted-data">
       <table class="full-content">
@@ -102,10 +100,10 @@
               <a href="{{ url('/campaign/'.$campaign->id) }}">
                 <td class="pr-4">
                   <div class="campaign-box row bg-light">
-                    <div class="campaign-image-box col-5 col-sm-6 col-md-12">
+                    <div class="campaign-image-box col-12">
                       <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
                     </div>
-                    <div class="campaign-info col-7 col-sm-6 col-md-12">
+                    <div class="campaign-info col-12">
                       <b class="campaign-title text-success"> {{ $campaign->title}} </b>
                       <p class="campaign-category">{{ $campaign->user->name}} <i class="fa fa-check-circle text-primary verified-user"></i></p>
                       <div class="campaign-desc">
@@ -138,7 +136,7 @@
     <h5 class="content-title text-weight-bold text-success col-12">Campaign Terbaru</h5>
     
     @foreach($newestCampaigns as $campaign)
-      <div class="col-12 col-md-4 mid-content">
+      <div class="col-12 mid-content">
         <a href="{{ url('/campaign/'.$campaign->id) }}">
           <div class="campaign-box row">
             <div class="campaign-image-box col-5 col-sm-6 col-md-12">
@@ -166,7 +164,7 @@
       </div>
     @endforeach
 
-    <div class="col-12 col-md-3 offset-md-9">
+    <div class="col-12">
       <br>
       <a href="{{ route('campaigns.front') }}">
         <div class="btn main-btn single-btn btn-success text-light full-width">
@@ -205,19 +203,18 @@
       </div>
     </div>
   </div>
-
-    <div class="col-12 col-md-3 offset-md-9 bg-light">
-      <br>
-      <a href="{{ route('zakats.front') }}">
-        <div class="btn main-btn single-btn btn-orange text-light full-width">
-          Bayar Zakat
-        </div>
-      </a>
-    </div>
+  <div class="col-12 bg-light">
     <br>
+    <a href="{{ route('zakats.front') }}">
+      <div class="btn main-btn single-btn btn-orange text-light full-width">
+        Bayar Zakat
+      </div>
+    </a>
+  </div>
+  <br>
 </section>
 
-<section class="section-content index-about-us">
+<section class="section-content index-about-us bg-light">
   <div class="content-box full-content bg-light d-inline">
       <div class="col-12" align="center">
         <div class="btn main-btn single-btn btn-success text-light d-inline-block" style="width: calc(100% - 55px);"> <i class="fa fa-phone"></i> &nbsp;&nbsp; Hubungi Kami </div>
@@ -236,7 +233,7 @@
 <!-- Initialize Swiper -->
 <script>
   var swiper = new Swiper('.ads-swiper', {
-    // autoHeight: true, //enable auto height\
+    slidesPerView: 'auto',
     loop : true,
     pagination: {
       el: '.ads-pagination',
@@ -262,8 +259,8 @@
   });
   $(window).ready(function(){
       $('.content-menu').removeClass('bg-success text-light')
-      $('#category-1').removeClass('bg-light text-dark')
-      $('#category-1').addClass('bg-success text-light')
+      $('#category-2').removeClass('bg-light text-dark')
+      $('#category-2').addClass('bg-success text-light')
   })
 
   $.ajaxSetup({

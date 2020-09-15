@@ -9,29 +9,31 @@
 
 @section('content')
 
-<div class="mobile-filter-button mobile-only">
+<div class="mobile-filter-button">
   <div type="button" class="filter-btn btn-orange text-light mid-content" data-toggle="modal" data-target="#exampleModalLong" onclick="call_donation_list()">
     <i class="fa fa-database"></i>
   </div>
 </div>
 
+
+<div class="text-primary mt-4 mb-4">
+  <a href="{{ route('index') }}" class="text-primary hovering-link">Home </a> >
+  <a href="{{ route('campaigns.front') }}" class="text-primary hovering-link">Campaign </a> >
+  <a href="{{ url('/campaign/$campaign->id') }}" class="text-primary hovering-link"> {{ $campaign->title }} </a>
+</div>
+
 <section class="campaign-detail">
-  <div class="container">
-    <div style="transform: translateY(-30px);" class="text-primary">
-      <a href="{{ route('index') }}" class="text-primary hovering-link">Home </a> >
-      <a href="{{ route('campaigns.front') }}" class="text-primary hovering-link">Campaign </a> >
-      <a href="{{ url('/campaign/$campaign->id') }}" class="text-primary hovering-link"> {{ $campaign->title }} </a>
-    </div>
-    <div class="row mobile-align-center">
+  <div class="container bg-light">
+    <div class="full-width mobile-align-center">
       <input type="hidden" value="{{ $campaign->id }}" id="cid">
       <input type="hidden" value="1" id="uid">
-      <div class="col-12 col-md-8">
-        <div class="campaign-info-box bg-light">
+      <div>
+        <div class="campaign-info-box">
           <div class="content-box">
             <div class="campaign-info-image">
               <img class="campaign-full-image" src="{{ asset($campaign->image_cover) }}">
             </div>
-            <div class="campaign-info-desc">
+            <div class="campaign-info-desc mt-4" align="center">
               <h3 style="margin-bottom: 2px"> {{ $campaign->title }}</h3>
               <a href="#" class="text-primary hovering-link"> {{ $campaign->user->name }} </a>
               <div class="content-box no-padd" style="margin-top: 16px;">
@@ -41,8 +43,11 @@
                 <span class="content-desc"> Dibuat Tanggal &nbsp; : </span><span class="text-primary"> {{ $campaign->created_at }} </span><br>
                 <span class="content-desc"> Sisa Waktu &nbsp; : </span><span class="text-primary"> {{ $campaign->getCampaignDeadline($campaign->deadline) }} </span><br>
 
-                <div class="btn main-btn single-btn btn-success text-light form" style="margin-top: 16px" id="add-wishlist">
-                  <i class="fa fa-bookmark"></i> &nbsp; Simpan Campaign
+                <div class="btn main-btn single-btn btn-orange text-light form" style="margin-top: 16px" data-toggle="modal" data-target="#exampleModalLong" onclick="call_donation_list()">
+                  <i class="fa fa-database"></i> &nbsp; Berikan Donasi
+                </div>
+                <div class="btn main-btn single-btn btn-success-outline text-success form" style="margin-top: 16px;" id="add-wishlist">
+                  <i class="fa fa-bookmark"></i> Simpan Campaign
                 </div>
               </div>
             </div>
@@ -89,22 +94,20 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <div class="campaign-info-box content-box bg-light">
-          <div class="additional-info">
-            <div class="campaign-info-share">
-              <div class="content-box">
-                <div>
-                  <h5>Bagikan Campaign ini</h5>
-                  <div id="share"></div>
-                </div>
-              </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="full-width mt-3">
+    <div class="campaign-info-box content-box bg-light">
+      <div class="additional-info">
+        <div class="campaign-info-share">
+          <div class="content-box">
+            <div>
+              <h5>Bagikan Campaign ini</h5>
+              <div id="share"></div>
             </div>
-          </div>
-        </div>
-        <div class="campaign-info-box content-box bg-light mt-4 mobile-none">
-          <div class="additional-info">
-            @include('donations.list')
           </div>
         </div>
       </div>

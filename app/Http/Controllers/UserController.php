@@ -37,31 +37,39 @@ class UserController extends AppBaseController
     public function front(Request $request)
     {
         $user = User::where('username', $request->username)->get()->first->id;
-        $campaigns = Campaign::where('user_id', $user->id)->get();
-        $donations = Donation::where('user_id', $user->id)->get();
-        $reports = CampaignReport::where('user_id', $user->id)->get();
-        $zakats = Zakat::where('user_id', $user->id)->get();
-        return view('users.profile', [
-                                    'user' => $user,
-                                    'campaigns' => $campaigns,
-                                    'donations' => $donations,
-                                    'reports' => $reports,
-                                    'zakats' => $zakats
-                                ]);
+        if(!is_null($user)){
+            $campaigns = Campaign::where('user_id', $user->id)->get();
+            $donations = Donation::where('user_id', $user->id)->get();
+            $reports = CampaignReport::where('user_id', $user->id)->get();
+            $zakats = Zakat::where('user_id', $user->id)->get();
+            return view('users.profile', [
+                                        'user' => $user,
+                                        'campaigns' => $campaigns,
+                                        'donations' => $donations,
+                                        'reports' => $reports,
+                                        'zakats' => $zakats
+                                    ]);
+        }else{
+            return redirect('/');
+        }
     }
 
     public function profilEdit(Request $request){
-        $data = User::where('username', $request->username)->get()->first->id;
-        $id = $data->id;
-        if(Auth::id() == $id){
-            if($this->data_check($id)){
-                return view('users.edit')->with('user', $data);
+        $user = User::where('username', $request->username)->get()->first->id;
+        if(!is_null($user)){
+            $id = $user->id;
+            if(Auth::id() == $id){
+                if($this->data_check($id)){
+                    return view('users.edit')->with('user', $user);
+                }else{
+                    return redirect(route('users.index'));
+                }
             }else{
-                return redirect(route('users.index'));
+                Flash::success('Terjadi Kesalahan.');
+                return redirect(route('index'));
             }
         }else{
-            Flash::success('Terjadi Kesalahan.');
-            return redirect(route('index'));
+            return redirect('/');
         }
     }
 
@@ -105,6 +113,8 @@ class UserController extends AppBaseController
             $input['bg_cover'] = 'images/user-cover-default.jpg';
         }
 
+        $input['email'] = $data->email;
+        $input['role'] = $data->role;
         $input['password'] = $data->password;
         $user = $this->userRepository->update($input, $id);
 

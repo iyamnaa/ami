@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\User;
+use App\Mode\User;
 
 class UserObserver
 {
@@ -26,12 +26,9 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        // if(substr($user->photo, 0, 7) != 'images/'){
-        //     $user->photo = 'images/'.date('ymdHis').'-'.$user->photo;
-        // }
-        // if(substr($user->bg_cover, 0, 7) != 'images/'){
-        //     $user->bg_cover = 'images/'.date('ymdHis').'-'.$user->bg_cover;
-        // }
+     if($user->is_deleted == 1){
+        Campaign::where('user_id' => $user->id)->update(['is_deleted' => 1]);
+     }   
     }
 
     /**

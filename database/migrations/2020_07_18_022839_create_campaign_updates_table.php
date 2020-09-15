@@ -16,6 +16,7 @@ class CreateCampaignUpdatesTable extends Migration
         Schema::create('campaign_updates', function (Blueprint $table) {
             $table->id();
             $table->string('image_cover')->nullable();
+            $table->integer('receiver')->default(0);
             $table->string('title');
             $table->text('body');
             $table->timestamps();

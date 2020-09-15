@@ -1,11 +1,11 @@
 @foreach($campaigns as $campaign)
-<div class="col-md-4 mid-content">
+<div class="col-12 mid-content">
     <a href="{{ url('/campaign/'.$campaign->id) }}">
         <div class="campaign-box row">
-            <div class="campaign-image-box col-5 col-sm-6 col-md-12">
+            <div class="campaign-image-box col-5">
             <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
             </div>
-            <div class="campaign-info col-7 col-sm-6 col-md-12">
+            <div class="campaign-info col-7">
             <b class="campaign-title text-success">{{ $campaign->title }}</b><br>
             <p class="campaign-category"> {{$campaign->user->name }} <i class="fa fa-check-circle text-primary verified-user"></i></p>
             <div class="campaign-desc">

@@ -50,6 +50,7 @@ class Donation extends Model
         'status',
         'akad',
         'amount',
+        'administration_fee',
         'user_id',
         'campaign_id'
     ];
@@ -73,6 +74,7 @@ class Donation extends Model
         'status' => 'string',
         'akad' => 'string',
         'amount' => 'integer',
+        'administration_fee' => 'integer',
         'user_id' => 'integer',
         'campaign_id' => 'integer'
     ];
@@ -90,12 +92,9 @@ class Donation extends Model
         'telephone' => 'required',
         'address' => 'required',
         'as_anonymous' => 'required',
-        'NIA' => 'required',
-        'amil_name' => 'required',
         'status' => 'required',
         'akad' => 'required',
         'amount' => 'required',
-        'user_id' => 'required',
         'campaign_id' => 'required'
     ];
 

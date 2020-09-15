@@ -49,6 +49,7 @@ class Zakat extends Model
         'status',
         'akad',
         'amount',
+        'administration_fee',
         'qty',
         'user_id'
     ];
@@ -72,6 +73,7 @@ class Zakat extends Model
         'status' => 'string',
         'akad' => 'string',
         'amount' => 'integer',
+        'administration_fee' => 'integer',
         'qty' => 'integer',
         'user_id' => 'integer'
     ];
@@ -89,13 +91,10 @@ class Zakat extends Model
         'telephone' => 'required',
         'address' => 'required',
         'as_anonymous' => 'required',
-        'NIA' => 'required',
-        'amil_name' => 'required',
         'status' => 'required',
         'akad' => 'required',
         'amount' => 'required',
-        'qty' => 'required',
-        'user_id' => 'required'
+        'qty' => 'required'
     ];
 
     /**

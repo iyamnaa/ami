@@ -24,12 +24,13 @@
     <div class="full-width mid-content">
     @include('layouts.navbar')
         <div id="app">
+            @include('layouts.bottom-navbar')
             @if(Auth::check())
-            <div class="mobile-only-block">
-                <div class="hidden-background" style="display: none">
-                    @include('layouts.user-sidebar')
+                <div class="mobile-only-block">
+                    <div class="hidden-background" style="display: none">
+                        @include('layouts.user-sidebar')
+                    </div>
                 </div>
-            </div>
             @endif
             @include('layouts.modal')
             @yield('content')

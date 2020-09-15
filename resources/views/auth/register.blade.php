@@ -23,7 +23,7 @@
 <div class="app flex-row align-items-center">
     <div class="container-fluid" style="height: 100vh">
         <div class="row justify-content-center" style="height: 100%">
-            <div class="col-md-6 col-12 mid-content" style="background-color:white">
+            <div class="col-12 mid-content" style="background-color:white">
                 <div class="card-group">
                     <div class="card p-4" style="border:none">
                         <div class="card-body p-4">
@@ -169,9 +169,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mobile-none no-padd" style="background-color:#000">
+            <!-- <div class="col-md-6 mobile-none no-padd" style="background-color:#000">
              <img src="{{ asset('images/zakat-fitrah.jpg') }}" class="full-image" style="height:100%;opacity:0.3"> </img>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

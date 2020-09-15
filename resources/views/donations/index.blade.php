@@ -12,9 +12,6 @@
 @endsection
 
 @section('content')
-
-<br><br><br>
-
 <div class="mobile-filter-button">
   <div type="button" class="filter-btn btn-success text-light mid-content" data-toggle="modal" data-target="#exampleModalLong" onclick="call_filter_form()">
     <i class="fa fa-search"></i>
@@ -23,7 +20,7 @@
 
 <section class="fundraising">
   <div class="row campaign-row">
-    <div class="col-12 col-sm-12 col-md-3 campaign-filter">
+    <!-- <div class="col-12 col-sm-12 col-md-3 campaign-filter">
       <div class="filter-box">
 
         <div class="filter filter-category">
@@ -64,19 +61,18 @@
 
       </div>
 
-    </div>
+    </div> -->
 
-    <div class="col-12 col-sm-12 col-md-9">
-
+    <div class="col-12">
       <div class="content-box invitation">
         <div class="content-box bg-success text-white">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-12">
               <h4 class="content-title">Mari Berdonasi</h4>
-              <p> Donasi yang diberikan akan diberikan sesuai dengan Campaign yang dipilih melalui pihak Amal Madani Indonesia
+              <p class="text-justify"> Donasi yang diberikan akan diberikan sesuai dengan Campaign yang dipilih melalui pihak Amal Madani Indonesia
                   dan setiap donasi akan dikelola dengan sebaik-baiknya  </p>
             </div>
-            <div class="col-md-4 mid-content">
+            <div class="col-12 mid-content mt-2">
               <div class="btn main-btn bg-light text-success">
                 <b>Tentang Donasi</b>
               </div>
@@ -100,7 +96,7 @@
 
       <div class="content-box discover-campaign-box">
         <div class="discover-campaign">
-          <div class="row">
+          <div class="row full-width">
             @include('donations.campaign-list')
           </div>
         </div>

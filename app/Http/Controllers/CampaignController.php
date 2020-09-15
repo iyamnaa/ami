@@ -161,8 +161,8 @@ class CampaignController extends AppBaseController
         if($request->file('form_image_cover')){
             $photo = $request->file('form_image_cover');
             $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
-            $location = public_path('/images/' . $filename);
-            $photo->move(public_path(). '/images/', $filename);
+            // $location = public_path('/images/' . $filename);
+            // $photo->move(public_path(). '/images/', $filename);
             $input['image_cover'] = 'images/'.$filename;
 
         }else{

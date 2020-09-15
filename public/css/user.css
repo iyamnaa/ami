@@ -4,43 +4,49 @@
   width: 100% !important;
 }
 
-.user-profile,
-.user-profile-name,
-.user-profile-photo{
-  margin-bottom: -75px;
-}
-
 .about-company{
   margin-top: 100px;
 }
 
+.user-profile{
+  position: relative;
+  bottom: 75px;
+}
+
 .user-profile-photo{
-  margin-left:40px;
-  transform: translateY(-75px);
   width: 150px;
-  height: 150px
+  height: 150px;
+  border-radius: 50%;
 }
 
 .user-profile-photo img{
   border: 4px solid white;
-  border-radius: 100%;
+  border-radius: 50%;
   width: 100%;
   height: 100%;
 }
 
-.user-profile-name,
-.user-profile-edit{
-  transform: translateY(-50px);
+.image-edit{
+  position: relative;
+  background-color: #000;
 }
 
+.image-edit img{
+  width: 100%;
+  opacity: .3;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.image-edit input{
+  position: relative;
+  z-index: 5;
+}
 
 @media (max-width: 768px) {
   .profile-nav{
     display: none;
-  }
-
-  .user-profile-photo{
-    margin-left: calc(50% - 75px);
   }
 
   .user-profile-name{

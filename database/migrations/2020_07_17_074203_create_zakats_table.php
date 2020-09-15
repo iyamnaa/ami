@@ -30,11 +30,11 @@ class CreateZakatsTable extends Migration
             $table->string('amil_name')->nullable();
 
             //data transaksi
-            $table->enum('status',['terkirim','proses','gagal','berhasil','cancel'])->default('terkirim');
+            $table->enum('status',['terkirim','proses','gagal','berhasil','cancel', 'deleted'])->default('terkirim');
             $table->string('akad');
             $table->integer('amount');
+            $table->integer('administration_fee');
             $table->integer('qty');
-            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
 
             // $table->index('user_id');

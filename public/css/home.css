@@ -9,10 +9,6 @@
   margin-top: 0;
 }
 
-.index-about-us{
-  margin-bottom: calc(8vh + 10px);
-}
-
 .index-new-campaign-box .campaign-box b,
 .swiper-slide b{
   font-size: .9rem;
@@ -27,15 +23,12 @@
 
 .ads-slider{
   width: 100%;
-  height: calc(90vh - 80px);
+  height: 270px;
+  z-index: 0;
 }
 
 .news-slider{
-  height: 40vh;
-}
-
-.news-slider .swiper-slide{
-  width: 50%;
+  height: 210px;
 }
 
 .campaign-slider{
@@ -57,24 +50,16 @@
   border-radius: 8px;
 }
 
+.swiper-pagination-bullet {
+  margin: 0 4px;
+}
+
 @media (max-width: 768px) {
   .index-new-campaign-box .content-box.row{
     margin: 0 !important;
   }
   .index-new-campaign-box .row .col-12{
     padding: 0 !important;
-  }
-  .ads-slider{
-    height: 30vh;
-    z-index: 0;
-  }
-
-  .news-slider{
-    height: 20vh;
-  }
-
-  .news-slider .swiper-slide{
-    width: 90%;
   }
 
   .campaign-slider{
