@@ -1,5 +1,11 @@
 <div class="sidebar-menu">
   <ul>
+    <a href="{{ route('home') }}">
+      <li>
+        <i class="fa fa-users"></i>
+        <span class="menu-list"> Dashboard </span>
+      </li>
+    </a>
     <a href="{{ route('users.index') }}">
       <li>
         <i class="fa fa-users"></i>

@@ -96,17 +96,14 @@ class CampaignController extends AppBaseController
     {
         $input = $request->all();
 
-        if($request->file('form_image_cover')){
-            $photo = $request->file('form_image_cover');
-            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
-            $location = public_path('/images/' . $filename);
-            $photo->move(public_path(). '/images/', $filename);
-            $input['image_cover'] = 'images/'.$filename;
-
+        if($request->input('image_cover_name') != null){
+            $input['image_cover'] = $request->input('image_cover_name');
         }else{
-            $input['image_cover'] = 'images/user-default.jpg';
+            $input['image_cover'] = 'images/campaign/default.jpg';
         }
 
+
+        $input['status']='diminta';
         $data = $this->campaignRepository->create($input);
 
         Flash::success('Campaign saved successfully.');
@@ -158,22 +155,25 @@ class CampaignController extends AppBaseController
     public function update($id, UpdateCampaignRequest $request)
     {
         $input = $request->all();
-        if($request->file('form_image_cover')){
-            $photo = $request->file('form_image_cover');
-            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
-            // $location = public_path('/images/' . $filename);
-            // $photo->move(public_path(). '/images/', $filename);
-            $input['image_cover'] = 'images/'.$filename;
+        $old_image = Campaign::find($id)->image_cover;
 
+        if($request->input('image_cover_name') != null){
+            $input['image_cover'] = $request->input('image_cover_name');
+            if(is_file($old_image)){
+                unlink(public_path().'/'. $old_image);
+            }
         }else{
-            $input['image_cover'] = 'images/user-default.jpg';
+            $input['image_cover'] = $old_image;
         }
 
-        $this->data_check($id);
-        $data = $this->campaignRepository->update($input, $id);
-        Flash::success('Campaign updated successfully.');
-
-        return redirect(route('campaigns.index'));
+        if($this->data_check($id)){
+            $data = $this->campaignRepository->update($input, $id);
+            Flash::success('Campaign updated successfully.');
+            return redirect(route('campaigns.index'));
+        }else{
+            Flash::alert('Campaign Tidak Ditemukan');
+            return redirect(route('campaigns.index'));
+        }
     }
 
     /**

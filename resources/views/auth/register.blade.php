@@ -42,7 +42,7 @@
                                         </span>
                                         </div>
                                         <input type="text" class="form-control {{ $errors->has('name')?'is-invalid':'' }}" name="name" value="{{ old('name') }}"
-                                            placeholder="Nama Lengkap">
+                                            placeholder="Nama Lengkap" autocomplete="off">
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -56,7 +56,7 @@
                                         </span>
                                         </div>
                                         <select class="form-control custom-select" name="gender">
-                                            <option> --Pilih Jenis Kelamin </option>
+                                            <option value="Laki-laki"> --Pilih Jenis Kelamin </option>
                                             <option value="Laki-laki"> Laki Laki </option>
                                             <option value="Perempuan"> Perempuan </option>    
                                         </select>
@@ -70,7 +70,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class=" fa fa-phone"></i></span>
                                         </div>
-                                        <input type="tel" class="form-control {{ $errors->has('telephone')?'is-invalid':'' }}" name="telephone" value="{{ old('telephone') }}" placeholder="Number Telephone">
+                                        <input type="tel" class="form-control {{ $errors->has('telephone')?'is-invalid':'' }}" name="telephone" value="{{ old('telephone') }}" placeholder="Number Telephone" autocomplete="off">
                                         @if ($errors->has('telephone'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('telephone') }}</strong>
@@ -81,21 +81,10 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class=" fa fa-map-marker"></i></span>
                                         </div>
-                                        <input type="text" class="form-control {{ $errors->has('address')?'is-invalid':'' }}" name="address" value="{{ old('address') }}" placeholder="Alamat Lengkap">
+                                        <input type="text" class="form-control {{ $errors->has('address')?'is-invalid':'' }}" name="address" value="{{ old('address') }}" placeholder="Alamat Lengkap" autocomplete="off">
                                         @if ($errors->has('address'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('address') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control {{ $errors->has('bio')?'is-invalid':'' }}" name="bio" value="{{ old('bio') }}" placeholder="Biodata">
-                                        @if ($errors->has('bio'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('bio') }}</strong>
                                             </span>
                                         @endif
                                     </div>

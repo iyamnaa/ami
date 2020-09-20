@@ -2,10 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Model;
 
+/**
+ * Class Price
+ * @package App\Models
+ * @version September 20, 2020, 8:36 pm WIB
+ *
+ * @property string $name
+ * @property integer $price
+ */
 class Price extends Model
-{   
+{
+
+    public $table = 'prices';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -23,6 +34,7 @@ class Price extends Model
      * @var array
      */
     protected $casts = [
+        'id' => 'integer',
         'name' => 'string',
         'price' => 'integer'
     ];
@@ -33,7 +45,9 @@ class Price extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'price' => 'required',
+        'name' => 'required|string|max:191',
+        'price' => 'required|integer'
     ];
+
+    
 }

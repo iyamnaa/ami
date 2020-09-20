@@ -1,7 +1,30 @@
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+		}
+	})
+
+$('.upload-result').on('click', function (ev) {
+	$uploadCrop.croppie('result', {
+		type: 'canvas',
+		size: 'viewport'
+	}).then(function (resp) {
+		$.ajax({
+			url: "/image-crop",
+			type: "POST",
+			data: {
+				"image":resp,
+				"dir":'campaign' 
+			},
+			success: function (data) {
+				// html = '<img src="' + resp + '" />';
+				// $("#upload-demo-i").html(html);
+				alert(data.success)
+				$('.next-step').removeAttr('disabled')
+				$('#imageCoverName').val(data.file_name)
+			}
+		});
+	});
 });
 
 $('#upload').on('change', function () { 
@@ -15,26 +38,6 @@ $('#upload').on('change', function () {
     }
 
     reader.readAsDataURL(this.files[0]);
-});
-
-
-$('.upload-result').on('click', function (ev) {
-	$uploadCrop.croppie('result', {
-		type: 'canvas',
-		size: 'viewport'
-	}).then(function (resp) {
-		$.ajax({
-			url: "/image-crop",
-			type: "POST",
-			data: {"image":resp},
-			success: function (data) {
-				html = '<img src="' + resp + '" />'
-				target = $('#imageTarget').val()
-				$('#' + target).html(html)
-				$('.image-crop-background').hide()
-			}
-		});
-	});
 });
 
 function cropImage(element, target) {

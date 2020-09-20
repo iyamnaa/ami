@@ -11,9 +11,11 @@
         <!-- <th>Nia</th> -->
         <!-- <th>Amil Name</th> -->
         <th>Akad</th>
-        <th>Zakat</th>
+        <th>Total Donasi</th>
+        <th>Dana Donasi(Diluar Amil)</th>
+        <th>Dana Amil</th>
+        <th>Biaya Admin</th>
         <th>Status</th>
-        <th>User</th>
         <th>Campaign</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -22,18 +24,30 @@
         @foreach($donations as $donation)
             <tr>
                 <td>{{ $donation->number }}</td>
-            <!-- <td>{{ $donation->transaction_id }}</td> -->
-            <td>{{ $donation->name }}</td>
-            <!-- <td>{{ $donation->telephone }}</td> -->
-            <!-- <td>{{ $donation->address }}</td> -->
-            <!-- <td>{{ $donation->as_anonymous }}</td> -->
-            <!-- <td>{{ $donation->NIA }}</td> -->
-            <!-- <td>{{ $donation->amil_name }}</td> -->
-            <td>{{ $donation->akad }}</td>
-            <td>{{ $donation->amount }}</td>
-            <td>{{ $donation->status }}</td>
-            <td>{{ $donation->user->name }}</td>
-            <td>{{ $donation->campaign->title }}</td>
+                <!-- <td>{{ $donation->transaction_id }}</td> -->
+                <td>{{ $donation->name }}</td>
+                <!-- <td>{{ $donation->telephone }}</td> -->
+                <!-- <td>{{ $donation->address }}</td> -->
+                <!-- <td>{{ $donation->as_anonymous }}</td> -->
+                <!-- <td>{{ $donation->NIA }}</td> -->
+                <!-- <td>{{ $donation->amil_name }}</td> -->
+                <td class="text-capitalize">{{ $donation->akad }}</td>
+                <td>{{ $donation->amount * $donation->qty }}</td>
+                <td>{{ ($donation->amount * $donation->qty) * 7 / 8 }}</td>
+                <td>{{ ($donation->amount * $donation->qty) * 1 / 8 }}</td>
+                <td>{{ $donation->administration_fee }}</td>
+                @if($donation->status == 'terkirim')
+                <td class="text-capitalize bg-blue text-light">
+                @elseif($donation->status == 'berhasil')
+                <td class="text-capitalize bg-success text-light">
+                @elseif($donation->status == 'gagal')
+                <td class="text-capitalize bg-danger text-light">
+                @elseif($donation->status == 'cancel')
+                <td class="text-capitalize bg-warning text-light">
+                @endif
+                    {{ $donation->status }}
+                </td>
+                <td>{{ $donation->campaign->title }}</td>
                 <td>
                     {!! Form::open(['route' => ['donations.destroy', $donation->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

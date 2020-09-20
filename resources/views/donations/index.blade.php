@@ -20,48 +20,6 @@
 
 <section class="fundraising">
   <div class="row campaign-row">
-    <!-- <div class="col-12 col-sm-12 col-md-3 campaign-filter">
-      <div class="filter-box">
-
-        <div class="filter filter-category">
-        <b class="text-success">Hasil Filter</b>
-
-          <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Kategori </div>
-          <div class="filter-content"> 
-            @foreach($categories as $category)
-              <span class="filter-category-name" onclick="filter_click(null, '{{ $category->id }}', null, null)"> {{$category->name }} </span>
-            @endforeach
-          </div>
-        </div>
-
-        <hr class="filter-separator">
-
-        <div class="filter filter-by-sorting">
-          <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Urutan </div>
-          <div class="filter-content"> 
-            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Trending')"> Trending </span>
-            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Terbaru')"> Terbaru </span>
-            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Sisa Waktu')"> Sisa Waktu </span>
-            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Jumlah Donasi DESC')"> Donasi (Terbesar) </span>
-            <span class="filter-sort-name" onclick="filter_click(null, null, null, 'Jumlah Donasi ASC')"> Donasi (Terkecil) </span>
-          </div>
-        </div>
-
-        <hr class="filter-separator">
-
-        <div class="filter filter-by-time">
-          <div class="filter-name"> <i class="fa fa-caret-right mobile-only"></i> Waktu </div>
-          <div class="filter-content"> 
-            <span class="filter-time-name" onclick="filter_click(null, null, 'Semua', null)"> Tanpa Jangka Waktu </span>
-            <span class="filter-time-name" onclick="filter_click(null, null, 'Sedang Berjalan', null)"> Sedang Berjalan </span>
-            <span class="filter-time-name" onclick="filter_click(null, null, 'Segera Berakhir Berjalan', null)"> Segera Berakhir </span>
-            <span class="filter-time-name" onclick="filter_click(null, null, 'Telah Berakhir', null)"> Telah Berakhir </span>
-          </div>
-        </div>
-
-      </div>
-
-    </div> -->
 
     <div class="col-12">
       <div class="content-box invitation">
@@ -94,7 +52,7 @@
         </form>
       </div>
 
-      <div class="content-box discover-campaign-box">
+      <div class="content-box discover-campaign-box" style="padding-right:0">
         <div class="discover-campaign">
           <div class="row full-width">
             @include('donations.campaign-list')

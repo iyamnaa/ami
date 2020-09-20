@@ -11,21 +11,25 @@ class ImageController extends Controller
         return view('image');
     }
 
-    public function imageCropPost(Request $requests)
+    public function imageCropPost(Request $request)
     {
         try {
             $data = $request->image;
+            $dir = $request->dir;
     
             list($type, $data) = explode(';', $data);
             list(, $data)      = explode(',', $data);
     
             $data = base64_decode($data);
-            $image_name= time().'.png';
-            $path = public_path() . "/upload/" . $image_name;
-    
+            $image_name = 'images/' . $dir.'/'.time().'.png';
+            $path = public_path() .'/'. $image_name;
+
             file_put_contents($path, $data);
+
+            return response()->json(['success'=> $path, 'file_name' => $image_name]);
+
         } catch (\Throwable $th) {
-            return response()->json(['success'=> $th->getMessage()]);
+            return response()->json(['success'=> $th->getMessage(),'file_name' => null]);
         }
     }
 }

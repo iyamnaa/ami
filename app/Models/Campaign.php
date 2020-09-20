@@ -84,7 +84,7 @@ class Campaign extends Model
 
     public function getCampaignDonation($campaign_id)
     {
-        return Donation::where('campaign_id', $campaign_id)->get()->sum('amount');
+        return (Donation::where('campaign_id', $campaign_id)->where('status', 'berhasil')->get()->sum('amount')) * 7 / 8;
     }
 
     public function getCampaignProgress($campaign_id, $target)

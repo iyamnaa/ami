@@ -45,7 +45,7 @@
 
 .campaign-box .campaign-title,
 .campaign-box .campaign-category{
-  display: inline-block;
+  display: block;
 }
 
 .campaign-image-box{
@@ -55,9 +55,7 @@
 .campaign-image{
   width: 100%;
   height: 100%;
-  border-radius: 8px 8px 0 0;
-  max-height: 170px;
-  min-height: 170px;
+  border-radius: 8px 0 0 8px;
 }
 
 .campaign-full-image{
@@ -66,17 +64,38 @@
   border-radius: 8px;
 }
 
+.horizontal-campaign .campaign-image-box,
 .horizontal-campaign .campaign-image{
-  border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0 !important;
+  max-height: 170px;
+}
+
+.horizontal-campaign .campaign-desc{
+  display: block !important;
+  margin:0;
+}
+
+.horizontal-campaign tr{
+  display: flex;
+}
+
+.horizontal-campaign tr td{
+  flex: 1;
+}
+
+.horizontal-campaign .campaign-box{
+  height: 100%;
 }
 
 .horizontal-campaign .campaign-info{
   border-radius: 0 0 8px 8px;
 }
 
-.horizontal-campaign .campaign-desc{
-  display: inline-block !important;
-  margin:0;
+.horizontal-campaign .campaign-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 170px);
 }
 
 .table-campaign .campaign-box{
@@ -273,10 +292,6 @@
 
   .campaign-box{
     margin-bottom: 2vh !important;
-  }
-
-  .campaign-image{
-    border-radius: 8px 0 0 8px;
   }
 
   .campaign-desc{

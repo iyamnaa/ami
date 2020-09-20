@@ -127,7 +127,7 @@
 
 <script>
   function call_donation_list(){
-    $('#modal-include').html(`@include('donations.list')`)
+    $('#modal-include').html(`@include('donations.donation-list')`)
   }
 
   $("#share").jsSocials({

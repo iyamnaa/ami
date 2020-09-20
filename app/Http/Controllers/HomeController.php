@@ -30,7 +30,7 @@ class HomeController extends AppBaseController
     {
         $newestCampaigns = Campaign::all()->take(3)->sortByDesc('created_at');
         $topCampaigns = TopCampaign::all();
-        $categories = CampaignCategory::all()->where('id', '!=', 1);
+        $categories = CampaignCategory::all();
         $categorySearch = $request->category != null ? $request->category : $categories->first->get();
         $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch->id)->take(8)->get();
         return view('index', [
