@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class User
  * @package App\Models
- * @version July 21, 2020, 4:31 am UTC
+ * @version September 21, 2020, 10:42 pm WIB
  *
  * @property \Illuminate\Database\Eloquent\Collection $campaignReports
  * @property \Illuminate\Database\Eloquent\Collection $campaigns
@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \Illuminate\Database\Eloquent\Collection $wishlists
  * @property \Illuminate\Database\Eloquent\Collection $zakats
  * @property string $name
+ * @property string $username
+ * @property string $photo
+ * @property string $bg_cover
  * @property string $email
  * @property string $gender
  * @property string $telephone
@@ -25,7 +28,9 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $bio
  * @property string|\Carbon\Carbon $email_verified_at
  * @property string $password
+ * @property boolean $is_deleted
  * @property string $role
+ * @property integer $contribution
  * @property string $remember_token
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -42,9 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public $fillable = [
         'name',
+        'username',
         'photo',
         'bg_cover',
-        'username',
         'email',
         'gender',
         'telephone',
@@ -52,6 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'bio',
         'email_verified_at',
         'password',
+        'is_deleted',
         'role',
         'contribution',
         'remember_token'
@@ -65,9 +71,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'username' => 'string',
         'photo' => 'string',
         'bg_cover' => 'string',
-        'username' => 'string',
         'email' => 'string',
         'gender' => 'string',
         'telephone' => 'string',
@@ -75,6 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'bio' => 'string',
         'email_verified_at' => 'datetime',
         'password' => 'string',
+        'is_deleted' => 'boolean',
         'role' => 'string',
         'contribution' => 'integer',
         'remember_token' => 'string'
@@ -86,16 +93,22 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'username' => 'required',
-        'email' => 'required',
-        'password' => 'required'
+        'name' => 'required|string|max:191',
+        'username' => 'required|string|max:191',
+        'photo' => 'nullable|string|max:191',
+        'bg_cover' => 'nullable|string|max:191',
+        'email' => 'required|string|max:191',
+        'gender' => 'required|string',
+        'telephone' => 'required|string|max:191',
+        'address' => 'required|string',
+        'bio' => 'required|string',
+        'email_verified_at' => 'nullable',
+        'password' => 'required|string|max:191',
+        'is_deleted' => 'required|boolean',
+        'role' => 'required|string',
+        'contribution' => 'nullable|integer',
+        'remember_token' => 'nullable|string|max:100'
     ];
-
-    public function getProfileName($name = "")
-    {
-        return strtolower(str_replace(' ', '', $name));
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

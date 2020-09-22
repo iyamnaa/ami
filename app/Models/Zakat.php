@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Zakat
  * @package App\Models
- * @version July 21, 2020, 4:33 am UTC
+ * @version September 21, 2020, 10:42 pm WIB
  *
  * @property \App\Models\User $user
  * @property integer $number
@@ -16,12 +16,12 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $email
  * @property string $telephone
  * @property string $address
- * @property boolean $as_anonymous
  * @property string $NIA
  * @property string $amil_name
  * @property string $status
  * @property string $akad
  * @property integer $amount
+ * @property integer $administration_fee
  * @property integer $qty
  * @property integer $user_id
  */
@@ -43,7 +43,6 @@ class Zakat extends Model
         'email',
         'telephone',
         'address',
-        'as_anonymous',
         'NIA',
         'amil_name',
         'status',
@@ -67,7 +66,6 @@ class Zakat extends Model
         'email' => 'string',
         'telephone' => 'string',
         'address' => 'string',
-        'as_anonymous' => 'boolean',
         'NIA' => 'string',
         'amil_name' => 'string',
         'status' => 'string',
@@ -84,15 +82,20 @@ class Zakat extends Model
      * @var array
      */
     public static $rules = [
-        'number' => 'required',
-        'transaction_id' => 'required',
-        'name' => 'required',
-        'as_anonymous' => 'required',
-        'status' => 'required',
-        'akad' => 'required',
-        'amount' => 'required',
-        'qty' => 'required',
-        'administration_fee' => 'required',
+        'number' => 'required|integer',
+        'transaction_id' => 'required|string|max:191',
+        'name' => 'required|string|max:191',
+        'email' => 'required|string|max:191',
+        'telephone' => 'required|string|max:191',
+        'address' => 'required|string',
+        'NIA' => 'nullable|string|max:191',
+        'amil_name' => 'nullable|string|max:191',
+        'status' => 'required|string',
+        'akad' => 'required|string|max:191',
+        'amount' => 'required|integer',
+        'administration_fee' => 'required|integer',
+        'qty' => 'required|integer',
+        'user_id' => 'nullable'
     ];
 
     /**

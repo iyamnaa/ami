@@ -2,9 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name', 'Amal Madani Indonesia') }}</title>
-    <link rel="icon" href="{{ asset('images/madani-logo.png') }}">
-    <meta name="theme-color" content="forestgreen" />
+    <title>{{config('app.name')}}</title>
     <meta name="_token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
@@ -19,12 +17,15 @@
     {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@1.0.0/css/brand.min.css">--}}
     {{--<link rel="stylesheet" href="https://unpkg.com/@coreui/icons@1.0.0/css/flag.min.css">--}}
      <!-- PRO version -->
+     <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
-    @stack('stylesheet')
+
+@stack('stylesheet')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <header class="app-header navbar">
@@ -32,7 +33,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="{{ asset('images/madani-logo-green.png') }}" width="40" height="40"
+        <img class="navbar-brand-full" src="{{ asset('images/madani-logo-green.png') }}" width="30" height="30"
              alt="InfyOm Logo">
         <img class="navbar-brand-minimized" src="{{ asset('images/madani-logo-green.png') }}" width="30"
              height="30" alt="InfyOm Logo">
@@ -42,16 +43,15 @@
     </button>
 
     <ul class="nav navbar-nav ml-auto">
-       <!--  <li class="nav-item d-md-down-none">
+        <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="icon-bell"></i>
                 <span class="badge badge-pill badge-danger">5</span>
             </a>
-        </li> -->
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link" style="margin-right: 10px" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
@@ -96,8 +96,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/node_modules/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('js/admin.js') }}"></script>
 @stack('scripts')

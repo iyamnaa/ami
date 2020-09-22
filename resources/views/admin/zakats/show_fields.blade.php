@@ -16,6 +16,12 @@
     <p>{{ $zakat->name }}</p>
 </div>
 
+<!-- Email Field -->
+<div class="form-group">
+    {!! Form::label('email', 'Email:') !!}
+    <p>{{ $zakat->email }}</p>
+</div>
+
 <!-- Telephone Field -->
 <div class="form-group">
     {!! Form::label('telephone', 'Telephone:') !!}
@@ -26,12 +32,6 @@
 <div class="form-group">
     {!! Form::label('address', 'Address:') !!}
     <p>{{ $zakat->address }}</p>
-</div>
-
-<!-- As Anonymous Field -->
-<div class="form-group">
-    {!! Form::label('as_anonymous', 'As Anonymous:') !!}
-    <p>{{ $zakat->as_anonymous }}</p>
 </div>
 
 <!-- Nia Field -->
@@ -62,6 +62,12 @@
 <div class="form-group">
     {!! Form::label('amount', 'Amount:') !!}
     <p>{{ $zakat->amount }}</p>
+</div>
+
+<!-- Administration Fee Field -->
+<div class="form-group">
+    {!! Form::label('administration_fee', 'Administration Fee:') !!}
+    <p>{{ $zakat->administration_fee }}</p>
 </div>
 
 <!-- Qty Field -->

@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CampaignReportDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateCampaignReportRequest;
 use App\Http\Requests\UpdateCampaignReportRequest;
 use App\Repositories\CampaignReportRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use App\Models\ReportCategory;
-use App\Models\CampaignReport;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class CampaignReportController extends AppBaseController
 {
     /** @var  CampaignReportRepository */
     private $campaignReportRepository;
-    private $data = '';
 
     public function __construct(CampaignReportRepository $campaignReportRepo)
     {
         $this->campaignReportRepository = $campaignReportRepo;
     }
-
 
     public function report(Request $request)
     {
@@ -42,16 +39,12 @@ class CampaignReportController extends AppBaseController
     /**
      * Display a listing of the CampaignReport.
      *
-     * @param Request $request
-     *
+     * @param CampaignReportDataTable $campaignReportDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CampaignReportDataTable $campaignReportDataTable)
     {
-        $datas = $this->campaignReportRepository->all();
-
-        return view('admin.campaign_reports.index')
-            ->with('campaignReports', $datas);
+        return $campaignReportDataTable->render('admin.campaign_reports.index');
     }
 
     /**
@@ -75,7 +68,7 @@ class CampaignReportController extends AppBaseController
     {
         $input = $request->all();
 
-        $data = $this->campaignReportRepository->create($input);
+        $campaignReport = $this->campaignReportRepository->create($input);
 
         Flash::success('Campaign Report saved successfully.');
 
@@ -85,49 +78,62 @@ class CampaignReportController extends AppBaseController
     /**
      * Display the specified CampaignReport.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_reports.show')->with('campaignReport', $this->data);
-        }else{
-            return redirect(route('campaign_reports.index'));
+        $campaignReport = $this->campaignReportRepository->find($id);
+
+        if (empty($campaignReport)) {
+            Flash::error('Campaign Report not found');
+
+            return redirect(route('campaignReports.index'));
         }
+
+        return view('admin.campaign_reports.show')->with('campaignReport', $campaignReport);
     }
 
     /**
      * Show the form for editing the specified CampaignReport.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_reports.edit')->with('campaignReport', $this->data);
-        }else{
-            return redirect(route('campaign_reports.index'));
+        $campaignReport = $this->campaignReportRepository->find($id);
+
+        if (empty($campaignReport)) {
+            Flash::error('Campaign Report not found');
+
+            return redirect(route('campaignReports.index'));
         }
+
+        return view('admin.campaign_reports.edit')->with('campaignReport', $campaignReport);
     }
 
     /**
      * Update the specified CampaignReport in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateCampaignReportRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateCampaignReportRequest $request)
     {
+        $campaignReport = $this->campaignReportRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($campaignReport)) {
+            Flash::error('Campaign Report not found');
 
-        $data = $this->campaignReportRepository->update($request->all(), $id);
+            return redirect(route('campaignReports.index'));
+        }
+
+        $campaignReport = $this->campaignReportRepository->update($request->all(), $id);
 
         Flash::success('Campaign Report updated successfully.');
 
@@ -137,31 +143,24 @@ class CampaignReportController extends AppBaseController
     /**
      * Remove the specified CampaignReport from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $campaignReport = $this->campaignReportRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($campaignReport)) {
+            Flash::error('Campaign Report not found');
+
+            return redirect(route('campaignReports.index'));
+        }
 
         $this->campaignReportRepository->delete($id);
 
         Flash::success('Campaign Report deleted successfully.');
 
         return redirect(route('campaignReports.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->campaignReportRepository->find($id)) {
-            $this->data = $this->campaignReportRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Campaign Report not found');
-            return false;
-        }
     }
 }

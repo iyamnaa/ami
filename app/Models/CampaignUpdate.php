@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class CampaignUpdate
  * @package App\Models
- * @version July 21, 2020, 4:38 am UTC
+ * @version September 21, 2020, 10:41 pm WIB
  *
+ * @property \App\Models\Campaign $campaign
+ * @property string $image_cover
+ * @property integer $number_of_recipients
  * @property string $title
  * @property string $body
- * @property integer $campaign_update_id
+ * @property integer $campaign_id
  */
 class CampaignUpdate extends Model
 {
@@ -25,9 +28,9 @@ class CampaignUpdate extends Model
 
 
     public $fillable = [
+        'image_cover',
         'number_of_recipients',
         'title',
-        'image_cover',
         'body',
         'campaign_id'
     ];
@@ -39,9 +42,9 @@ class CampaignUpdate extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'image_cover' => 'string',
         'number_of_recipients' => 'integer',
         'title' => 'string',
-        'image_cover' => 'string',
         'body' => 'string',
         'campaign_id' => 'integer'
     ];
@@ -52,9 +55,10 @@ class CampaignUpdate extends Model
      * @var array
      */
     public static $rules = [
-        'number_of_recipients' => 'required',
-        'title' => 'required',
-        'body' => 'required',
+        'image_cover' => 'nullable|string|max:191',
+        'number_of_recipients' => 'required|integer',
+        'title' => 'required|string|max:191',
+        'body' => 'required|string',
         'campaign_id' => 'required'
     ];
 
@@ -65,7 +69,4 @@ class CampaignUpdate extends Model
     {
         return $this->belongsTo(\App\Models\Campaign::class, 'campaign_id');
     }
-
-
-    
 }

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CampaignCategoryDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateCampaignCategoryRequest;
 use App\Http\Requests\UpdateCampaignCategoryRequest;
 use App\Repositories\CampaignCategoryRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class CampaignCategoryController extends AppBaseController
 {
     /** @var  CampaignCategoryRepository */
     private $campaignCategoryRepository;
-    private $data = '';
 
     public function __construct(CampaignCategoryRepository $campaignCategoryRepo)
     {
@@ -24,16 +24,12 @@ class CampaignCategoryController extends AppBaseController
     /**
      * Display a listing of the CampaignCategory.
      *
-     * @param Request $request
-     *
+     * @param CampaignCategoryDataTable $campaignCategoryDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CampaignCategoryDataTable $campaignCategoryDataTable)
     {
-        $datas = $this->campaignCategoryRepository->all();
-
-        return view('admin.campaign_categories.index')
-            ->with('campaignCategories', $datas);
+        return $campaignCategoryDataTable->render('admin.campaign_categories.index');
     }
 
     /**
@@ -57,7 +53,7 @@ class CampaignCategoryController extends AppBaseController
     {
         $input = $request->all();
 
-        $data = $this->campaignCategoryRepository->create($input);
+        $campaignCategory = $this->campaignCategoryRepository->create($input);
 
         Flash::success('Campaign Category saved successfully.');
 
@@ -67,48 +63,62 @@ class CampaignCategoryController extends AppBaseController
     /**
      * Display the specified CampaignCategory.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_categories.show')->with('campaignCategory', $this->data);
-        }else{
-            return redirect(route('campaign_categories.index'));
+        $campaignCategory = $this->campaignCategoryRepository->find($id);
+
+        if (empty($campaignCategory)) {
+            Flash::error('Campaign Category not found');
+
+            return redirect(route('campaignCategories.index'));
         }
+
+        return view('admin.campaign_categories.show')->with('campaignCategory', $campaignCategory);
     }
 
     /**
      * Show the form for editing the specified CampaignCategory.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_categories.edit')->with('campaignCategory', $this->data);
-        }else{
-            return redirect(route('campaign_categories.index'));
+        $campaignCategory = $this->campaignCategoryRepository->find($id);
+
+        if (empty($campaignCategory)) {
+            Flash::error('Campaign Category not found');
+
+            return redirect(route('campaignCategories.index'));
         }
+
+        return view('admin.campaign_categories.edit')->with('campaignCategory', $campaignCategory);
     }
 
     /**
      * Update the specified CampaignCategory in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateCampaignCategoryRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateCampaignCategoryRequest $request)
     {
-        $this->data_check($id);
+        $campaignCategory = $this->campaignCategoryRepository->find($id);
 
-        $data = $this->campaignCategoryRepository->update($request->all(), $id);
+        if (empty($campaignCategory)) {
+            Flash::error('Campaign Category not found');
+
+            return redirect(route('campaignCategories.index'));
+        }
+
+        $campaignCategory = $this->campaignCategoryRepository->update($request->all(), $id);
 
         Flash::success('Campaign Category updated successfully.');
 
@@ -118,31 +128,24 @@ class CampaignCategoryController extends AppBaseController
     /**
      * Remove the specified CampaignCategory from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $campaignCategory = $this->campaignCategoryRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($campaignCategory)) {
+            Flash::error('Campaign Category not found');
+
+            return redirect(route('campaignCategories.index'));
+        }
 
         $this->campaignCategoryRepository->delete($id);
 
         Flash::success('Campaign Category deleted successfully.');
 
         return redirect(route('campaignCategories.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->campaignCategoryRepository->find($id)) {
-            $this->data = $this->campaignCategoryRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Campaign Category not found');
-            return false;
-        }
     }
 }

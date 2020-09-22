@@ -34,10 +34,16 @@
     <p>{{ $campaign->deadline }}</p>
 </div>
 
-<!-- Confirmed At Field -->
+<!-- Is Deleted Field -->
 <div class="form-group">
-    {!! Form::label('confirmed_at', 'Confirmed At:') !!}
-    <p>{{ $campaign->confirmed_at }}</p>
+    {!! Form::label('is_deleted', 'Is Deleted:') !!}
+    <p>{{ $campaign->is_deleted }}</p>
+</div>
+
+<!-- Status Field -->
+<div class="form-group">
+    {!! Form::label('status', 'Status:') !!}
+    <p>{{ $campaign->status }}</p>
 </div>
 
 <!-- User Id Field -->

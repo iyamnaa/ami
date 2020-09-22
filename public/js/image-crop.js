@@ -19,9 +19,9 @@ $('.upload-result').on('click', function (ev) {
 			success: function (data) {
 				// html = '<img src="' + resp + '" />';
 				// $("#upload-demo-i").html(html);
-				alert(data.success)
 				$('.next-step').removeAttr('disabled')
 				$('#imageCoverName').val(data.file_name)
+				alert(data.message)
 			}
 		});
 	});

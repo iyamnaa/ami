@@ -15,7 +15,7 @@
         "name": "title",
         "dbType": "string,191",
         "htmlType": "text",
-        "validations": "required",
+        "validations": "required|string|max:191|string|max:191",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -27,7 +27,7 @@
         "name": "short_desc",
         "dbType": "text,65535",
         "htmlType": "textarea",
-        "validations": "required",
+        "validations": "required|string|string",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -37,9 +37,9 @@
     },
     {
         "name": "image_cover",
-        "dbType": "string,65535",
+        "dbType": "string,191:nullable",
         "htmlType": "text",
-        "validations": "required",
+        "validations": "nullable|string|max:191|nullable|string|max:191",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -51,7 +51,7 @@
         "name": "body",
         "dbType": "text,65535",
         "htmlType": "textarea",
-        "validations": "required",
+        "validations": "required|string|string",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -63,7 +63,7 @@
         "name": "target",
         "dbType": "integer,false",
         "htmlType": null,
-        "validations": "required",
+        "validations": "required|integer|integer",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -84,10 +84,22 @@
         "inView": true
     },
     {
-        "name": "confirmed_at",
-        "dbType": "datetime:nullable",
-        "htmlType": "date",
-        "validations": null,
+        "name": "is_deleted",
+        "dbType": "boolean",
+        "htmlType": "checkbox,1",
+        "validations": "required|boolean|boolean",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "status",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|string",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -157,7 +169,15 @@
     },
     {
         "type": "relation",
+        "relation": "1tm,CampaignUpdate,campaign_id"
+    },
+    {
+        "type": "relation",
         "relation": "1tm,Donation,campaign_id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,TopCampaign,campaign_id"
     },
     {
         "type": "relation",

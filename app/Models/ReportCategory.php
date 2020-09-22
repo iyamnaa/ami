@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class ReportCategory
  * @package App\Models
- * @version July 21, 2020, 4:38 am UTC
+ * @version September 21, 2020, 10:40 pm WIB
  *
  * @property \Illuminate\Database\Eloquent\Collection $campaignReports
  * @property string $name
@@ -43,7 +43,7 @@ class ReportCategory extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required|string|max:191'
     ];
 
     /**

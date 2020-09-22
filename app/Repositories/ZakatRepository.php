@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class ZakatRepository
  * @package App\Repositories
- * @version July 21, 2020, 4:33 am UTC
+ * @version September 21, 2020, 10:42 pm WIB
 */
 
 class ZakatRepository extends BaseRepository
@@ -23,12 +23,12 @@ class ZakatRepository extends BaseRepository
         'email',
         'telephone',
         'address',
-        'as_anonymous',
         'NIA',
         'amil_name',
         'status',
         'akad',
         'amount',
+        'administration_fee',
         'qty',
         'user_id'
     ];

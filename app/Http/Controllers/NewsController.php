@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\NewsDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Repositories\NewsRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class NewsController extends AppBaseController
 {
     /** @var  NewsRepository */
     private $newsRepository;
-    private $data = '';
 
     public function __construct(NewsRepository $newsRepo)
     {
@@ -24,16 +24,12 @@ class NewsController extends AppBaseController
     /**
      * Display a listing of the News.
      *
-     * @param Request $request
-     *
+     * @param NewsDataTable $newsDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(NewsDataTable $newsDataTable)
     {
-        $news = $this->newsRepository->all();
-
-        return view('admin.news.index')
-            ->with('news', $news);
+        return $newsDataTable->render('admin.news.index');
     }
 
     /**
@@ -67,47 +63,60 @@ class NewsController extends AppBaseController
     /**
      * Display the specified News.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.news.show')->with('news', $this->data);
-        }else{
+        $news = $this->newsRepository->find($id);
+
+        if (empty($news)) {
+            Flash::error('News not found');
+
             return redirect(route('news.index'));
         }
+
+        return view('admin.news.show')->with('news', $news);
     }
 
     /**
      * Show the form for editing the specified News.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.news.edit')->with('news', $this->data);
-        }else{
+        $news = $this->newsRepository->find($id);
+
+        if (empty($news)) {
+            Flash::error('News not found');
+
             return redirect(route('news.index'));
         }
+
+        return view('admin.news.edit')->with('news', $news);
     }
 
     /**
      * Update the specified News in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateNewsRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateNewsRequest $request)
     {
+        $news = $this->newsRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($news)) {
+            Flash::error('News not found');
+
+            return redirect(route('news.index'));
+        }
 
         $news = $this->newsRepository->update($request->all(), $id);
 
@@ -119,31 +128,24 @@ class NewsController extends AppBaseController
     /**
      * Remove the specified News from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $news = $this->newsRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($news)) {
+            Flash::error('News not found');
+
+            return redirect(route('news.index'));
+        }
 
         $this->newsRepository->delete($id);
 
         Flash::success('News deleted successfully.');
 
         return redirect(route('news.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->newsRepository->find($id)) {
-            $this->data = $this->newsRepository->find($id);
-            return true;
-        }else{
-            Flash::error('News not found');
-            return false;
-        }
     }
 }

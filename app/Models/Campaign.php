@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Campaign
  * @package App\Models
- * @version July 21, 2020, 4:29 am UTC
+ * @version September 21, 2020, 10:42 pm WIB
  *
  * @property \App\Models\CampaignCategory $campaignCategory
  * @property \App\Models\User $user
- * @property \App\Models\Donation $donation
  * @property \Illuminate\Database\Eloquent\Collection $campaignReports
+ * @property \Illuminate\Database\Eloquent\Collection $campaignUpdates
  * @property \Illuminate\Database\Eloquent\Collection $donations
+ * @property \Illuminate\Database\Eloquent\Collection $topCampaigns
  * @property \Illuminate\Database\Eloquent\Collection $wishlists
  * @property string $title
  * @property string $short_desc
@@ -21,7 +22,8 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $body
  * @property integer $target
  * @property string|\Carbon\Carbon $deadline
- * @property string|\Carbon\Carbon $confirmed_at
+ * @property boolean $is_deleted
+ * @property string $status
  * @property integer $user_id
  * @property integer $campaign_category_id
  */
@@ -43,6 +45,7 @@ class Campaign extends Model
         'body',
         'target',
         'deadline',
+        'is_deleted',
         'status',
         'user_id',
         'campaign_category_id'
@@ -61,6 +64,7 @@ class Campaign extends Model
         'body' => 'string',
         'target' => 'integer',
         'deadline' => 'datetime',
+        'is_deleted' => 'boolean',
         'status' => 'string',
         'user_id' => 'integer',
         'campaign_category_id' => 'integer'
@@ -72,11 +76,13 @@ class Campaign extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required',
-        'short_desc' => 'required',
-        'body' => 'required',
-        'target' => 'required',
+        'title' => 'required|string|max:191',
+        'short_desc' => 'required|string',
+        'image_cover' => 'nullable|string|max:255',
+        'body' => 'required|string',
+        'target' => 'required|integer',
         'deadline' => 'required',
+        'status' => 'required|string',
         'user_id' => 'required',
         'campaign_category_id' => 'required'
     ];
@@ -176,6 +182,14 @@ class Campaign extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
+    public function campaignUpdates()
+    {
+        return $this->hasMany(\App\Models\CampaignUpdate::class, 'campaign_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
     public function donations()
     {
         return $this->hasMany(\App\Models\Donation::class, 'campaign_id');
@@ -184,16 +198,16 @@ class Campaign extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function wishlists()
-    {
-        return $this->hasMany(\App\Models\Wishlist::class, 'campaign_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
     public function topCampaigns()
     {
         return $this->hasMany(\App\Models\TopCampaign::class, 'campaign_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function wishlists()
+    {
+        return $this->hasMany(\App\Models\Wishlist::class, 'campaign_id');
     }
 }

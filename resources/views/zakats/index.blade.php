@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('stylesheet')
+@push('stylesheet')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
-@endsection
+@endpush
 
 @section('content')
 <section class="header header-zakat">
@@ -146,7 +146,7 @@
             <div class="col-6" align="center">
               <h5><span class="active-menu">Kalkulator</span></h5>
             </div>
-            <div class="col-6" align="center">
+            <div class="col-6" align="center" onclick="change_zakat(8)">
               <h5><span>Hitung mandiri</span></h5>
             </div>
           </div>
@@ -158,7 +158,7 @@
 @endsection
 
 
-@section('javascript')
+@push('script')
 <script src="{{ asset('js/mdb.js') }}"></script>
 <script src="{{ asset('js/style.js') }}"></script>
 <script src="{{ asset('js/alms.js') }}"></script>
@@ -171,7 +171,8 @@
     `@include('zakats.forms.zakat-perdagangan')`,
     `@include('zakats.forms.zakat-simpanan')`,
     `@include('zakats.forms.zakat-hadiah')`,
-    `@include('zakats.forms.zakat-pertanian')`
+    `@include('zakats.forms.zakat-pertanian')`,
+    `@include('zakats.forms.mandiri')`
   ]
   var form_position = ($('.zakat-form-box').eq(0).position().top - 40);
 
@@ -182,5 +183,13 @@
     }, 500);
     refreshform(zakat_number);
   }
+  
+  $("input[type='submit']").click(function() {
+    alert('das')
+    $("input[type='text']").attr('name','')
+    $("#kadarZakat").attr('name', 'kadar-zakat')
+    $("#qtyZakat").attr('name', 'qty-zakat')
+    return true
+  })
 </script>
-@endsection
+@endpush

@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\CampaignReport;
 use App\Models\Campaign;
 use App\Models\Donation;
-use App\Models\CampaignReport;
 use App\Models\Zakat;
 use App\Models\User;
 use App\Repositories\UserRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Auth;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class UserController extends AppBaseController
 {
     /** @var  UserRepository */
     private $userRepository;
-    private $data = '';
 
     public function __construct(UserRepository $userRepo)
     {
         $this->userRepository = $userRepo;
     }
+
 
     /**
      * Display a listing of the User.
@@ -123,18 +124,10 @@ class UserController extends AppBaseController
         return redirect(url('profil/'.$input['username']));
     }
 
-    public function index(Request $request)
+    public function index(UserDataTable $userDataTable)
     {
-        $role = !is_null($request->input('role')) ? $request->input('role') : 'member' ;
-        $users = $this->userRepository->all(['role' => $role]);
-        $users = $users->where('role',$role);
-
-        return view('admin.users.index')
-            ->with('users', $users)
-            ->with('role', $role);
+        return $userDataTable->render('admin.users.index');
     }
-    
-
 
     /**
      * Show the form for creating a new User.
@@ -167,84 +160,64 @@ class UserController extends AppBaseController
     /**
      * Display the specified User.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.users.show')->with('user', $this->data);
-        }else{
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error('User not found');
+
             return redirect(route('users.index'));
         }
+
+        return view('admin.users.show')->with('user', $user);
     }
 
     /**
      * Show the form for editing the specified User.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.users.edit')->with('user', $this->data);
-        }else{
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Flash::error('User not found');
+
             return redirect(route('users.index'));
         }
+
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**
      * Update the specified User in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateUserRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateUserRequest $request)
     {
-        $this->data_check($id);
-        $data = User::find($id);
-        $input = $request->all();
+        $user = $this->userRepository->find($id);
 
-        if($request->hasFile('form_photo')){
-            $photo = $request->file('form_photo');
-            $filename = date('ymdHis').'-'.$photo->getClientOriginalName();
-            $location = public_path('/images/' . $filename);
-            $photo->move(public_path(). '/images/', $filename);
-            $input['photo'] = 'images/'.$filename;
+        if (empty($user)) {
+            Flash::error('User not found');
 
-            if(is_file(public_path().'/'.$data->photo)){
-                unlink(public_path().'/'.$data->photo);
-            }
-        }else if($request->file('form_photo') == null){
-            $input['photo'] = $data->photo;
-        }else{
-            $input['photo'] = 'images/user-default.jpg';
+            return redirect(route('users.index'));
         }
 
-        if($request->hasFile('form_bg_cover')){
-            $cover = $request->file('form_bg_cover');
-            $filename = date('ymdHis').'-'.$cover->getClientOriginalName();
-            $location = public_path('/images/' . $filename);
-            $cover->move(public_path(). '/images/', $filename);
-            $input['bg_cover'] = 'images/'.$filename;
+        $user = $this->userRepository->update($request->all(), $id);
 
-            if(is_file(public_path().'/'.$data->bg_cover)){
-                unlink(public_path().'/'.$data->bg_cover);
-            }
-        }else if($request->file('form_bg_cover') == null){
-            $input['bg_cover'] = $data->bg_cover;
-        }else{
-            $input['bg_cover'] = 'images/user-cover-default.jpg';
-        }
-        $input['password'] = $data->password;
-        $user = $this->userRepository->update($input, $id);
-
-        Flash::success('Data berhasil diubah');
+        Flash::success('User updated successfully.');
 
         return redirect(route('users.index'));
     }
@@ -252,31 +225,24 @@ class UserController extends AppBaseController
     /**
      * Remove the specified User from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $user = $this->userRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($user)) {
+            Flash::error('User not found');
+
+            return redirect(route('users.index'));
+        }
 
         $this->userRepository->delete($id);
 
         Flash::success('User deleted successfully.');
 
         return redirect(route('users.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->userRepository->find($id)) {
-            $this->data = $this->userRepository->find($id);
-            return true;
-        }else{
-            Flash::error('User not found');
-            return false;
-        }
     }
 }

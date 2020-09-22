@@ -15,7 +15,7 @@
         "name": "name",
         "dbType": "string,191",
         "htmlType": "text",
-        "validations": "required",
+        "validations": "required|string|max:191|string|max:191",
         "searchable": true,
         "fillable": true,
         "primary": false,

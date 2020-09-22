@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('stylesheet')
+@push('stylesheet')
 <base href="./">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/registration.css') }}">
-@endsection
+@endpush
 
 @section('content')
 <div class="app flex-row align-items-center">
@@ -167,7 +167,7 @@
 @endsection
 
 
-@section('javascript')
+@push('script')
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -189,4 +189,4 @@
     })
 </script>
 <!-- <script src="{{ asset('js/registration.js') }}"></script> -->
-@endsection
+@endpush

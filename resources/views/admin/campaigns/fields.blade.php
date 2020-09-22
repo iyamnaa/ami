@@ -81,11 +81,6 @@
 </div>
 
 <div id="fields-4">
-    <!-- Image Cover Field
-    <div class="form-group col-sm-6">
-        {!! Form::label('Gambar Cover', 'Image Cover:') !!}
-        {!! Form::file('form_image_cover', ['class' => 'form-control-file', 'accept' => ".jpg,.jpeg,.png"]) !!}
-    </div> -->
     <!-- Body Field -->
     <div class="form-group col-sm-12 col-lg-12">
         {!! Form::label('body', 'Body:') !!}
@@ -95,7 +90,7 @@
     <!-- Submit Field -->
     <div class="form-group col-sm-12">
         {!! Form::hidden('status', 'diminta' , ['class' => 'form-control']) !!}
-        {!! Form::hidden('user_id', Auth::id() , ['class' => 'form-control']) !!}
+        {!! Form::hidden('user_id', Auth::check() ? Auth::id() : 1, ['class' => 'form-control']) !!}
         {!! Form::submit('Simpan Campaign', ['class' => 'btn btn-success float-right']) !!}
         <input type="button" class="previous-step btn btn-light float-right mr-3" value="Kembali">
     </div>

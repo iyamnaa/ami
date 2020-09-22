@@ -7,19 +7,25 @@
 <!-- Transaction Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('transaction_id', 'Transaction Id:') !!}
-    {!! Form::text('transaction_id', null, ['class' => 'form-control']) !!}
+    {!! Form::text('transaction_id', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
+</div>
+
+<!-- Email Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Telephone Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('telephone', 'Telephone:') !!}
-    {!! Form::text('telephone', null, ['class' => 'form-control']) !!}
+    {!! Form::text('telephone', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Address Field -->
@@ -28,26 +34,16 @@
     {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- As Anonymous Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('as_anonymous', 'As Anonymous:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('as_anonymous', 0) !!}
-        {!! Form::checkbox('as_anonymous', '1', null) !!}
-    </label>
-</div>
-
-
 <!-- Nia Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('NIA', 'Nia:') !!}
-    {!! Form::text('NIA', null, ['class' => 'form-control']) !!}
+    {!! Form::text('NIA', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Amil Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('amil_name', 'Amil Name:') !!}
-    {!! Form::text('amil_name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('amil_name', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Status Field -->
@@ -59,13 +55,19 @@
 <!-- Akad Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('akad', 'Akad:') !!}
-    {!! Form::text('akad', null, ['class' => 'form-control']) !!}
+    {!! Form::text('akad', null, ['class' => 'form-control','maxlength' => 191,'maxlength' => 191]) !!}
 </div>
 
 <!-- Amount Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('amount', 'Amount:') !!}
     {!! Form::number('amount', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Administration Fee Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('administration_fee', 'Administration Fee:') !!}
+    {!! Form::number('administration_fee', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Qty Field -->

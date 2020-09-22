@@ -22,21 +22,21 @@
         <input type="text" class="form-control" onkeyup="gold_calculation()" value="1035000" name="harga-emas" placeholder="0">
         </div>
 
-        <label>Nishab (Harga Emas x 86 gram) : </label>
+        <!-- <label>Nishab (Harga Emas x 86 gram) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
         <input type="text" class="form-control" name="nishab-zakat" placeholder="0" disabled="true">
-        </div>
+        </div> -->
 
-<!--         <label>Zakat ((Jumlah x Harga Emas) x 2.5%) : </label>
+        <label>Zakat ((Jumlah x Harga Emas) x 2.5%) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" name="kadar-zakat" placeholder="0" disabled="true">
-        </div> -->
+          <input type="text" class="form-control currency" name="kadar-zakat" value="0" readonly>
+        </div>
 
         <label>Jumlah Tahun : </label>
         <div class="input-group mb-2">

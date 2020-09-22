@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ReportCategoryDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateReportCategoryRequest;
 use App\Http\Requests\UpdateReportCategoryRequest;
 use App\Repositories\ReportCategoryRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class ReportCategoryController extends AppBaseController
 {
     /** @var  ReportCategoryRepository */
     private $reportCategoryRepository;
-    private $data = '';
 
     public function __construct(ReportCategoryRepository $reportCategoryRepo)
     {
@@ -24,16 +24,12 @@ class ReportCategoryController extends AppBaseController
     /**
      * Display a listing of the ReportCategory.
      *
-     * @param Request $request
-     *
+     * @param ReportCategoryDataTable $reportCategoryDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ReportCategoryDataTable $reportCategoryDataTable)
     {
-        $reportCategories = $this->reportCategoryRepository->all();
-
-        return view('admin.report_categories.index')
-            ->with('reportCategories', $reportCategories);
+        return $reportCategoryDataTable->render('admin.report_categories.index');
     }
 
     /**
@@ -67,49 +63,60 @@ class ReportCategoryController extends AppBaseController
     /**
      * Display the specified ReportCategory.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
+        $reportCategory = $this->reportCategoryRepository->find($id);
 
-        if($this->data_check($id)){
-            return view('admin.report_categories.show')->with('reportCategory', $this->data);
-        }else{
-            return redirect(route('report_categories.index'));
+        if (empty($reportCategory)) {
+            Flash::error('Report Category not found');
+
+            return redirect(route('reportCategories.index'));
         }
+
+        return view('admin.report_categories.show')->with('reportCategory', $reportCategory);
     }
 
     /**
      * Show the form for editing the specified ReportCategory.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
+        $reportCategory = $this->reportCategoryRepository->find($id);
 
-        if($this->data_check($id)){
-            return view('admin.report_categories.edit')->with('reportCategory', $this->data);
-        }else{
-            return redirect(route('report_categories.index'));
+        if (empty($reportCategory)) {
+            Flash::error('Report Category not found');
+
+            return redirect(route('reportCategories.index'));
         }
+
+        return view('admin.report_categories.edit')->with('reportCategory', $reportCategory);
     }
 
     /**
      * Update the specified ReportCategory in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateReportCategoryRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateReportCategoryRequest $request)
     {
+        $reportCategory = $this->reportCategoryRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($reportCategory)) {
+            Flash::error('Report Category not found');
+
+            return redirect(route('reportCategories.index'));
+        }
 
         $reportCategory = $this->reportCategoryRepository->update($request->all(), $id);
 
@@ -121,31 +128,24 @@ class ReportCategoryController extends AppBaseController
     /**
      * Remove the specified ReportCategory from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $reportCategory = $this->reportCategoryRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($reportCategory)) {
+            Flash::error('Report Category not found');
+
+            return redirect(route('reportCategories.index'));
+        }
 
         $this->reportCategoryRepository->delete($id);
 
         Flash::success('Report Category deleted successfully.');
 
         return redirect(route('reportCategories.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->reportCategoryRepository->find($id)) {
-            $this->data = $this->reportCategoryRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Report Category not found');
-            return false;
-        }
     }
 }

@@ -17,8 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/element.css') }}">
-
-  @yield('stylesheet')
+    @stack('stylesheet')
 </head>
 <body>
     <div class="full-width mid-content">
@@ -55,6 +54,6 @@
             hidden ? $(".hidden-background").fadeIn(1000) :  $(".hidden-background").fadeOut(1000)
         }
     </script>
-    @yield('javascript')
+    @stack('script')
 </body>
 </html>

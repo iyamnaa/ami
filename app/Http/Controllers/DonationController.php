@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\DonationDataTable;
 use App\Http\Requests\CreateDonationRequest;
 use App\Http\Requests\UpdateDonationRequest;
 use App\Repositories\DonationRepository;
@@ -20,12 +21,12 @@ class DonationController extends AppBaseController
 {
     /** @var  DonationRepository */
     private $donationRepository;
-    private $data = '';
 
     public function __construct(DonationRepository $donationRepo)
     {
         $this->donationRepository = $donationRepo;
     }
+
 
     public function getSnapToken(Request $request)
     {
@@ -116,19 +117,16 @@ class DonationController extends AppBaseController
         return view('donations.payment', ['data' => $data, 'campaign' => $campaign]);
     }
 
+
     /**
      * Display a listing of the Donation.
      *
-     * @param Request $request
-     *
+     * @param DonationDataTable $donationDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(DonationDataTable $donationDataTable)
     {
-        $donations = $this->donationRepository->all();
-
-        return view('admin.donations.index')
-            ->with('donations', $donations);
+        return $donationDataTable->render('admin.donations.index');
     }
 
     /**
@@ -162,47 +160,60 @@ class DonationController extends AppBaseController
     /**
      * Display the specified Donation.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.donations.show')->with('donation', $this->data);
-        }else{
+        $donation = $this->donationRepository->find($id);
+
+        if (empty($donation)) {
+            Flash::error('Donation not found');
+
             return redirect(route('donations.index'));
         }
+
+        return view('admin.donations.show')->with('donation', $donation);
     }
 
     /**
      * Show the form for editing the specified Donation.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.donations.edit')->with('donation', $this->data);
-        }else{
+        $donation = $this->donationRepository->find($id);
+
+        if (empty($donation)) {
+            Flash::error('Donation not found');
+
             return redirect(route('donations.index'));
         }
+
+        return view('admin.donations.edit')->with('donation', $donation);
     }
 
     /**
      * Update the specified Donation in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateDonationRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateDonationRequest $request)
     {
+        $donation = $this->donationRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($donation)) {
+            Flash::error('Donation not found');
+
+            return redirect(route('donations.index'));
+        }
 
         $donation = $this->donationRepository->update($request->all(), $id);
 
@@ -214,31 +225,24 @@ class DonationController extends AppBaseController
     /**
      * Remove the specified Donation from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $donation = $this->donationRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($donation)) {
+            Flash::error('Donation not found');
+
+            return redirect(route('donations.index'));
+        }
 
         $this->donationRepository->delete($id);
 
         Flash::success('Donation deleted successfully.');
 
         return redirect(route('donations.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->donationRepository->find($id)) {
-            $this->data = $this->donationRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Donation not found');
-            return false;
-        }
     }
 }

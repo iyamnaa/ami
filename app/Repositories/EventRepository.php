@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class EventRepository
  * @package App\Repositories
- * @version July 20, 2020, 9:35 am UTC
+ * @version September 21, 2020, 10:43 pm WIB
 */
 
 class EventRepository extends BaseRepository

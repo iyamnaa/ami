@@ -29,6 +29,12 @@
           <span class="menu-list"> Campaign </span>
         </li>
       </a>
+      <a href="{{ route('topCampaigns.index') }}"> 
+        <li class="sub-menu">
+          <i class="fa fa-home"></i>
+          <span class="menu-list"> Top Campaign </span>
+        </li>
+      </a>
       <a href="{{ route('campaignCategories.index') }}"> 
         <li class="sub-menu">
           <i class="fa fa-th-list"></i>

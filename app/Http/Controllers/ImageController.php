@@ -26,10 +26,10 @@ class ImageController extends Controller
 
             file_put_contents($path, $data);
 
-            return response()->json(['success'=> $path, 'file_name' => $image_name]);
+            return response()->json(['message'=> $path, 'file_name' => $image_name]);
 
         } catch (\Throwable $th) {
-            return response()->json(['success'=> $th->getMessage(),'file_name' => null]);
+            return response()->json(['message'=> $th->getMessage(),'file_name' => null]);
         }
     }
 }

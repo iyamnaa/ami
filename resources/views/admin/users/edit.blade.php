@@ -18,7 +18,7 @@
                               <strong>Edit User</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch', 'files' => true]) !!}
+                              {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
 
                               @include('admin.users.fields')
 

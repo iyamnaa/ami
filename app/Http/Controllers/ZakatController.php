@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ZakatDataTable;
 use App\Http\Requests\CreateZakatRequest;
 use App\Http\Requests\UpdateZakatRequest;
 use App\Repositories\ZakatRepository;
@@ -27,12 +28,12 @@ class ZakatController extends AppBaseController
       'zakat-hadiah' => 'Z07',
       'zakat-pertanian' => 'Z08',
     ];
-    private $data = '';
 
     public function __construct(ZakatRepository $zakatRepo)
     {
         $this->zakatRepository = $zakatRepo;
     }
+
 
     /**
      * Display a listing of the Zakat.
@@ -120,7 +121,7 @@ class ZakatController extends AppBaseController
 
     public function payment(Request $request){
         $data = array(
-            'qty' => $request->input('qty-zakat'),
+            'qty' => $request->input('qty-zakat') != null ? $request->input('qty-zakat') : 1,
             'kadar-zakat' => str_replace('.', '', $request->input('kadar-zakat')),
             'akad' => $request->input('akad'),
             'name' => Auth::check() ? Auth::user()->name : '',
@@ -132,12 +133,16 @@ class ZakatController extends AppBaseController
         return view('zakats.payment', ['data' => $data]);
     }
 
-    public function index(Request $request)
-    {
-        $zakats = $this->zakatRepository->all();
 
-        return view('admin.zakats.index')
-            ->with('zakats', $zakats);
+    /**
+     * Display a listing of the Zakat.
+     *
+     * @param ZakatDataTable $zakatDataTable
+     * @return Response
+     */
+    public function index(ZakatDataTable $zakatDataTable)
+    {
+        return $zakatDataTable->render('admin.zakats.index');
     }
 
     /**
@@ -171,81 +176,89 @@ class ZakatController extends AppBaseController
     /**
      * Display the specified Zakat.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.zakats.show')->with('zakat', $this->data);
-        }else{
+        $zakat = $this->zakatRepository->find($id);
+
+        if (empty($zakat)) {
+            Flash::error('Zakat not found');
+
             return redirect(route('zakats.index'));
         }
+
+        return view('admin.zakats.show')->with('zakat', $zakat);
     }
 
     /**
      * Show the form for editing the specified Zakat.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.zakats.show')->with('zakat', $this->data);
-        }else{
+        $zakat = $this->zakatRepository->find($id);
+
+        if (empty($zakat)) {
+            Flash::error('Zakat not found');
+
             return redirect(route('zakats.index'));
         }
+
+        return view('admin.zakats.edit')->with('zakat', $zakat);
     }
 
     /**
      * Update the specified Zakat in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateZakatRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateZakatRequest $request)
     {
-        $this->data_check($id);
+        $zakat = $this->zakatRepository->find($id);
+
+        if (empty($zakat)) {
+            Flash::error('Zakat not found');
+
+            return redirect(route('zakats.index'));
+        }
 
         $zakat = $this->zakatRepository->update($request->all(), $id);
 
         Flash::success('Zakat updated successfully.');
 
-        return redirect(route('admin.zakats.index'));
+        return redirect(route('zakats.index'));
     }
 
     /**
      * Remove the specified Zakat from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
-        $this->data_check($id);
+        $zakat = $this->zakatRepository->find($id);
+
+        if (empty($zakat)) {
+            Flash::error('Zakat not found');
+
+            return redirect(route('zakats.index'));
+        }
 
         $this->zakatRepository->delete($id);
 
         Flash::success('Zakat deleted successfully.');
 
         return redirect(route('zakats.index'));
-    }
-
-    protected function data_check($id){
-        if ($this->zakatRepository->find($id)) {
-            $this->data = $this->zakatRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Zakat not found');
-            return false;
-        }
     }
 }

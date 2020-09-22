@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('stylesheet')
+@push('stylesheet')
 
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/donation.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/alms.css') }}">
-@endsection
+@endpush
 
 @section('content')
 @include('layouts.modal')
@@ -99,7 +99,7 @@
               @php $campaign = $topCampaign->campaign @endphp
               <a href="{{ url('/campaign/'.$campaign->id) }}">
                 <td class="pr-4">
-                  <div class="campaign-box row bg-light">
+                  <div class="campaign-box row bg-white">
                     <div class="campaign-image-box col-12">
                       <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
                     </div>
@@ -229,7 +229,7 @@
 
 @endsection
 
-@section('javascript')
+@push('script')
 <script src="{{ asset('js/mdb.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script> 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -289,4 +289,4 @@
     })
   }
 </script>
-@endsection
+@endpush

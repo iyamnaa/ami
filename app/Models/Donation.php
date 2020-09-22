@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Donation
  * @package App\Models
- * @version July 21, 2020, 4:34 am UTC
+ * @version September 21, 2020, 10:41 pm WIB
  *
  * @property \App\Models\Campaign $campaign
  * @property \App\Models\User $user
@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property string $status
  * @property string $akad
  * @property integer $amount
+ * @property integer $administration_fee
  * @property integer $user_id
  * @property integer $campaign_id
  */
@@ -85,17 +86,20 @@ class Donation extends Model
      * @var array
      */
     public static $rules = [
-        'number' => 'required',
-        'transaction_id' => 'required',
-        'name' => 'required',
-        // 'email' => 'required',
-        // 'telephone' => 'required',
-        // 'address' => 'required',
-        'as_anonymous' => 'required',
-        'status' => 'required',
-        'akad' => 'required',
-        'amount' => 'required',
-        'administration_fee' => 'required',
+        'number' => 'required|integer',
+        'transaction_id' => 'required|string|max:191',
+        'name' => 'required|string|max:191',
+        'email' => 'required|string|max:191',
+        'telephone' => 'required|string|max:191',
+        'address' => 'required|string',
+        'as_anonymous' => 'required|boolean',
+        'NIA' => 'nullable|string|max:191',
+        'amil_name' => 'nullable|string|max:191',
+        'status' => 'required|string',
+        'akad' => 'required|string|max:191',
+        'amount' => 'required|integer',
+        'administration_fee' => 'required|integer',
+        'user_id' => 'nullable',
         'campaign_id' => 'required'
     ];
 

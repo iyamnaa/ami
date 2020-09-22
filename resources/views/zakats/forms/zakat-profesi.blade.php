@@ -6,12 +6,20 @@
   <div class="form-group">
     <div class="row">
       <div class="col-12">
+        <label>Harga Beras (Kg) : </label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          </div>
+        <input type="text" class="form-control" onkeyup="profession_calculation()" name="harga-beras" value="14000" placeholder="0" >
+        </div>
+
         <label>Penghasilan (Bulan) : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="number" class="form-control" onkeyup="profession_calculation()" name="jumlah-penghasilan" placeholder="0" required>
+        <input type="text" class="form-control currency" onkeyup="profession_calculation()" name="jumlah-penghasilan" placeholder="0" required>
         </div>
 
         <label>Pengeluaran Pokok (Bulan) : </label>
@@ -19,15 +27,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text" style="font-size: .94rem">Rp</div>
           </div>
-        <input type="text" class="form-control" onkeyup="profession_calculation()" name="jumlah-pengeluaran" placeholder="0">
-        </div>
-
-        <label>Harga Beras (Kg) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
-          </div>
-        <input type="text" class="form-control" onkeyup="profession_calculation()" name="harga-beras" value="14000" placeholder="0" autocomplete="off">
+        <input type="text" class="form-control currency" onkeyup="profession_calculation()" name="jumlah-pengeluaran" placeholder="0">
         </div>
 
         <label>Nishab (Harga Beras x 552 Kg) : </label>
@@ -37,13 +37,21 @@
           </div>
         <input type="text" class="form-control" name="nishab-zakat" value="14000" placeholder="0" disabled="true">
         </div>
+        
+        <label>Zakat (Harga Beras x 2.5 Kg) : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" style="font-size: .94rem">Rp</div>
+            </div>
+          <input type="text" class="form-control currency" name="kadar-zakat" id="kadarZakat" value="0" readonly>
+          </div>
 
         <label>Jumlah Bulan : </label>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
-        <input type="text" class="form-control" onkeyup="zakat_show(this)" name="qty-zakat" value="1" placeholder="0">
+        <input type="number" class="form-control" onkeyup="zakat_show(this)" name="qty-zakat" id="qtyZakat" value="1" placeholder="0">
         </div>
 
         <br>

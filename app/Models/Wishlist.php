@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Wishlist
  * @package App\Models
- * @version July 21, 2020, 4:38 am UTC
+ * @version September 21, 2020, 10:40 pm WIB
  *
  * @property \App\Models\Campaign $campaign
  * @property \App\Models\User $user

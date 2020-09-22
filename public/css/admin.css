@@ -61,3 +61,37 @@ a:focus{
   align-items: center;
   justify-content: center;
 }
+.dt-buttons,
+.dataTables_filter{
+  margin-bottom: .8rem;
+}
+
+.dataTables_filter input{
+  margin-left: 1rem;
+}
+
+.dataTables_filter,
+.dataTables_paginate{
+  margin-left: auto;
+}
+
+.dataTables_paginate ul{
+  margin: 0;
+}
+
+.dataTables_paginate .paginate_button{
+  border: 1px solid #bbf;
+  padding: 8px 16px;
+}
+
+.dataTables_paginate .disabled{
+  color: silver;
+}
+
+.dataTables_paginate .active{
+  background-color:dodgerblue;
+}
+
+.dataTables_paginate .active a{
+  color: white !important;
+}

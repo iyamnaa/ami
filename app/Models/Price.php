@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Price
  * @package App\Models
- * @version September 20, 2020, 8:36 pm WIB
+ * @version September 21, 2020, 10:43 pm WIB
  *
  * @property string $name
  * @property integer $price

@@ -2,37 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CampaignDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Repositories\CampaignRepository;
-use App\Http\Controllers\AppBaseController;
-use App\Models\CampaignCategory;
-use App\Models\CampaignUpdate;
-use App\Models\Campaign;
-use App\Models\User;
-use App\Models\Donation;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
+use Auth;
+use App\Models\CampaignCategory;
 
 class CampaignController extends AppBaseController
 {
     /** @var  CampaignRepository */
     private $campaignRepository;
-    private $data = '';
 
     public function __construct(CampaignRepository $campaignRepo)
     {
         $this->campaignRepository = $campaignRepo;
     }
 
-    /**
-     * Display a listing of the Campaign.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function front(Request $request)
     {
         $filter = array(
@@ -66,12 +56,15 @@ class CampaignController extends AppBaseController
                                       ]);
     }
 
-    public function index(Request $request)
+    /**
+     * Display a listing of the Campaign.
+     *
+     * @param CampaignDataTable $campaignDataTable
+     * @return Response
+     */
+    public function index(CampaignDataTable $campaignDataTable)
     {
-        $datas = $this->campaignRepository->all();
-
-        return view('admin.campaigns.index')
-            ->with('campaigns', $datas);
+        return $campaignDataTable->render('admin.campaigns.index');
     }
 
     /**
@@ -82,7 +75,7 @@ class CampaignController extends AppBaseController
     public function create()
     {
         $categories = CampaignCategory::all();
-        return view('admin.campaigns.create', ['campaign' => $this->data, 'categories' => $categories]);
+        return view('admin.campaigns.create', ['categories' => $categories]);
     }
 
     /**
@@ -102,7 +95,8 @@ class CampaignController extends AppBaseController
             $input['image_cover'] = 'images/campaign/default.jpg';
         }
 
-
+        $input['user_id']= Auth::check() ? Auth::id() : 1;
+        $input['is_deleted']= 0;
         $input['status']='diminta';
         $data = $this->campaignRepository->create($input);
 
@@ -114,40 +108,44 @@ class CampaignController extends AppBaseController
     /**
      * Display the specified Campaign.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaigns.edit')->with('campaign', $this->data);
-        }else{
+        $campaign = $this->campaignRepository->find($id);
+        if (empty($campaign)) {
+            Flash::error('Campaign not found');
             return redirect(route('campaigns.index'));
         }
+        return view('admin.campaigns.show')->with('campaign', $campaign);
     }
 
     /**
      * Show the form for editing the specified Campaign.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            $categories = CampaignCategory::all();
-            return view('admin.campaigns.edit', ['campaign' => $this->data, 'categories' => $categories]);
-        }else{
+        $campaign = $this->campaignRepository->find($id);
+
+        if (empty($campaign)) {
+            Flash::error('Campaign not found');
             return redirect(route('campaigns.index'));
         }
+
+        $categories = CampaignCategory::all();
+        return view('admin.campaigns.edit', ['campaign' => $campaign, 'categories' => $categories]);
     }
 
     /**
      * Update the specified Campaign in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateCampaignRequest $request
      *
      * @return Response
@@ -168,7 +166,7 @@ class CampaignController extends AppBaseController
 
         if($this->data_check($id)){
             $data = $this->campaignRepository->update($input, $id);
-            Flash::success('Campaign updated successfully.');
+            Flash::success('Campaign berhasil diedit.');
             return redirect(route('campaigns.index'));
         }else{
             Flash::alert('Campaign Tidak Ditemukan');
@@ -179,28 +177,20 @@ class CampaignController extends AppBaseController
     /**
      * Remove the specified Campaign from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
-        $this->data_check($id);
+        $campaign = $this->campaignRepository->find($id);
+        if (empty($campaign)) {
+            Flash::error('Campaign not found');
+            return redirect(route('campaigns.index'));
+        }
+
         $this->campaignRepository->delete($id);
         Flash::success('Campaign deleted successfully.');
-
         return redirect(route('campaigns.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->campaignRepository->find($id)) {
-            $this->data = $this->campaignRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Campaign not found');
-            return false;
-        }
     }
 }

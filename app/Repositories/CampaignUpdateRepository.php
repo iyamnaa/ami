@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class CampaignUpdateRepository
  * @package App\Repositories
- * @version July 21, 2020, 4:38 am UTC
+ * @version September 21, 2020, 10:41 pm WIB
 */
 
 class CampaignUpdateRepository extends BaseRepository
@@ -17,9 +17,11 @@ class CampaignUpdateRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'image_cover',
+        'number_of_recipients',
         'title',
         'body',
-        'campaign_update_id'
+        'campaign_id'
     ];
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 /**
  * Class Event
  * @package App\Models
- * @version July 20, 2020, 9:35 am UTC
+ * @version September 21, 2020, 10:43 pm WIB
  *
  * @property string $name
  * @property string $description
@@ -48,9 +48,9 @@ class Event extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'description' => 'required',
-        'active' => 'required'
+        'name' => 'required|string|max:191',
+        'description' => 'required|string',
+        'active' => 'required|boolean'
     ];
 
     

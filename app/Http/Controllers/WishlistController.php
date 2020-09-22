@@ -2,50 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\WishlistDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateWishlistRequest;
 use App\Http\Requests\UpdateWishlistRequest;
 use App\Repositories\WishlistRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class WishlistController extends AppBaseController
 {
     /** @var  WishlistRepository */
     private $wishlistRepository;
-    private $data = '';
 
     public function __construct(WishlistRepository $wishlistRepo)
     {
         $this->wishlistRepository = $wishlistRepo;
     }
 
-    public function campaignSave(CreateWishlistRequest $request)
-    {
-        try{
-            $input = $request->all();
-            $wishlist = $this->wishlistRepository->create($input);
-
-            return response()->json(array('message' => 'success' ), 200);
-        }catch(\Throwable $e){
-            return response()->json(array('message' => $e->getMessage()), 200);
-        }
-    }
-
     /**
      * Display a listing of the Wishlist.
      *
-     * @param Request $request
-     *
+     * @param WishlistDataTable $wishlistDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(WishlistDataTable $wishlistDataTable)
     {
-        $wishlists = $this->wishlistRepository->all();
-
-        return view('admin.wishlists.index')
-            ->with('wishlists', $wishlists);
+        return $wishlistDataTable->render('admin.wishlists.index');
     }
 
     /**
@@ -79,46 +63,60 @@ class WishlistController extends AppBaseController
     /**
      * Display the specified Wishlist.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.wishlists.show')->with('wishlist', $this->data);
-        }else{
+        $wishlist = $this->wishlistRepository->find($id);
+
+        if (empty($wishlist)) {
+            Flash::error('Wishlist not found');
+
             return redirect(route('wishlists.index'));
         }
+
+        return view('admin.wishlists.show')->with('wishlist', $wishlist);
     }
 
     /**
      * Show the form for editing the specified Wishlist.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.wishlists.edit')->with('wishlist', $this->data);
-        }else{
+        $wishlist = $this->wishlistRepository->find($id);
+
+        if (empty($wishlist)) {
+            Flash::error('Wishlist not found');
+
             return redirect(route('wishlists.index'));
         }
+
+        return view('admin.wishlists.edit')->with('wishlist', $wishlist);
     }
 
     /**
      * Update the specified Wishlist in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateWishlistRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateWishlistRequest $request)
     {
-        $this->data_check($id);
+        $wishlist = $this->wishlistRepository->find($id);
+
+        if (empty($wishlist)) {
+            Flash::error('Wishlist not found');
+
+            return redirect(route('wishlists.index'));
+        }
 
         $wishlist = $this->wishlistRepository->update($request->all(), $id);
 
@@ -130,30 +128,24 @@ class WishlistController extends AppBaseController
     /**
      * Remove the specified Wishlist from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
-        $this->data_check($id);
+        $wishlist = $this->wishlistRepository->find($id);
+
+        if (empty($wishlist)) {
+            Flash::error('Wishlist not found');
+
+            return redirect(route('wishlists.index'));
+        }
 
         $this->wishlistRepository->delete($id);
 
         Flash::success('Wishlist deleted successfully.');
 
-        return redirect(route('admin.wishlists.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->wishlistRepository->find($id)) {
-            $this->data = $this->wishlistRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Wishlist not found');
-            return false;
-        }
+        return redirect(route('wishlists.index'));
     }
 }

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class CampaignReportRepository
  * @package App\Repositories
- * @version July 21, 2020, 4:37 am UTC
+ * @version September 21, 2020, 10:41 pm WIB
 */
 
 class CampaignReportRepository extends BaseRepository

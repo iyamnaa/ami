@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth;
 use App\Models\CampaignCategory;
 use App\Models\TopCampaign;
 use App\Models\Campaign;
+use App\Models\User;
+use App\Models\Zakat;
 use App\Models\Donation;
 
 class HomeController extends AppBaseController
@@ -60,7 +62,15 @@ class HomeController extends AppBaseController
     public function home()
     {
         parent::adminOnly();
-        return view('admin.home');
+        $dataCount = array(
+            'campaigns' => Campaign::all()->count(),
+            'users' => User::all()->count(),
+            'donations' => Donation::all()->count(),
+            'zakats' => Zakat::all()->count(),
+        );
+        return view('admin.home', [
+                                    'dataCount' => $dataCount
+                                  ]);
     }
 
     public function signOut()

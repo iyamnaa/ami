@@ -68,15 +68,14 @@ Route::group(['prefix' => 'kwitansi'], function(){
 });
 
 Route::post('/payment/notification/handler','NotificationController@notification')->name('notification.handler');
-// Auth::routes();
 
 Auth::routes(['verify' => true]);
 Route::get('/sign-out', '\App\Http\Controllers\Auth\LoginController@logout')->name('user.logout');
-// Route::get('/home', 'HomeController@index')->middleware('verified');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], function(){
+Route::group(['prefix' => 'admin' ], function(){
   Route::get('/', 'HomeController@home')->name('home');
   
+  Route::resource('prices', 'PriceController');
   Route::resource('events', 'EventController');
   Route::resource('news', 'NewsController');
   Route::resource('campaigns', 'CampaignController');
@@ -86,8 +85,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['verified', 'admin'] ], func
   Route::resource('campaignCategories', 'CampaignCategoryController');
   Route::resource('campaignReports', 'CampaignReportController');
   Route::resource('campaignUpdates', 'CampaignUpdateController');
-  Route::resource('campaignReports', 'CampaignReportController');
-  Route::resource('campaignUpdates', 'CampaignUpdateController');
+  Route::resource('topCampaigns', 'TopCampaignController');
   Route::resource('reportCategories', 'ReportCategoryController');
   Route::resource('wishlists', 'WishlistController');
 });

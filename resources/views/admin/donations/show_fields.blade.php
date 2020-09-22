@@ -16,6 +16,12 @@
     <p>{{ $donation->name }}</p>
 </div>
 
+<!-- Email Field -->
+<div class="form-group">
+    {!! Form::label('email', 'Email:') !!}
+    <p>{{ $donation->email }}</p>
+</div>
+
 <!-- Telephone Field -->
 <div class="form-group">
     {!! Form::label('telephone', 'Telephone:') !!}
@@ -62,6 +68,12 @@
 <div class="form-group">
     {!! Form::label('amount', 'Amount:') !!}
     <p>{{ $donation->amount }}</p>
+</div>
+
+<!-- Administration Fee Field -->
+<div class="form-group">
+    {!! Form::label('administration_fee', 'Administration Fee:') !!}
+    <p>{{ $donation->administration_fee }}</p>
 </div>
 
 <!-- User Id Field -->

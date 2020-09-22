@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class NewsRepository
  * @package App\Repositories
- * @version July 20, 2020, 9:53 am UTC
+ * @version September 21, 2020, 10:39 pm WIB
 */
 
 class NewsRepository extends BaseRepository
@@ -19,7 +19,8 @@ class NewsRepository extends BaseRepository
     protected $fieldSearchable = [
         'title',
         'image_cover',
-        'body'
+        'body',
+        'is_deleted'
     ];
 
     /**

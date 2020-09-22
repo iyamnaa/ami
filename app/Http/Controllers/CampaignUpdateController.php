@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CampaignUpdateDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateCampaignUpdateRequest;
 use App\Http\Requests\UpdateCampaignUpdateRequest;
 use App\Repositories\CampaignUpdateRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class CampaignUpdateController extends AppBaseController
 {
     /** @var  CampaignUpdateRepository */
     private $campaignUpdateRepository;
-    private $data = '';
 
     public function __construct(CampaignUpdateRepository $campaignUpdateRepo)
     {
@@ -29,16 +29,12 @@ class CampaignUpdateController extends AppBaseController
     /**
      * Display a listing of the CampaignUpdate.
      *
-     * @param Request $request
-     *
+     * @param CampaignUpdateDataTable $campaignUpdateDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CampaignUpdateDataTable $campaignUpdateDataTable)
     {
-        $datas = $this->campaignUpdateRepository->all();
-
-        return view('admin.campaign_updates.index')
-            ->with('campaignUpdates', $datas);
+        return $campaignUpdateDataTable->render('admin.campaign_updates.index');
     }
 
     /**
@@ -62,7 +58,7 @@ class CampaignUpdateController extends AppBaseController
     {
         $input = $request->all();
 
-        $data = $this->campaignUpdateRepository->create($input);
+        $campaignUpdate = $this->campaignUpdateRepository->create($input);
 
         Flash::success('Campaign Update saved successfully.');
 
@@ -72,49 +68,62 @@ class CampaignUpdateController extends AppBaseController
     /**
      * Display the specified CampaignUpdate.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_updates.show')->with('campaignUpdate', $this->data);
-        }else{
-            return redirect(route('campaign_updates.index'));
+        $campaignUpdate = $this->campaignUpdateRepository->find($id);
+
+        if (empty($campaignUpdate)) {
+            Flash::error('Campaign Update not found');
+
+            return redirect(route('campaignUpdates.index'));
         }
+
+        return view('admin.campaign_updates.show')->with('campaignUpdate', $campaignUpdate);
     }
 
     /**
      * Show the form for editing the specified CampaignUpdate.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
-        if($this->data_check($id)){
-            return view('admin.campaign_updates.edit')->with('campaignUpdate', $this->data);
-        }else{
-            return redirect(route('campaign_updates.index'));
+        $campaignUpdate = $this->campaignUpdateRepository->find($id);
+
+        if (empty($campaignUpdate)) {
+            Flash::error('Campaign Update not found');
+
+            return redirect(route('campaignUpdates.index'));
         }
+
+        return view('admin.campaign_updates.edit')->with('campaignUpdate', $campaignUpdate);
     }
 
     /**
      * Update the specified CampaignUpdate in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateCampaignUpdateRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateCampaignUpdateRequest $request)
     {
+        $campaignUpdate = $this->campaignUpdateRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($campaignUpdate)) {
+            Flash::error('Campaign Update not found');
 
-        $data = $this->campaignUpdateRepository->update($request->all(), $id);
+            return redirect(route('campaignUpdates.index'));
+        }
+
+        $campaignUpdate = $this->campaignUpdateRepository->update($request->all(), $id);
 
         Flash::success('Campaign Update updated successfully.');
 
@@ -124,31 +133,24 @@ class CampaignUpdateController extends AppBaseController
     /**
      * Remove the specified CampaignUpdate from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $campaignUpdate = $this->campaignUpdateRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($campaignUpdate)) {
+            Flash::error('Campaign Update not found');
+
+            return redirect(route('campaignUpdates.index'));
+        }
 
         $this->campaignUpdateRepository->delete($id);
 
         Flash::success('Campaign Update deleted successfully.');
 
         return redirect(route('campaignUpdates.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->campaignUpdateRepository->find($id)) {
-            $this->data = $this->campaignUpdateRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Campaign Update not found');
-            return false;
-        }
     }
 }

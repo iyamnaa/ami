@@ -17,7 +17,6 @@ $('.currency').on('keyup keypress blur change input', function() {
 $(window).on('load', function () {
   refreshform(0)
   set_default_nishab()
-  mobileInputNumber('currency')
  })
 
 function set_value(){
@@ -46,6 +45,9 @@ function set_default_nishab(){
 
 function refreshform(zakat_number){
   set_value()
+  $('input').attr('autocomplete','off')
+  $("input[type='text']").addClass('currency')
+  mobileInputNumber('currency')
   switch (zakat_number){
     case 0 : fitrah_calculation()
              break
@@ -63,7 +65,8 @@ function refreshform(zakat_number){
              break
     case 7 : agricultural_calculation()
              break
-    default : fitrah_calculation()
+    case 8 : mandiri_calculation()
+             break
   }
 }
 
@@ -170,6 +173,10 @@ function agricultural_calculation(){
   zakat_show()
 }
 
-$("form").submit(function() {
-  $("input[name='harga-beras']").attr('name','')
-});
+function mandiri_calculation(total_zakat = 0){
+  $('.tb-list-1').html('Rp. ' + toCurrency(total_zakat))
+  $('.tb-list-2').html(1)
+  $('.tb-total').html('Rp. ' + toCurrency(total_zakat))
+
+  $('#zakatAmount').val(total_zakat)
+}

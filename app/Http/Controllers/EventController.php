@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\EventDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Repositories\EventRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class EventController extends AppBaseController
 {
     /** @var  EventRepository */
     private $eventRepository;
-    private $data = '';
 
     public function __construct(EventRepository $eventRepo)
     {
@@ -24,16 +24,12 @@ class EventController extends AppBaseController
     /**
      * Display a listing of the Event.
      *
-     * @param Request $request
-     *
+     * @param EventDataTable $eventDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(EventDataTable $eventDataTable)
     {
-        $events = $this->eventRepository->all();
-
-        return view('admin.events.index')
-            ->with('events', $events);
+        return $eventDataTable->render('admin.events.index');
     }
 
     /**
@@ -67,48 +63,60 @@ class EventController extends AppBaseController
     /**
      * Display the specified Event.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function show($id)
     {
-        if($this->data_check($id)){
-            return view('admin.events.show')->with('event', $this->data);
-        }else{
+        $event = $this->eventRepository->find($id);
+
+        if (empty($event)) {
+            Flash::error('Event not found');
+
             return redirect(route('events.index'));
         }
+
+        return view('admin.events.show')->with('event', $event);
     }
 
     /**
      * Show the form for editing the specified Event.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
     public function edit($id)
     {
+        $event = $this->eventRepository->find($id);
 
-        if($this->data_check($id)){
-            return view('admin.events.edit')->with('event', $this->data);
-        }else{
+        if (empty($event)) {
+            Flash::error('Event not found');
+
             return redirect(route('events.index'));
         }
+
+        return view('admin.events.edit')->with('event', $event);
     }
 
     /**
      * Update the specified Event in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateEventRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateEventRequest $request)
     {
+        $event = $this->eventRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($event)) {
+            Flash::error('Event not found');
+
+            return redirect(route('events.index'));
+        }
 
         $event = $this->eventRepository->update($request->all(), $id);
 
@@ -120,31 +128,24 @@ class EventController extends AppBaseController
     /**
      * Remove the specified Event from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */
     public function destroy($id)
     {
+        $event = $this->eventRepository->find($id);
 
-        $this->data_check($id);
+        if (empty($event)) {
+            Flash::error('Event not found');
+
+            return redirect(route('events.index'));
+        }
 
         $this->eventRepository->delete($id);
 
         Flash::success('Event deleted successfully.');
 
         return redirect(route('events.index'));
-    }
-    
-    protected function data_check($id){
-        if ($this->eventRepository->find($id)) {
-            $this->data = $this->eventRepository->find($id);
-            return true;
-        }else{
-            Flash::error('Event not found');
-            return false;
-        }
     }
 }

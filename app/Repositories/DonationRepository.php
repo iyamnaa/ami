@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class DonationRepository
  * @package App\Repositories
- * @version July 21, 2020, 4:34 am UTC
+ * @version September 21, 2020, 10:41 pm WIB
 */
 
 class DonationRepository extends BaseRepository
@@ -29,6 +29,7 @@ class DonationRepository extends BaseRepository
         'status',
         'akad',
         'amount',
+        'administration_fee',
         'user_id',
         'campaign_id'
     ];

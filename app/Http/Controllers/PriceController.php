@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PriceDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreatePriceRequest;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Repositories\PriceRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class PriceController extends AppBaseController
@@ -23,16 +24,12 @@ class PriceController extends AppBaseController
     /**
      * Display a listing of the Price.
      *
-     * @param Request $request
-     *
+     * @param PriceDataTable $priceDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(PriceDataTable $priceDataTable)
     {
-        $prices = $this->priceRepository->paginate(10);
-
-        return view('prices.index')
-            ->with('prices', $prices);
+        return $priceDataTable->render('admin.prices.index');
     }
 
     /**
@@ -42,7 +39,7 @@ class PriceController extends AppBaseController
      */
     public function create()
     {
-        return view('prices.create');
+        return view('admin.prices.create');
     }
 
     /**
@@ -66,7 +63,7 @@ class PriceController extends AppBaseController
     /**
      * Display the specified Price.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -80,13 +77,13 @@ class PriceController extends AppBaseController
             return redirect(route('prices.index'));
         }
 
-        return view('prices.show')->with('price', $price);
+        return view('admin.prices.show')->with('price', $price);
     }
 
     /**
      * Show the form for editing the specified Price.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -100,13 +97,13 @@ class PriceController extends AppBaseController
             return redirect(route('prices.index'));
         }
 
-        return view('prices.edit')->with('price', $price);
+        return view('admin.prices.edit')->with('price', $price);
     }
 
     /**
      * Update the specified Price in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdatePriceRequest $request
      *
      * @return Response
@@ -131,9 +128,7 @@ class PriceController extends AppBaseController
     /**
      * Remove the specified Price from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */

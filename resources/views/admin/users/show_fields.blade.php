@@ -1,18 +1,25 @@
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
-    <img src="{{ asset($user->photo) }}"></img>
-</div>
-
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <img src="{{ asset($user->bg_cover) }}"></img>
-</div>
-
-<!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
     <p>{{ $user->name }}</p>
+</div>
+
+<!-- Username Field -->
+<div class="form-group">
+    {!! Form::label('username', 'Username:') !!}
+    <p>{{ $user->username }}</p>
+</div>
+
+<!-- Photo Field -->
+<div class="form-group">
+    {!! Form::label('photo', 'Photo:') !!}
+    <p>{{ $user->photo }}</p>
+</div>
+
+<!-- Bg Cover Field -->
+<div class="form-group">
+    {!! Form::label('bg_cover', 'Bg Cover:') !!}
+    <p>{{ $user->bg_cover }}</p>
 </div>
 
 <!-- Email Field -->
@@ -27,10 +34,10 @@
     <p>{{ $user->gender }}</p>
 </div>
 
-<!-- Phone Field -->
+<!-- Telephone Field -->
 <div class="form-group">
-    {!! Form::label('phone', 'Phone:') !!}
-    <p>{{ $user->phone }}</p>
+    {!! Form::label('telephone', 'Telephone:') !!}
+    <p>{{ $user->telephone }}</p>
 </div>
 
 <!-- Address Field -->
@@ -57,10 +64,22 @@
     <p>{{ $user->password }}</p>
 </div>
 
+<!-- Is Deleted Field -->
+<div class="form-group">
+    {!! Form::label('is_deleted', 'Is Deleted:') !!}
+    <p>{{ $user->is_deleted }}</p>
+</div>
+
 <!-- Role Field -->
 <div class="form-group">
     {!! Form::label('role', 'Role:') !!}
     <p>{{ $user->role }}</p>
+</div>
+
+<!-- Contribution Field -->
+<div class="form-group">
+    {!! Form::label('contribution', 'Contribution:') !!}
+    <p>{{ $user->contribution }}</p>
 </div>
 
 <!-- Remember Token Field -->
