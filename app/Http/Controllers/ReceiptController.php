@@ -31,17 +31,14 @@ class ReceiptController extends Controller
 
     public function show(Request $request)
     {
-        // $pdf = \App::make('dompdf.wrapper');
         $model = $this->findModel($request->type);
 
         $transaction = $model::find($request->id);
         $user_id = $transaction->user_id;
         if(!is_null($user_id) && Auth::id() == $user_id){
             $user = User::where('id', $user_id)->get()->first->id;
-
-            // $pdf = PDF::loadView('users/receipt', ['transaction' => $transaction] );
-            // return $pdf->stream();
-            return view('users/receipt', ['user' => $user, 'transaction' => $transaction]);
+            $pdf = PDF::loadView('users.receipt', ['user' => $user, 'transaction' => $transaction]);
+            return $pdf->stream();
         }else{
             return redirect('/');
         }

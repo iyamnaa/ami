@@ -65,7 +65,7 @@ class CampaignCategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Nama Kategori', 'data' => 'name', 'name' => 'name']),
         ];
     }
 

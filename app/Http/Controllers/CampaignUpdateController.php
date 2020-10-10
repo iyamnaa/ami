@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CampaignUpdateDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateCampaignUpdateRequest;
 use App\Http\Requests\UpdateCampaignUpdateRequest;
@@ -21,9 +22,18 @@ class CampaignUpdateController extends AppBaseController
         $this->campaignUpdateRepository = $campaignUpdateRepo;
     }
 
-    public function update(Request $request)
+    public function addUpdates(Request $request)
     {
         return view('donations.update', ['campaign_id' => $request->id]);
+    }
+
+    public function storeUpdates(Request $request)
+    {
+        $input = $request->all();
+        $data = $this->campaignUpdateRepository->create($input);
+
+        Flash::success('Update Campaign telah dibuat');
+        return redirect(url('/campaign/'.$request->campaign_id));
     }
 
     /**

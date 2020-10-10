@@ -13,6 +13,7 @@ use Flash;
 use Response;
 use Payment;
 use Auth;
+use App\Models\Zakat;
 
 class ZakatController extends AppBaseController
 {
@@ -75,6 +76,7 @@ class ZakatController extends AppBaseController
           'transaction_details' => $transaction_details,
           'customer_details' => $customer_details,
           'item_details' => $item_details,
+          'enabled_payments' => $request->input('payment_method')
         );
 
         $data_zakat = [
@@ -93,6 +95,7 @@ class ZakatController extends AppBaseController
           'akad' => $item_details[0]['name'],
           'qty' => $item_details[0]['quantity'],
           'amount' => $item_details[0]['price'],
+          'administration_fee' => $request->input('administration_fee'),
           
           'user_id' => Auth::check() ? Auth::id() : null
         ];
@@ -142,7 +145,13 @@ class ZakatController extends AppBaseController
      */
     public function index(ZakatDataTable $zakatDataTable)
     {
-        return $zakatDataTable->render('admin.zakats.index');
+        $zakats = Zakat::all();
+        $total['administration_fee'] = $zakats->sum('administration_fee');
+        $total['zakat'] = $zakats->count('id');
+        $total['dana_zakat'] = $zakats->sum('amount');
+        $total['dana_amil'] = $total['dana_zakat'] / 8;
+
+        return $zakatDataTable->render('admin.zakats.index',['total' => $total]);
     }
 
     /**

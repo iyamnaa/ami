@@ -65,10 +65,10 @@ class DonationDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'transaction_id',
-            'name',
-            'amount',
-            'administration_fee',
+            'transaction_id' => new \Yajra\DataTables\Html\Column(['title' => 'ID Transaksi', 'data' => 'transaction_id', 'name' => 'transaction_id']),
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Muzakki', 'data' => 'name', 'name' => 'name']),
+            'amount' => new \Yajra\DataTables\Html\Column(['title' => 'Jumlah Donasi', 'data' => 'amount', 'name' => 'amount']),
+            'administration_fee'  => new \Yajra\DataTables\Html\Column(['title' => 'Biaya Admin', 'data' => 'administration_fee', 'name' => 'administration_fee']),
             'campaign_id' => new \Yajra\DataTables\Html\Column(['title' => 'Campaign', 'data' => 'campaign.title', 'name' => 'campaign_id']),
             'status',
         ];

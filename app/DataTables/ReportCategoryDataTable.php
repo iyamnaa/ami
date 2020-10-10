@@ -65,8 +65,8 @@ class ReportCategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
-            'created_at'
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Nama', 'data' => 'name', 'name' => 'name']),
+            'created_at' => new \Yajra\DataTables\Html\Column(['title' => 'Dibuat Tanggal', 'data' => 'created_at', 'name' => 'created_at']),
         ];
     }
 

@@ -65,9 +65,9 @@ class PriceDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
-            'price',
-            'updated_at'
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Nama', 'data' => 'name', 'name' => 'name']),
+            'price'  => new \Yajra\DataTables\Html\Column(['title' => 'Harga', 'data' => 'price', 'name' => 'price']),
+            'updated_at' => new \Yajra\DataTables\Html\Column(['title' => 'Terakhir Dirubah', 'data' => 'updated_at', 'name' => 'updated_at']),
         ];
     }
 

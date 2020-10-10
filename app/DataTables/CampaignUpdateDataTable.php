@@ -66,9 +66,9 @@ class CampaignUpdateDataTable extends DataTable
     {
         return [
             'campaign_id' => new \Yajra\DataTables\Html\Column(['title' => 'Campaign', 'data' => 'campaign.title', 'name' => 'campaign_id']),
-            'number_of_recipients',
-            'title',
-            'created_at'
+            'number_of_recipients' => new \Yajra\DataTables\Html\Column(['title' => 'Jumlah Penerima', 'data' => 'number_of_recipients', 'name' => 'number_of_recipients']),
+            'title' => new \Yajra\DataTables\Html\Column(['title' => 'Judul', 'data' => 'title', 'name' => 'title']),
+            'created_at' => new \Yajra\DataTables\Html\Column(['title' => 'Dibuat Tanggal', 'data' => 'created_at', 'name' => 'created_at'])
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ReportCategoryDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateReportCategoryRequest;
 use App\Http\Requests\UpdateReportCategoryRequest;

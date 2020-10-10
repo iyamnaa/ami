@@ -18,33 +18,29 @@
       <div class="content-box full-content bg-light">
         <div class="form-header">
           <!-- <h4 class="content-title">Campaign Baru</h4> -->
-          <h4 class="content-title">Laporkan Campaign</h4>
+          <h4 class="content-title">Pemberitahuan Campaign</h4>
         </div>
         <div class="form-body">
           <div class="content-box">
             <div class="form-group">
-              <form>
-
+              {!! Form::open(['route' => 'campaign.updates.save']) !!}
                 <div class="row">
                   <div class="col-12 col-md-12">
-                    <label for="campaginCategory">Kategori Laporan</label>
-                      <select class="form-control" id="campaginCategory" style="margin-bottom: 20px;">
-                        <!-- @foreach($categories as $category)
-                          <option value="{{ $category->id }}"> $category->name </option>
-                        @endforeach -->
-                      </select>
-                    <label for="campaignName">Laporan : </label>
-                    <textarea class="form form-control form-text ckeditor" name="campaign-name" id="campaignName" style="margin-bottom: 20px;" rows="5"> </textarea>
+                    <label for="updateTitle"> Judul Update : </label>
+                    <input type="text" name="title" class="form-control mb-3" placeholder="Judul Update" id="updateTitle">
+                    <label for="numberOfRecipients"> Penerima Manfaaat : </label>
+                    <input type="number" name="number_of_recipients" class="form-control mb-3" placeholder="Penerima Manfaat" id="numberOfRecipients">
+                    <label for="updateBody"> Pembaharuan : </label>
+                    <textarea class="form form-control form-text ckeditor" name="body" id="updateBody" style="margin-bottom: 20px;" rows="5"> </textarea>
                   </div>
                 </div>
                 <div class="row" style="margin-top: 40px">
                   <div class="col-12 col">
+                    <input type="hidden" value="{{ $campaign_id }}" name="campaign_id">
                     <input class="btn btn-success main-btn mobile-full-width" type="submit" name="" value="Kirim Laporan" style="width: 100%">
                   </div>
                 </div>
-
-                </form>
-              </div>
+              {!! Form::close() !!}
             </div>
           </div>
         </div>
@@ -55,5 +51,6 @@
 @endsection
 
 @push('script')
+    <script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
 <script src="{{ asset('js/donation.js') }}"></script>
 @endpush

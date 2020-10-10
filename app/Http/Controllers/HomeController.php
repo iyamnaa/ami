@@ -10,6 +10,9 @@ use App\Models\Campaign;
 use App\Models\User;
 use App\Models\Zakat;
 use App\Models\Donation;
+use App\Models\News;
+use App\Models\TopNews;
+use App\Models\AdvertisingImage;
 
 class HomeController extends AppBaseController
 {
@@ -35,12 +38,16 @@ class HomeController extends AppBaseController
         $categories = CampaignCategory::all();
         $categorySearch = $request->category != null ? $request->category : $categories->first->get();
         $campaignsByCategory = Campaign::where('campaign_category_id', $categorySearch->id)->take(8)->get();
+        $articles = TopNews::all()->take(5);
+        $ads = AdvertisingImage::all();
         return view('index', [
                                 'topCampaigns' => $topCampaigns,
                                 'newestCampaigns' => $newestCampaigns,
                                 'categories' => $categories,
                                 'categorySearch' => $categorySearch,
-                                'campaignsByCategory' => $campaignsByCategory
+                                'campaignsByCategory' => $campaignsByCategory,
+                                'articles' => $articles,
+                                'ads' => $ads
                              ]);
     }
 

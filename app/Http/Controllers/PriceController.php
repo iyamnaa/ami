@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PriceDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreatePriceRequest;
 use App\Http\Requests\UpdatePriceRequest;

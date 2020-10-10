@@ -65,12 +65,11 @@ class ZakatDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'transaction_id',
-            'name',
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Muzakki', 'data' => 'name', 'name' => 'name']),
             'akad',
-            'amount',
-            'administration_fee',
-            'qty',
+            'amount' => new \Yajra\DataTables\Html\Column(['title' => 'Donasi', 'data' => 'amount', 'name' => 'amount']),
+            'administration_fee'  => new \Yajra\DataTables\Html\Column(['title' => 'Biaya Admin', 'data' => 'administration_fee', 'name' => 'administration_fee']),
+            'qty' => new \Yajra\DataTables\Html\Column(['title' => 'Jumlah', 'data' => 'qty', 'name' => 'qty']),
             'status',
         ];
     }

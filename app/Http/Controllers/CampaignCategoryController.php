@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CampaignCategoryDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateCampaignCategoryRequest;
 use App\Http\Requests\UpdateCampaignCategoryRequest;

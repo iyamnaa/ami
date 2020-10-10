@@ -20,9 +20,10 @@ class CreatePricesTable extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared(DB::raw("insert into prices(name, price) values 
-                                ('Beras', 12000),
-                                ('Emas', 1050000) "));
+        DB::unprepared(DB::raw("insert into prices(name, price, created_at, updated_at) values 
+                                ('Beras', 12000, time(), time()),
+                                ('Emas', 1050000, time(), time()),
+                                ('Perak', 8800, time(), time())"));
     }
 
     /**

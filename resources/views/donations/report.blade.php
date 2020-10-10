@@ -21,7 +21,7 @@
           <h4 class="content-title">Laporkan Campaign</h4>
         </div>
         <div class="form-body">
-          <div class="content-box">
+          <div class="content-box no-padd-mobile">
             <div class="form-group">
               {!! Form::open(['route' => 'report.save']) !!}
 
@@ -57,5 +57,6 @@
 @endsection
 
 @push('script')
+    <script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
 <script src="{{ asset('js/donation.js') }}"></script>
 @endpush

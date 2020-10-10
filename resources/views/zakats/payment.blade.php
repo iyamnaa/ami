@@ -54,6 +54,16 @@
                   </div>
                   <input type="number" class="form-control" name="amount" id="amount" value="{{ $data['kadar-zakat'] * $data['qty'] }}" readonly>
                 </div>
+
+                <label style="text-transform: capitalize;" class="mt-1"> Metode Pembayaran : </label>
+                <select class="form-control" id="paymentMethod" onchange="fee_calculation(this.value)">
+                    <option> Bank Transfer </option>
+                    <option> Credit Card </option>
+                    <option> Gopay </option>
+                    <option> Akulaku </option>
+                    <option> Lain-Lainnya </option>
+                </select>
+                <input type="hidden" id="administration_fee" value="4000">
                 <br>
 
                 <div class="custom-control custom-checkbox">
@@ -76,7 +86,7 @@
 @endsection
 
 @push('script')
-<script id="midtrans-script" type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-environment="sandbox" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+<script id="midtrans-script" type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-environment="sandbox" data-client-key="{{ \Config::get('values.client_key') }}"></script>
 <script src="{{ asset('js/mdb.js') }}"></script>
 <script src="{{ asset('js/style.js') }}"></script>
 
@@ -96,6 +106,8 @@
         email : $('#email').val(),
         telephone : $('#telephone').val(),
         address : $('#address').val(),
+        payment_method : $('#paymentMethod').val(),
+        administration_fee : $('#administration_fee').val(),
         qty : "{{ $data['qty'] }}",
         kadarZakat : "{{ $data['kadar-zakat'] }}",
         akad : "{{ $data['akad'] }}"

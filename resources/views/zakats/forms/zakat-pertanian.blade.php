@@ -2,7 +2,7 @@
   <h4 class="content-title">Zakat Pertanian</h4>
 </div>
 <br>
-{{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
+{{ Form::open(array('route' => 'zakats.payment','method' => 'get', 'onsubmit' =>'delete_params()')) }}
   <div class="form-group">
     <div class="row">
       <div class="col-12">
@@ -25,14 +25,6 @@
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" name="irigasi" id="defaultUnchecked" onclick="agricultural_calculation()">
             <label class="custom-control-label" for="defaultUnchecked">Dengan Irigasi</label>
-        </div>
-
-        <label>Nishab (Harga Beras x 524) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
-          </div>
-        <input type="text" class="form-control" name="nishab-zakat" placeholder="0" disabled="true">
         </div>
 
         <label>Zakat (Kg) : </label>

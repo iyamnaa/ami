@@ -5,7 +5,7 @@ namespace App\Helpers;
 class Payment{
 
   public static function initMidtrans(){
-    \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+    \Midtrans\Config::$serverKey = \Config::get('values.server_key');
     \Midtrans\Config::$isProduction = env('MIDTRANS_PRODUCTION');
     \Midtrans\Config::$isSanitized = env('MIDTRANS_SANITIZE');
     \Midtrans\Config::$is3ds = env('MIDTRANS_3DS');
@@ -28,13 +28,42 @@ class Payment{
       $paymentData = Payment::getDefaultData();
     }
 
-    if ($paymentData['transaction_details']['gross_amount'] > 10000) {
-      $enabled_payments = ["credit_card", "mandiri_clickpay", "cimb_clicks",
-                          "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "permata_va",
-                          "bca_va", "bni_va", "other_va", "gopay", "indomaret",
-                          "danamon_online", "akulaku"];
-    }else{
-      $enabled_payments = ["gopay", "akulaku"];
+    // if ($paymentData['transaction_details']['gross_amount'] > 10000) {
+    //   $enabled_payments = ["credit_card", "mandiri_clickpay", "cimb_clicks",
+    //                       "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "permata_va",
+    //                       "bca_va", "bni_va", "other_va", "gopay", "indomaret",
+    //                       "danamon_online", "akulaku"];
+    // }else{
+    //   $enabled_payments = ["gopay", "akulaku"];
+    // }
+    switch ($paymentData['enabled_payments']) {
+      case "Bank Transfer":
+          $enabled_payments = ["permata_va", "bca_va","bni_va", "other_va"];
+          break;
+      case "Credit Card":
+        $enabled_payments = ["credit_card"];
+          break;
+      case "Gopay":
+        $enabled_payments = ["gopay"];
+          break;
+      case "Qris":
+        $enabled_payments = ["qris"];
+          break;
+      case "Akulaku":
+        $enabled_payments = ["akulaku"];
+          break;
+      case "Shopee Pay":
+        $enabled_payments = ["shopee_pay"];
+          break;
+      case "Lain-Lainnya":
+        $enabled_payments = ["indomaret", "alfamart", "alfamidi", "bca_klikpay", "bri_epay", "danamon_online"];
+          break;
+      default:
+        $enabled_payments = ["credit_card", "mandiri_clickpay", "cimb_clicks",
+                              "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "permata_va",
+                              "bca_va", "bni_va", "other_va", "gopay", "indomaret",
+                              "danamon_online", "akulaku"];
+        break;
     }
 
     $callbacks = [

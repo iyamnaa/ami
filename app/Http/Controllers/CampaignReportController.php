@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CampaignReportDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateCampaignReportRequest;
 use App\Http\Requests\UpdateCampaignReportRequest;
 use App\Repositories\CampaignReportRepository;
+use App\Models\ReportCategory;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;

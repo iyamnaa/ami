@@ -92,9 +92,9 @@
   <div class="content-box">
     <br>
     <div class="container-fluid mid-content" style="margin-bottom: 8vh;">
-      <div>
+      <a href="https://api.whatsapp.com/send/?phone=6281310460480&text&app_absent=0">
         <div class="btn main-btn bg-success single-btn"><i class="fa fa-phone"></i> &nbsp; Hubungi Kami </div>
-      </div>
+      </a>
     </div>
 
     <div class="container-fluid">
@@ -112,21 +112,21 @@
         <div class="col-12 content-box" style="text-align: center;">
           <h4 class="content-title">Social</h4>
           <ul class="none-style-list">
-            <li class="hovering-link"> Whatsapp </li>
-            <li class="hovering-link"> Instagram </li>
-            <li class="hovering-link"> Facebook </li>
-            <li class="hovering-link"> YouTube </li>
+            <li> <a href="https://api.whatsapp.com/send/?phone=6281310460480&text&app_absent=0" class="hovering-link"> Whatsapp </li>
+            <li> <a href="https://www.instagram.com/laz_amalmadani/" class="hovering-link"> Instagram </li>
+            <li> <a href="https://twitter.com/LAZ_AmalMadani?s=09" class="hovering-link"> Twitter </li>
+            <li> <a href="https://web.facebook.com/LAZ.AmalMadani?_rdc=1&_rdr" class="hovering-link"> Facebook </li>
+            <li> <a href="https://www.youtube.com/user/amalmadani" class="hovering-link"> YouTube </li>
           </ul>
         </div>
         <div class="col-12 content-box" style="text-align: center;">
           <h4 class="content-title">Link</h4>
           <ul class="none-style-list">
-            <li> <a class="hovering-link" href="#"> Donasi </a> </li>
-            <li> <a class="hovering-link" href="#"> Zakat </a> </li>
-            <li> <a class="hovering-link" href="#"> Berita </a> </li>
-            <li> <a class="hovering-link" href="#"> Program </a> </li>
-            <li> <a class="hovering-link" href="#"> Kontak </a> </li>
-            <li> <a class="hovering-link" href="#"> Tentang Kami </a> </li>
+            <li> <a class="hovering-link" href="{{ route('index') }}"> Beranda </a> </li>
+            <li> <a class="hovering-link" href="{{ route('campaigns.front') }}"> Donasi </a> </li>
+            <li> <a class="hovering-link" href="{{ route('zakats.front') }}"> Zakat </a> </li>
+            <li> <a class="hovering-link" href="{{ route('news.front') }}"> Berita </a> </li>
+            <li> <a class="hovering-link" href="{{ route('about') }}"> Tentang Kami </a> </li>
           </ul>
         </div>
         <div class="col-12 content-box" style="text-align: center;">

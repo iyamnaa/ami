@@ -397,8 +397,13 @@ nav{
 @media (max-width: 768px) {
   #app{
     width: 100vw;
-    mix-width: 100vw;
+    min-width: 100vw;
     max-width: 100vw;
+  }
+
+  .no-padd-mobile{
+    padding: 0 !important;
+    padding-top: 4vh !important;
   }
   
   #user-sidebar{

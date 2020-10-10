@@ -2,21 +2,234 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Amal Madani Indonesia') }}</title>
     <link rel="icon" href="{{ asset('images/madani-logo.png') }}">
     <meta name="theme-color" content="forestgreen" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome/font-awesome.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/receipt.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/receipt.css') }}" media="all" >
 </head>
 <body>
+    <style>
+        .receipt-container{
+        width: 100%;
+        padding:0;
+        display: flex;
+        justify-content: center;
+        font-size: .9rem;
+        }
+
+        .receipt-layer{
+            width: 160px;
+            height: 90px;
+        }
+
+        .receipt-header,
+        .receipt-body{
+            width: 100%;
+        }
+
+        .receipt-header{
+            height: 80px;
+            padding-right: 0px;
+            background-color: darkgreen;
+            font-size: .75rem;
+        }
+
+        .receipt-header .receipt-company,
+        .receipt-header .receipt-address{
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            display: inline-block;
+        }
+
+        .receipt-header .receipt-company table{
+            padding-top: 10px;
+        }
+        .receipt-header .receipt-address table{
+            padding-top: 16px;
+        }
+
+        .receipt-header .receipt-company{
+            color: white;
+            width: 60%;
+        }
+
+        .receipt-header .receipt-company img,
+        .receipt-header .receipt-company td:nth-of-type(1){
+            width: 53px;
+            height: 53px;
+        }
+
+
+        .receipt-header .receipt-address{
+            background-color: orange;
+            color: green;
+            width: 40%;
+        }
+
+        .company-info{
+            padding-left: 30px;
+            padding-right: 20px;
+            font-size: .675rem;
+        }
+
+        .address-info{
+            padding-right: 30px;
+            padding-left: 10px;
+        }
+
+        .address-info tr,
+        .address-info td{
+            vertical-align: middle;
+            height: 100%;
+            padding-right: 5px;
+        }
+
+        .receipt-body{
+            display: table;
+            background-color: white;
+            color: green;
+        }
+
+        .receipt-body .data-donatur,
+        .receipt-body .data-tambahan{
+        display: table-cell;
+        }
+
+        .receipt-body .data-donatur{
+            width: calc(58% - 30px);
+            padding-left: 30px;
+        }
+
+        .data-box{
+            margin: 20px;
+            width: calc(100% - 40px);
+        }
+
+        table{
+            width: 100%;
+        }
+
+        .data-donatur table,
+        .data-tambahan table{
+            margin-top: 20px;
+        }
+
+        .data-donatur td,
+        .data-tambahan td{
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+
+        .receipt-body .data-tambahan{
+            width: 42%;
+            text-align: right;
+        }
+
+        .receipt-body td{
+            text-align: left;
+        }
+
+        .table-data{
+            padding-bottom: 5px;
+            border-bottom: 2px solid green;
+        }
+
+        .table-data span{
+            color: #222 !important;
+            font-weight: bold;
+            padding-left: 8px;
+        }
+
+        .data-title{
+            color: orange;
+            text-transform: uppercase;
+            font-size: 1.02rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .donation-table{
+            border: none;
+        }
+
+        .donation-table th,
+        .donation-table td{
+            padding: 8px 0;
+            text-align: center;
+        }
+
+        .donation-table th{
+            color: white;
+            background-color: darkgreen;
+        }
+
+        .donation-table td{
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 80, 0, .4);
+            color: #222;
+        }
+
+        .donation-table tr td:nth-of-type(1),
+        .donation-table tr td:nth-of-type(3),
+        .donation-table tr td:nth-of-type(5){
+            background-color: silver;
+        }
+
+        .donation-table .row-total td{
+            border: none;
+        }
+
+        .donation-table .row-total td:nth-of-type(1){
+            background-color: transparent;
+        }
+        .donation-table .row-total td:nth-of-type(2){
+            background-color: green;
+            color: white;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+        .donation-table .row-total td:nth-of-type(3){
+            background-color: orange;
+            color: #222;
+            font-weight: bold;
+        }
+
+        .table-footer{
+            color:green;
+            padding-left:30px;
+            padding-right:10px;
+            font-size:.85rem;
+            transform: translateY(-33px);
+        }
+
+        .coloum-ttd{
+            vertical-align: bottom;
+        }
+
+        .coloum-ttd hr{
+            border: 1px solid green
+        }
+
+        .text-justify{
+            text-align: justify;
+        }
+
+        .map-icon{
+            background-color: green;
+            color: white;
+            display: inline-flex;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+        }
+    </style>
     <div class="receipt-container vertical-align-center">
         <div class="receipt-layer">
             <div class="receipt-header">

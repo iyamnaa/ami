@@ -3,7 +3,7 @@
     <a href="{{ url('/campaign/'.$campaign->id) }}">
         <div class="campaign-box row">
             <div class="campaign-image-box col-6">
-            <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
+                <img class="campaign-image" src="{{ asset($campaign->image_cover) }}">
             </div>
             <div class="campaign-info col-6">
             <b class="campaign-title text-success">{{ $campaign->title }}</b><br>

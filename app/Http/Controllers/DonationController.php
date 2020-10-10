@@ -126,7 +126,13 @@ class DonationController extends AppBaseController
      */
     public function index(DonationDataTable $donationDataTable)
     {
-        return $donationDataTable->render('admin.donations.index');
+        $donations = Donation::all();
+        $total['administration_fee'] = $donations->sum('administration_fee');
+        $total['zakat'] = $donations->count('id');
+        $total['dana_zakat'] = $donations->sum('amount');
+        $total['dana_amil'] = $total['dana_zakat'] / 8;
+
+        return $donationDataTable->render('admin.donations.index', ['total' => $total]);
     }
 
     /**

@@ -107,7 +107,7 @@
               <div class="mid-content">
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content simpanan-logo" onclick="change_zakat(5)"><i class="fa fa-money"></i></div>
-                  <div class="zakat-name">Zakat Simpanan</div>
+                  <div class="zakat-name">Zakat Perak</div>
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@
               <div class="mid-content">
                 <div class="zakat-type" align="center">
                   <div class="zakat-logo mid-content hadiah-logo" onclick="change_zakat(6)"><i class="fa fa-gift"></i></div>
-                  <div class="zakat-name">Zakat Hadiah</div>
+                  <div class="zakat-name">Zakat Rikaz</div>
                 </div>
               </div>
             </div>
@@ -169,8 +169,8 @@
     `@include('zakats.forms.zakat-profesi')`,
     `@include('zakats.forms.zakat-tabungan')`,
     `@include('zakats.forms.zakat-perdagangan')`,
-    `@include('zakats.forms.zakat-simpanan')`,
-    `@include('zakats.forms.zakat-hadiah')`,
+    `@include('zakats.forms.zakat-perak')`,
+    `@include('zakats.forms.zakat-rikaz')`,
     `@include('zakats.forms.zakat-pertanian')`,
     `@include('zakats.forms.mandiri')`
   ]
@@ -183,13 +183,5 @@
     }, 500);
     refreshform(zakat_number);
   }
-  
-  $("input[type='submit']").click(function() {
-    alert('das')
-    $("input[type='text']").attr('name','')
-    $("#kadarZakat").attr('name', 'kadar-zakat')
-    $("#qtyZakat").attr('name', 'qty-zakat')
-    return true
-  })
 </script>
 @endpush

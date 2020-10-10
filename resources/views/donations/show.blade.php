@@ -64,26 +64,35 @@
               {!! $campaign->body !!}
               </div>
               <div class="campaign-updates" style="display:none">
+                @if(count($updates) == 0)
+                  <div style="width:100%" align=center>
+                    <p> Belum ada Pemberitahuan Campaign </p>
+                  </div>
+                @endif
                 @if(Auth::check())
                   @if(Auth::id() == $campaign->user_id)
-                    <div class="mobile-full-width" align="center">
-                      <div class="btn main-btn single-btn btn-orange-outline"> Tambahkan Pembaharuan </div>
+                    <div class="mobile-full-width mb-3" align="center">
+                      <a href="{{ url('campaign/update/'.$campaign->id) }}">
+                        <div class="btn main-btn single-btn btn-orange-outline"> Tambahkan Pembaharuan </div>
+                      </a>
                     </div>
                   @endif
                 @endif
-                @foreach($updates as $update)
-                  <h5 class="content-title"> {{ $update->title }} </h5>
-                  <p class="content-desc"> 
-                    <span class="basic-body-{{$update->id}}">
-                     {!! substr($update->body, 0, 5) !!} <span onclick="read_more('{{ $update->id }}')" class="text-primary more-{{ $update->id }}"> Lebih banyak </span>
-                    </span>
-                    <span class="detail-body-{{$update->id}}" style="display:none">
-                     {!! substr($update->body, 5, strlen($update->body)) !!} <span onclick="read_more('{{ $update->id }}')" class="text-primary less-{{ $update->id }}"> Sembunyikan </span>
-                    </span>
-                  </p>
-                  <p class="text-primary"> {{ $update->created_at }} </p>
-                  <hr>
-                @endforeach
+                @if(count($updates) != 0)
+                  @foreach($updates as $update)
+                    <h5 class="content-title"> {{ $update->title }} </h5>
+                    <p class="content-desc"> 
+                      <span class="basic-body-{{$update->id}}">
+                      {!! substr($update->body, 0, 5) !!} <span onclick="read_more('{{ $update->id }}')" class="text-primary more-{{ $update->id }}"> Lebih banyak </span>
+                      </span>
+                      <span class="detail-body-{{$update->id}}" style="display:none">
+                      {!! substr($update->body, 5, strlen($update->body)) !!} <span onclick="read_more('{{ $update->id }}')" class="text-primary less-{{ $update->id }}"> Sembunyikan </span>
+                      </span>
+                    </p>
+                    <p class="text-primary"> {{ $update->created_at }} </p>
+                    <hr>
+                  @endforeach
+                @endif
               </div>
             </div>
 

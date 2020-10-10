@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\EventDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;

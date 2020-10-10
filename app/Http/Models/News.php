@@ -52,6 +52,9 @@ class News extends Model
         'image_cover' => 'required',
         'body' => 'required'
     ];
-
     
+    public function topNews()
+    {
+        return $this->hasMany(\App\Models\topNews::class, 'news_id');
+    }
 }

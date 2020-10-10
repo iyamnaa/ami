@@ -2,67 +2,60 @@
   <h4 class="content-title">Zakat Tabungan</h4>
 </div>
 <br>
-{{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
+{{ Form::open(array('route' => 'zakats.payment','method' => 'get', 'onsubmit' =>'delete_params()')) }}
   <div class="form-group">
     <div class="row">
       <div class="col-12">
-        <label>Penghasilan (Bulan) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          <label>Harga Emas (Gram) : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" style="font-size: .94rem">Rp</div>
+            </div>
+          <input type="text" class="form-control" onkeyup="savings_calculation()" value="1035000" name="harga-emas" placeholder="0">
           </div>
-        <input type="number" class="form-control" name="" placeholder="0">
-        </div>
 
-        <label>Penghasilan Tambahan (Bulan) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          <label>Nishab (Harga Emas x 85 gram) : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" style="font-size: .94rem">Rp</div>
+            </div>
+          <input type="text" class="form-control" name="nishab-zakat" placeholder="0" disabled="true">
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
-        </div>
 
-        <label>Pengeluaran Pokok (Bulan) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          <label>Banyak Tabungan : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" style="font-size: .94rem">Rp</div>
+            </div>
+          <input type="text" class="form-control currency" onkeyup="savings_calculation()" placeholder="0" name="jumlah-tabungan" >
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
-        </div>
 
-        <label>Harga Beras (Kg) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          <label>Zakat ( Tabugan x 2.5% ) : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" style="font-size: .94rem">Rp</div>
+            </div>
+          <input type="text" class="form-control currency" name="kadar-zakat" id="kadarZakat" id="kadarZakat" value="0" readonly>
           </div>
-        <input type="text" class="form-control" name="" placeholder="0">
-        </div>
 
-        <label>Nasab (Harga Beras x 552 Kg) : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text" style="font-size: .94rem">Rp</div>
+          <label>Jumlah Tahun : </label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          <input type="number" class="form-control" onkeyup="zakat_show()" name="qty-zakat" id="qtyZakat" value="1" >
           </div>
-        <input type="text" class="form-control" name="" placeholder="0" disabled="true">
-        </div>
 
-        <label>Jumlah Bulan : </label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-          </div>
-        <input type="text" class="form-control" name="" placeholder="0">
+          <br>
+          <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </p>
         </div>
-        
-        <br>
-        <p> Perlu Membayar Zakat? &nbsp;&nbsp; <span class="text-success" id="zakatCondition"> Ya </span></p>
-      </div>
-      <div class="col-12">
+        <div class="col-12">
         @include('zakats.forms.payment-table')
 
-        <input type="hidden" name="akad" value="zakat-tabungan">
-        <input type="submit" name="" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light full-width">
+          <input type="hidden" name="akad" value="zakat-tabungan" id="zakatType">
+          <input type="submit" value="Bayar Zakat" class="btn main-btn btn-success single-btn text-light full-width">
       </div>
+
     </div> 
   </div>
 {{ Form::close() }}

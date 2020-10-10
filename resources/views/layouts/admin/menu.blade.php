@@ -23,37 +23,49 @@
       <i class="fa fa-heartbeat"></i>
       <span class="menu-list"> Campaign </span>
     </li>
-      <a href="{{ route('campaigns.index') }}"> 
-        <li class="sub-menu">
-          <i class="fa fa-home"></i>
-          <span class="menu-list"> Campaign </span>
-        </li>
-      </a>
-      <a href="{{ route('topCampaigns.index') }}"> 
-        <li class="sub-menu">
-          <i class="fa fa-home"></i>
-          <span class="menu-list"> Top Campaign </span>
-        </li>
-      </a>
-      <a href="{{ route('campaignCategories.index') }}"> 
-        <li class="sub-menu">
-          <i class="fa fa-th-list"></i>
-          <span class="menu-list"> Kategori </span>
-        </li>
-      </a>
-      <a href="{{ route('campaignReports.index') }}"> 
-        <li class="sub-menu">
-          <i class="fa fa-envelope"></i>
-          <span class="menu-list"> Laporan </span>
-        </li>
-      </a>
+    <a href="{{ route('campaigns.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-home"></i>
+        <span class="menu-list"> Campaign </span>
+      </li>
+    </a>
+    <a href="{{ route('topCampaigns.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-home"></i>
+        <span class="menu-list"> Top Campaign </span>
+      </li>
+    </a>
+    <a href="{{ route('campaignCategories.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-th-list"></i>
+        <span class="menu-list"> Kategori </span>
+      </li>
+    </a>
+    <a href="{{ route('campaignReports.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-envelope"></i>
+        <span class="menu-list"> Laporan </span>
+      </li>
+    </a>
+      
 
-    <a href="{{ route('zakats.index') }}">
-      <li>
-        <i class="fa fa-heart"></i>
+    <li class="has-sub-menu">
+      <i class="fa fa-heartbeat"></i>
+      <span class="menu-list"> Zakat </span>
+    </li>
+    <a href="{{ route('zakats.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-home"></i>
         <span class="menu-list"> Zakat </span>
       </li>
-     </a>
+    </a>
+    <a href="{{ route('prices.index') }}"> 
+      <li class="sub-menu">
+        <i class="fa fa-home"></i>
+        <span class="menu-list"> Harga </span>
+      </li>
+    </a>
+
     <a href="{{ route('news.index') }}"> 
       <li>
         <i class="fa fa-file-text"></i>  

@@ -60,11 +60,7 @@ class UserController extends AppBaseController
         if(!is_null($user)){
             $id = $user->id;
             if(Auth::id() == $id){
-                if($this->data_check($id)){
-                    return view('users.edit')->with('user', $user);
-                }else{
-                    return redirect(route('users.index'));
-                }
+                return view('users.edit')->with('user', $user);
             }else{
                 Flash::success('Terjadi Kesalahan.');
                 return redirect(route('index'));

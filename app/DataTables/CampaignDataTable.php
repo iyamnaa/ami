@@ -65,10 +65,10 @@ class CampaignDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'title',
-            'created_at',
+            'title' => new \Yajra\DataTables\Html\Column(['title' => 'Judul', 'data' => 'title', 'name' => 'title']),
+            'created_at' => new \Yajra\DataTables\Html\Column(['title' => 'Dibuat Tanggal', 'data' => 'created_at', 'name' => 'created_at']),
             'target',
-            'deadline',
+            'deadline'  => new \Yajra\DataTables\Html\Column(['title' => 'Batas Waktu', 'data' => 'deadline', 'name' => 'deadline']),
             'status',
             'user_id' => new \Yajra\DataTables\Html\Column(['title' => 'Nama Pembuat', 'data' => 'user.name', 'name' => 'user_id']),
             'campaign_category_id' => new \Yajra\DataTables\Html\Column(['title' => 'Kategori', 'data' => 'campaign_category.name', 'name' => 'campaign_category_id']),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\TopCampaignDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateTopCampaignRequest;
 use App\Http\Requests\UpdateTopCampaignRequest;

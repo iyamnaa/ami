@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\WishlistDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateWishlistRequest;
 use App\Http\Requests\UpdateWishlistRequest;
 use App\Repositories\WishlistRepository;
 use Flash;
+use App\Models\Wishlist;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
@@ -30,6 +32,20 @@ class WishlistController extends AppBaseController
     public function index(WishlistDataTable $wishlistDataTable)
     {
         return $wishlistDataTable->render('admin.wishlists.index');
+    }
+
+    public function campaignSave(CreateWishlistRequest $request)
+    {
+        try{
+            $input = $request->all();
+            $wishlist = Wishlist::updateOrCreate(['user_id' => $request->user_id,
+                                                  'campaign_id' => $request->campaign_id
+                                                 ],$input);
+
+            return response()->json(array('message' => 'Campaign telah disimpan' ), 200);
+        }catch(\Throwable $e){
+            return response()->json(array('message' => $e->getMessage()), 200);
+        }
     }
 
     /**

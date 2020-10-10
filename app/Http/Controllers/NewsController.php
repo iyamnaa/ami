@@ -7,9 +7,12 @@ use App\Http\Requests;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Repositories\NewsRepository;
+use Illuminate\Http\Request;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\News;
+use App\Models\CampaignCategory;
 
 class NewsController extends AppBaseController
 {
@@ -19,6 +22,19 @@ class NewsController extends AppBaseController
     public function __construct(NewsRepository $newsRepo)
     {
         $this->newsRepository = $newsRepo;
+    }
+
+    public function front()
+    {
+        $news = News::all();
+        $categories = CampaignCategory::all();
+        return view('news.index', ['news' => $news, 'categories' => $categories]);
+    }
+
+    public function read(Request $request)
+    {
+        $news = News::find($request->id);
+        return view('news.show', ['news' => $news]);
     }
 
     /**

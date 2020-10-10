@@ -2,7 +2,7 @@
   <h4 class="content-title">Zakat Profesi</h4>
 </div>
 <br>
-{{ Form::open(array('route' => 'zakats.payment','method' => 'get')) }}
+{{ Form::open(array('route' => 'zakats.payment','method' => 'get', 'onsubmit' =>'delete_params()')) }}
   <div class="form-group">
     <div class="row">
       <div class="col-12">

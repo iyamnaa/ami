@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CampaignDataTable;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Repositories\CampaignRepository;
@@ -11,7 +11,11 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
 use Auth;
+use App\Models\CampaignUpdate;
 use App\Models\CampaignCategory;
+use App\Models\Campaign;
+use App\Models\User;
+use App\Models\Donation;
 
 class CampaignController extends AppBaseController
 {

@@ -57,5 +57,6 @@
 @endsection
 
 @push('script')
+<script src="//cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
 <script src="{{ asset('js/donation.js') }}"></script>
 @endpush

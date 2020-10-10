@@ -3,16 +3,23 @@ var amount_of_zakat = 0, total_zakat = 0
 var price_of_goods = new Object()
 var nishab = new Object()
 
+// $('.currency').on('keyup keypress blur change input', function() {
+//   if(event.which >= 37 && event.which <= 40) return
 
-$('.currency').on('keyup keypress blur change input', function() {
-  if(event.which >= 37 && event.which <= 40) return
+//   $(this).val(function(index, value) {
+//     return value
+//     .replace(/\D/g, "")
+//     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+//   })
+// })
 
-  $(this).val(function(index, value) {
-    return value
-    .replace(/\D/g, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-  })
-})
+function delete_params(){
+  $("input[type='text']").attr('name','')
+  $("#kadarZakat").attr('name', 'kadar-zakat')
+  $("#qtyZakat").attr('name', 'qty-zakat')
+
+  return true
+}
 
 $(window).on('load', function () {
   refreshform(0)
@@ -22,7 +29,7 @@ $(window).on('load', function () {
 function set_value(){
   price_of_goods['harga-beras'] = 14000
   price_of_goods['harga-emas'] = 1035000
-  price_of_goods['harga-perak'] = 460835
+  price_of_goods['harga-perak'] = 460800
 
   for (const [name, value] of Object.entries(price_of_goods)) {
     $("input[name='"+name+"']").val(value)
@@ -31,12 +38,15 @@ function set_value(){
 
 function set_default_nishab(){
   nishab['zakat-fitrah'] = 0
-  nishab['zakat-tabungan'] = 0
-  nishab['zakat-hadiah'] = 0
-  nishab['zakat-perdagangan'] = 0
+  nishab['zakat-rikaz'] = 0
+  
   // 85 * Harga Emas
-  nishab['zakat-emas'] = 
-  nishab['zakat-simpanan'] =  85 * price_of_goods['harga-emas']
+  nishab['zakat-tabungan'] = 
+  nishab['zakat-perdagangan'] = 
+  nishab['zakat-emas'] = 85 * price_of_goods['harga-emas']
+
+  // 595 * Harga Perak
+  nishab['zakat-perak'] = 595 * price_of_goods['harga_perak']
 
   // 524 * Harga Beras
   nishab['zakat-profesi'] = 
@@ -53,15 +63,15 @@ function refreshform(zakat_number){
              break
     case 1 : gold_calculation()
              break
-    case 2 : fitrah_calculation()
+    case 2 : profession_calculation()
              break
-    case 3 : fitrah_calculation()
+    case 3 : savings_calculation()
              break
-    case 4 : fitrah_calculation()
+    case 4 : trade_calculation()
              break
-    case 5 : fitrah_calculation()
+    case 5 : silver_calculation()
              break
-    case 6 : fitrah_calculation()
+    case 6 : rikaz_calculation()
              break
     case 7 : agricultural_calculation()
              break
@@ -170,6 +180,50 @@ function agricultural_calculation(){
   }
 
   $("input[name='kadar-zakat-kg']").val(amount_of_zakat_kg)
+  zakat_show()
+}
+
+function silver_calculation(){
+  var amount_of_gold = 1, silver_price = 1
+  amount_of_gold = positiveVariable($("input[name='jumlah-perak']").val())
+  silver_price = positiveVariable($("input[name='harga-perak']").val())
+
+  nishab['zakat-perak'] = 595 * silver_price
+  total_assets = amount_of_gold * silver_price
+  amount_of_zakat = (total_assets * 0.025).toFixed(0)
+  zakat_show()
+
+}
+
+function rikaz_calculation() {
+  total_assets = positiveVariable($("input[name='harga-penemuan']").val())
+  amount_of_zakat = (total_assets / 5).toFixed(0)
+  zakat_show()
+}
+
+function savings_calculation(){
+  var gold_price = 1
+  total_assets = positiveVariable($("input[name='jumlah-tabungan']").val())
+  gold_price = positiveVariable($("input[name='harga-emas']").val())
+
+  nishab['zakat-emas'] = 85 * gold_price
+  amount_of_zakat = (total_assets * 0.025).toFixed(0)
+  zakat_show()
+}
+
+function trade_calculation(){
+  var residual_capital = 0, income = 0, claim = 0
+  var outcome = 0, debt = 0
+
+  residual_capital = $("input[name='modal-sisa']").val() >= 0 ? $("input[name='modal-sisa']").val() : 0
+  income = $("input[name='dana-untung']").val() >= 0 ? $("input[name='dana-untung']").val() : 0
+  claim = $("input[name='jumlah-piutang']").val() >= 0 ? $("input[name='jumlah-piutang']").val() : 0
+  
+  outcome = $("input[name='dana-rugi']").val() >= 0 ? $("input[name='dana-rugi']").val() : 0
+  debt = $("input[name='jumlah-hutang']").val() >= 0 ? $("input[name='jumlah-hutang']").val() : 0
+
+  total_assets = (income + residual_capital + claim) - (outcome + debt)
+  amount_of_zakat = ((total_assets) * 0.025).toFixed(0)
   zakat_show()
 }
 
