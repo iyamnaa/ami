@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TopCampaign extends Model
+class TopNews extends Model
 {
-    public $table = 'top_campaigns';
+    public $table = 'top_news';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
     public $fillable = [
-        'campaign_id'
+        'news_id'
     ];
 
     /**
@@ -22,7 +22,7 @@ class TopCampaign extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'campaign_id' => 'integer'
+        'news_id' => 'integer'
     ];
 
     /**
@@ -31,14 +31,14 @@ class TopCampaign extends Model
      * @var array
      */
     public static $rules = [
-        'campaign_id' => 'required'
+        'news_id' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function topCampaign()
+    public function topNews()
     {
-        return $this->belongsTo(\App\Models\Campaign::class, 'campaign_id');
+        return $this->belongsTo(\App\Models\News::class, 'news_id');
     }
 }

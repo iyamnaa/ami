@@ -16,6 +16,7 @@ use App\Models\CampaignCategory;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Models\Donation;
+use App\Models\TopCampaign;
 
 class CampaignController extends AppBaseController
 {
@@ -58,6 +59,26 @@ class CampaignController extends AppBaseController
                                         'updates' => $updates,
                                         'donations' => $donations
                                       ]);
+    }
+
+    public function topCampaigns()
+    {
+        $campaigns = TopCampaign::all();
+        return view('admin.campaigns.top', ['campaigns' => $campaigns]);
+    }
+
+    public function topCampaignCreate(Request $request)
+    {
+        TopCampaign::updateOrCreate(['campaign_id' => $request->id], ['campaign_id' => $request->id]);
+        Flash::success('Top Campaign added successfully.');
+        return redirect(route('campaigns.index'));
+    }
+
+    public function topCampaignDestroy(Request $request)
+    {
+        TopCampaign::destroy($request->id);
+        Flash::success('Top Campaign deleted successfully.');
+        return redirect(route('topCampaigns.index'));
     }
 
     /**

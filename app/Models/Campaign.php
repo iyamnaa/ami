@@ -198,7 +198,7 @@ class Campaign extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function topCampaigns()
+    public function topCampaign()
     {
         return $this->hasMany(\App\Models\TopCampaign::class, 'campaign_id');
     }

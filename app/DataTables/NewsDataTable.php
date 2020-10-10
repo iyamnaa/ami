@@ -62,7 +62,7 @@ class NewsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'title' => new \Yajra\DataTables\Html\Column(['title' => 'Jumlah', 'data' => 'title', 'name' => 'title']),
+            'title' => new \Yajra\DataTables\Html\Column(['title' => 'Judul', 'data' => 'title', 'name' => 'title']),
             'created_at' => new \Yajra\DataTables\Html\Column(['title' => 'Dibuat Tanggal', 'data' => 'created_at', 'name' => 'created_at']),
         ];
     }

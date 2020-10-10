@@ -96,10 +96,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified', 'admin'] 
   Route::resource('campaignCategories', 'CampaignCategoryController');
   Route::resource('campaignReports', 'CampaignReportController');
   Route::resource('campaignUpdates', 'CampaignUpdateController');
-  Route::resource('topCampaigns', 'TopCampaignController');
   Route::resource('reportCategories', 'ReportCategoryController');
   Route::resource('wishlists', 'WishlistController');
   Route::resource('faqs', 'FAQController');
+
+  Route::group(['prefix' => 'top'], function(){
+    Route::get('/ads', 'HomeController@home')->name('topAds.index');
+  
+    Route::get('/campaigns', 'CampaignController@topCampaigns')->name('topCampaigns.index');
+    Route::post('/campaigns/add/{id}', 'CampaignController@topCampaignCreate')->name('topCampaigns.create');
+    Route::delete('/campaigns/destroy/{id}', 'CampaignController@topCampaignDestroy')->name('topCampaigns.destroy');
+  
+    Route::get('/news', 'NewsController@topNews')->name('topNews.index');
+    Route::post('/news/add/{id}', 'NewsController@topNewsCreate')->name('topNews.create');
+    Route::delete('/news/destroy/{id}', 'NewsController@topNewsDestroy')->name('topNews.destroy');
+  });
 });
 Route::get('coba', 'ImageController@coba');
 

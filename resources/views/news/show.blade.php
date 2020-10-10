@@ -10,7 +10,7 @@
 @section('content') 
 
 
-<div class="text-primary mt-4 mb-4">
+<div class="text-primary mt-4 mb-4 ml-4">
   <a href="{{ route('index') }}" class="text-primary hovering-link">Beranda </a> >
   <a href="{{ route('news.front') }}" class="text-primary hovering-link">Berita </a> >
   <a href="{{ url('/campaign/$campaign->id') }}" class="text-primary hovering-link"> {{ $news->title }} </a>
@@ -48,9 +48,9 @@
   </div>
 </section>
 
-<section>
-  <div class="full-width mt-3">
-    <div class="campaign-info-box content-box bg-light">
+<section class="mb-3">
+  <div class="container mt-3">
+    <div class="campaign-info-box bg-light">
       <div class="additional-info">
         <div class="campaign-info-share">
           <div class="content-box">
@@ -64,8 +64,6 @@
     </div>
   </div>
 </section>
-
-<br><br><br>
 @endsection
 
 

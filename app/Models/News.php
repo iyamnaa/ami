@@ -22,9 +22,6 @@ class News extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
-
-
     public $fillable = [
         'title',
         'image_cover',
@@ -57,5 +54,11 @@ class News extends Model
         'is_deleted' => 'required|boolean'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function topNews()
+    {
+        return $this->hasMany(\App\Models\TopNews::class, 'news_id');
+    }
 }

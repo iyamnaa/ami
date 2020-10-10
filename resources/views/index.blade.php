@@ -20,7 +20,7 @@
         <div class="swiper-slide mid-content">
           <img src="{{ asset($ad->image_url) }}" style="width: 100%;height: 100%;position: absolute;">
         </div>
-      @endpush
+      @endforeach
     </div>
     <div class="swiper-pagination ads-pagination"></div>
   </div>
@@ -34,7 +34,7 @@
         <div class="swiper-wrapper text-light">
           @foreach($articles as $article)
           <a class="swiper-slide mid-content" href="{{ url('berita/'.$article->id) }}">
-            <img src="{{ asset($article->image_cover) }}" style="width: 100%;height: 100%;position: absolute;">
+            <img src="{{ asset($article->topNews->image_cover) }}" style="width: 100%;height: 100%;position: absolute;">
           </a>
           @endforeach
         </div>
@@ -68,7 +68,7 @@
         <table class="table-campaign">
           <tr>
             @foreach($topCampaigns as $topCampaign) 
-              @php $campaign = $topCampaign->campaign @endphp
+              @php $campaign = $topCampaign->topCampaign @endphp
               <td class="pr-4">
                 <a href="{{ url('/campaign/'.$campaign->id) }}">
                   <div class="campaign-box row bg-white">
@@ -196,7 +196,9 @@
         <a href="https://api.whatsapp.com/send/?phone=6281310460480&text&app_absent=0">
           <div class="btn main-btn single-btn btn-success text-light d-inline-block" style="width: calc(100% - 55px);"> <i class="fa fa-phone"></i> &nbsp;&nbsp; Hubungi Kami </div>
         </a>
-        <div class="text-success mid-content" style="border:1.3px solid green;border-radius: 50%;width: 43px; height: 43px;display: inline-flex !important;"><i class="fa fa-question"></i></div>
+        <a href="{{route('faqs.front')}}">
+          <div class="text-success mid-content" style="border:1.3px solid green;border-radius: 50%;width: 43px; height: 43px;display: inline-flex !important;"><i class="fa fa-question"></i></div>
+        </a>
     </div>
   </div>
 </section>

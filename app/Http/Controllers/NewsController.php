@@ -13,11 +13,32 @@ use App\Http\Controllers\AppBaseController;
 use Response;
 use App\Models\News;
 use App\Models\CampaignCategory;
+use App\Models\TopNews;
 
 class NewsController extends AppBaseController
 {
     /** @var  NewsRepository */
     private $newsRepository;
+
+    public function topNews(Request $request)
+    {
+        $articles = TopNews::all();
+        return view('admin.news.top', ['articles' => $articles]);
+    }
+
+    public function topNewsCreate(Request $request)
+    {
+        TopNews::updateOrCreate(['news_id' => $request->id], ['news_id' => $request->id]);
+        Flash::success('Top News added successfully.');
+        return redirect(route('news.index'));
+    }
+
+    public function topNewsDestroy(Request $request)
+    {
+        TopNews::destroy($request->id);
+        Flash::success('Top News deleted successfully.');
+        return redirect(route('topNews.index'));
+    }
 
     public function __construct(NewsRepository $newsRepo)
     {

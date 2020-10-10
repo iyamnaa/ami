@@ -2,8 +2,13 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">News</li>
+        <li class="breadcrumb-item">Artikel Berita</li>
     </ol>
+    <div class="row breadcrumb ml-4 mr-4 mb-3">
+        <a href="{{ route('topNews.index') }}" class="col-12 col-md-3 bg-danger pb-3 pt-4 text-center" style="border-radius:10px">
+            <h5> Top Artikel </h5>
+        </a>
+    </div>
     <div class="container-fluid">
         <div class="animated fadeIn">
              @include('flash::message')
@@ -12,7 +17,7 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
-                             News
+                             Artikel Berita
                              <a class="pull-right" href="{{ route('news.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">

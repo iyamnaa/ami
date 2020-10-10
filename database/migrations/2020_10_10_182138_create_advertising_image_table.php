@@ -15,8 +15,6 @@ class CreateAdvertisingImageTable extends Migration
     {
         Schema::create('advertising_image', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
             $table->string('image_url');
         });
     }
