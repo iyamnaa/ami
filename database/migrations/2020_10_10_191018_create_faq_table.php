@@ -17,6 +17,7 @@ class CreateFaqTable extends Migration
             $table->id();
             $table->string('topic');
             $table->text('body');
+            $table->boolean('published')->default(0);
             $table->timestamps();
         });
     }

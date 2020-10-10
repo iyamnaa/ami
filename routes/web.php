@@ -26,6 +26,7 @@ Route::get('/coba', 'HomeController@coba')->name('index1');
 Route::get('/coba2', 'HomeController@coba2')->name('index2');
 
 Route::get('/tentang-kami', 'HomeController@about')->name('about');
+Route::get('/syarat-ketentuan', 'FAQController@syaratKetentuan')->name('syarat.ketentuan');
 
 Route::group(['prefix' => 'campaign'], function(){
   Route::get('/', 'CampaignController@front')->name('campaigns.front');
@@ -67,6 +68,11 @@ Route::group(['prefix' => 'berita'], function(){
   Route::get('/{id}', 'NewsController@read')->name('news.read');
 });
 
+Route::group(['prefix' => 'faq'], function(){
+  Route::get('/', 'FAQController@front')->name('faqs.front');
+  Route::get('/{id}', 'FAQController@read')->name('faqs.read');
+});
+
 Route::group(['prefix' => 'kwitansi'], function(){
   Route::get('/{username}', 'ReceiptController@userReceipt')->name('receipt.list')->middleware('auth','verified');
   Route::get('/{type}/{id}', 'ReceiptController@show')->name('receipt.show')->middleware('auth','verified');
@@ -93,6 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified', 'admin'] 
   Route::resource('topCampaigns', 'TopCampaignController');
   Route::resource('reportCategories', 'ReportCategoryController');
   Route::resource('wishlists', 'WishlistController');
+  Route::resource('faqs', 'FAQController');
 });
 Route::get('coba', 'ImageController@coba');
 

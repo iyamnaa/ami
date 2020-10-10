@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\CampaignReport;
+use App\Models\FAQ;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class CampaignReportDataTable extends DataTable
+class FAQDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,18 +18,18 @@ class CampaignReportDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.campaign_reports.datatables_actions');
+        return $dataTable->addColumn('action', 'f_a_q_s.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\CampaignReport $model
+     * @param \App\Models\FAQ $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(CampaignReport $model)
+    public function query(FAQ $model)
     {
-        return $model->newQuery()->with(['campaign', 'user', 'reportCategory']); 
+        return $model->newQuery();
     }
 
     /**
@@ -62,10 +62,8 @@ class CampaignReportDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'user_id' => new \Yajra\DataTables\Html\Column(['title' => 'Nama Pembuat', 'data' => 'user.name', 'name' => 'user_id']),
-            'campaign_id'  => new \Yajra\DataTables\Html\Column(['title' => 'Campaign', 'data' => 'campaign.title', 'name' => 'campaign_id']),
-            'report_category_id'  => new \Yajra\DataTables\Html\Column(['title' => 'Kategori', 'data' => 'report_category.name', 'name' => 'report_category_id']),
-            'created_at'
+            'topic',
+            'body'
         ];
     }
 
@@ -76,6 +74,6 @@ class CampaignReportDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'campaign_reports_datatable_' . time();
+        return 'f_a_q_s_datatable_' . time();
     }
 }
