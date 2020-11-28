@@ -14,14 +14,16 @@ $('.upload-result').on('click', function (ev) {
 			type: "POST",
 			data: {
 				"image":resp,
-				"dir":'campaign' 
+				"dir": $('#dir').val()
 			},
 			success: function (data) {
 				// html = '<img src="' + resp + '" />';
 				// $("#upload-demo-i").html(html);
 				$('.next-step').removeAttr('disabled')
 				$('#imageCoverName').val(data.file_name)
-				alert(data.message)
+				if(data.file_name == null){
+					alert(data.message)
+				}
 			}
 		});
 	});

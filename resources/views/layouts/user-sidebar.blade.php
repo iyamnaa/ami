@@ -54,6 +54,12 @@
                 <span class="user-menu-list"> Tentang Kami </span>
             </li>
             </a>
+            <a href="{{ route('faqs.front') }}"> 
+            <li>
+                <i class="fa fa-question"></i> 
+                <span class="user-menu-list"> FAQ </span>
+            </li>
+            </a>
             <a href="{{ route('user.logout') }}" class="text-danger"> 
             <li>
                 <i class="fa fa-power-off"></i> 

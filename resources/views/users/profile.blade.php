@@ -43,6 +43,14 @@
                 </a>
               </div>
 
+              <div class="user-profile-edit mt-3">
+                <a href=" {{ route('temanbaik.index') }} ">
+                  <div class="btn form main-btn single-btn btn-orange-outline">
+                    Sobat TemanBAIK
+                  </div>
+                </a>
+              </div>
+
               <div class="campaign-info-setting">
                 <div class="content-box no-padd">
                   <ul class="menu-list mobile-menu-list text-primary">

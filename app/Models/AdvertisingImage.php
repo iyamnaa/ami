@@ -19,6 +19,7 @@ class AdvertisingImage extends Model
      */
     protected $casts = [
         'image_url' => 'string',
+        'order' => 'integer',
     ];
 
     /**

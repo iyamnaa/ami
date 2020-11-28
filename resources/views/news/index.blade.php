@@ -89,18 +89,16 @@
 <script type="text/javascript">
 
   function call_filter_form(){
-    $('#modal-include').html(`@include('layouts.modal.filter.filter')`)
+    $('#modal-include').html(`@include('layouts.modal.filter.filter-news')`)
   }
 
-  function filter_click(name = null, category = null, time = null, sort = null){
+  function filter_click(name = null, created_at = null){
     urlParams = new URL(window.location.href).searchParams
 
     name     = name != null ? name : urlParams.get('search-filter')
-    category = category != null ? category : urlParams.get('category')
-    time     = time != null ? time : urlParams.get('campaign-type')
-    sort     = sort != null ? sort : urlParams.get('sort-by')
+    created_at = created_at != null ? created_at : urlParams.get('created_at')
 
-    window.location = "/campaign?search-filter=" + name + "&category=" + category + "&campaign-type=" + time + "&sort-by=" + sort
+    window.location = "/news?search-filter=" + name + "&created_at=" + created_at 
   }
 </script>
 @endpush

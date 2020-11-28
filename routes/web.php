@@ -73,6 +73,11 @@ Route::group(['prefix' => 'faq'], function(){
   Route::get('/{id}', 'FAQController@read')->name('faqs.read');
 });
 
+Route::group(['prefix' => 'temanBAIK'], function(){
+  Route::get('/', 'TemanBaikController@index')->name('temanbaik.index');
+  Route::get('/daftar', 'TemanBaikController@create')->name('temanbaik.create');
+});
+
 Route::group(['prefix' => 'kwitansi'], function(){
   Route::get('/{username}', 'ReceiptController@userReceipt')->name('receipt.list')->middleware('auth','verified');
   Route::get('/{type}/{id}', 'ReceiptController@show')->name('receipt.show')->middleware('auth','verified');
@@ -100,9 +105,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified', 'admin'] 
   Route::resource('wishlists', 'WishlistController');
   Route::resource('faqs', 'FAQController');
 
+  Route::get('/ads', 'AdsController@index')->name('ads.index');
+  Route::get('/ads/create', 'AdsController@create')->name('ads.create');
+  Route::post('/ads/store', 'AdsController@store')->name('ads.store');
+  Route::post('/ads/update', 'AdsController@update')->name('ads.update');
+  Route::delete('/ads/delete/{id}', 'AdsController@destroy')->name('ads.destroy');
+
   Route::group(['prefix' => 'top'], function(){
-    Route::get('/ads', 'HomeController@home')->name('topAds.index');
-  
     Route::get('/campaigns', 'CampaignController@topCampaigns')->name('topCampaigns.index');
     Route::post('/campaigns/add/{id}', 'CampaignController@topCampaignCreate')->name('topCampaigns.create');
     Route::delete('/campaigns/destroy/{id}', 'CampaignController@topCampaignDestroy')->name('topCampaigns.destroy');

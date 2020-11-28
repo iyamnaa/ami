@@ -1,3 +1,7 @@
+@push('stylesheet')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+@endpush
+
 <div id="fields-1">
     <div class="alert alert-danger" id="alert-1">
         Isi Form Dengan Lengkap
@@ -66,6 +70,7 @@
             <div class="col-12" style="padding-top:30px;" align="center">
                 <strong class="mb-2">Select Image:</strong><br><br>
                 <input type="file" id="upload">
+                {!! Form::hidden('dir', 'campaign', ['id' => 'dir']) !!}    
                 <input type="button" class="btn btn-success upload-result" value="Upload Image">
             </div>
         </div>
@@ -95,10 +100,6 @@
         <input type="button" class="previous-step btn btn-light float-right mr-3" value="Kembali">
     </div>
 </div>
-
-@push('stylesheet')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
-@endpush
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>

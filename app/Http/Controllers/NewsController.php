@@ -45,9 +45,17 @@ class NewsController extends AppBaseController
         $this->newsRepository = $newsRepo;
     }
 
-    public function front()
+    public function front(Request $request)
     {
+        $filter = array(
+            'title' => $request->input('search-filter'),
+            'created_at' => $request->input('created_at')
+        );
+
         $news = News::all();
+        $news = $filter['title'] != null ? $news->where('title', $filter['title']) : $news;
+        $news = $filter['created_at'] != null ? $news->where('created_at', $filter['created_at']) : $news;
+
         $categories = CampaignCategory::all();
         return view('news.index', ['news' => $news, 'categories' => $categories]);
     }

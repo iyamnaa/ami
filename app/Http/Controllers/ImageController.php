@@ -21,7 +21,7 @@ class ImageController extends Controller
             list(, $data)      = explode(',', $data);
     
             $data = base64_decode($data);
-            $image_name = 'images/' . $dir.'/'.time().'.png';
+            $image_name = 'images/'.$dir.'/'.$dir.'-'.time().'.png';
             $path = public_path() .'/'. $image_name;
 
             file_put_contents($path, $data);

@@ -16,6 +16,7 @@ class CreateAdvertisingImageTable extends Migration
         Schema::create('advertising_image', function (Blueprint $table) {
             $table->id();
             $table->string('image_url');
+            $table->integer('order');
         });
     }
 

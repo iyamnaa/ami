@@ -213,7 +213,7 @@ class CampaignController extends AppBaseController
             Flash::error('Campaign not found');
             return redirect(route('campaigns.index'));
         }
-
+        unlink(public_path() .'/'. $campaign->image_cover);
         $this->campaignRepository->delete($id);
         Flash::success('Campaign deleted successfully.');
         return redirect(route('campaigns.index'));
